@@ -1,6 +1,6 @@
 import { createStyles } from "@mantine/core";
 
-export const HEADER_HEIGHT = 80;
+export const HEADER_HEIGHT = 100;
 
 export const useStyles = createStyles((theme) => ({
    inner: {
@@ -59,15 +59,15 @@ export const useStyles = createStyles((theme) => ({
 
    mainLink: {
       textTransform: "uppercase",
-      fontSize: 13,
+      fontSize: 15,
 
       color:
          theme.colorScheme === "dark"
             ? theme.colors.dark[1]
-            : theme.colors.gray[7],
+            : theme.colors.gray[5],
       padding: `7px ${theme.spacing.sm}px`,
       paddingBottom: theme.spacing.sm,
-      fontWeight: 700,
+      fontWeight: 800,
       borderBottom: "2px solid transparent",
       transition: "border-color 300ms ease, color 300ms ease",
 

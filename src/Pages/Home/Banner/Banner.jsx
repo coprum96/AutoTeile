@@ -13,13 +13,13 @@ import {
       <div className="inner">
         <div className="content">
           <Title className="title">
-            Willkommen zu <span className="highlight">German AutoTeile</span>
+            Willkommen zu <span className="highlight">German AutoTeile.de</span>
           </Title>
           <p className="tagline">
             Unsere Vision ist es, Ersatzteile so komfortabel und simpel zu liefern
             wie Autofahren.
           </p>
-          <Text color="gray">
+          <Text className="text">
             Wir kreieren Neuerungen und halten kontinuierlich unser Wort - täglich.
             Als Unternehmen aus Hamburg fühlen wir uns den hanseatischen Werten und
             Grundsätzen verpflichtet. "Das Tor zur Welt" verknüpft uns mit Individuen,
@@ -34,8 +34,8 @@ import {
             spacing="sm"
             size="sm"
             icon={
-              <ThemeIcon size={20} radius="xl">
-                <Check size={12} />
+              <ThemeIcon size={30} radius="xl">
+                <Check size={52} />
               </ThemeIcon>
             }
           >

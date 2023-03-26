@@ -7,6 +7,7 @@
 
 .highlight {
    color: rgb(15, 124, 88);
+   font-size: 37px;
 }
 
 .content {
@@ -25,24 +26,29 @@
 .title {
    color: #000;
    font-family: 'Greycliff CF', sans-serif;
-   font-size: 40px;
+   font-size: 35px;
    line-height: 1.2;
    font-weight: 900;
 }
 
 @media screen and (max-width: 599.98px) {
    .title {
-      font-size: 28px;
+      font-size: 35px;
    }
 }
 
 .tagline {
    color: #000;
    font-family: 'Greycliff CF', sans-serif;
-   font-size: 21px;
+   font-size: 23px;
    line-height: 1.1;
    font-weight: 700;
-   margin: 0;
+   margin: 6;
+}
+
+.text {
+   color: grey;
+   margin-bottom: 30px;
 }
 
 @media screen and (max-width: 599.98px) {
@@ -53,6 +59,7 @@
 
 .control {
    flex: 1;
+   font-size: 20px;
 }
 
 @media screen and (max-width: 599.98px) {
@@ -62,7 +69,8 @@
 }
 
 .image {
-   max-width: 350px;
+   max-width: 420px;
+   max-height: 400px;
    flex: 1;
 }
 

@@ -57,10 +57,12 @@ import {
        <Container className={classes.inner}>
          <Group>
            {' '}
-           <Title onClick={() => navigate('/')} ml={-10} mt={10}>
-            <div>AutoTeile</div>
+           <Title onClick={() => navigate('/')} ml={10} mt={10}>
+            <div>AutoTeile.de</div>
            </Title>
-           <MoodToggleButton ml={20} />
+         </Group>
+         <div className={classes.links}>
+           <Group position='right' mt={-5} mb={5}>
            {user ? (
              <CustomSignInOutButton
                leftIcon={<Logout color='pink' strokeOpacity={1} />}
@@ -73,14 +75,12 @@ import {
                <Text className={classes.authText}>Anmelden</Text>
              </CustomSignInOutButton>
            )}
-         </Group>
-         <div className={classes.links}>
-           <Group position='right' mt={-5} mb={5}>
              <Badge sx={{ marginRight: 5 }} radius='md' size='sm'>
                {user ? user.displayName : 'Guest'}
              </Badge>
+             <MoodToggleButton ml={10} />
            </Group>
-           <Group spacing={15} position='right' className={classes.mainLinks}>
+           <Group spacing={65} position='center' className={classes.mainLinks}>
              {mainItems}
            </Group>
          </div>

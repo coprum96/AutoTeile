@@ -16,13 +16,13 @@ export default function Feature({
          <div className={classes.overlay} />
 
          <div className={classes.content}>
-            <Icon size={38} className={classes.icon} />
+            <Icon size={58} className={classes.icon} />
             <Group noWrap>
                <Text
                   weight={700}
                   size="lg"
                   mb="xs"
-                  mt={5}
+                  mt={1}
                   className={classes.title}
                >
                   {title}
@@ -31,11 +31,11 @@ export default function Feature({
                   color="gray"
                   variant="light"
                   className={classes.icon}
-                  size={30}
+                  size={50}
                   radius="md"
                   mb="sm"
                >
-                  <ArrowUpRight size={28} />
+                  <ArrowUpRight size={38} />
                </ThemeIcon>
             </Group>
 
@@ -50,7 +50,7 @@ export default function Feature({
                      theme.colors[theme.primaryColor][3],
                      theme.colors[theme.primaryColor][9]
                   ),
-                  fontWeight: 700,
+                  fontWeight: 600,
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                })}
