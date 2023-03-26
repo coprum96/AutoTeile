@@ -1,13 +1,18 @@
 .inner {
    display: flex;
    justify-content: space-between;
-   padding-top: 80px;
+   padding-top: 30px;
    padding-bottom: 32px;
+}
+
+.highlight {
+   color: rgb(15, 124, 88);
 }
 
 .content {
    max-width: 480px;
    margin-right: 72px;
+   padding: 15px;
 }
 
 @media screen and (max-width: 767.98px) {

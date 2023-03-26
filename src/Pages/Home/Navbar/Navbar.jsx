@@ -15,7 +15,6 @@ import {
  import { useAuthState } from 'react-firebase-hooks/auth';
  import { Link, useNavigate } from 'react-router-dom';
  import { Login, Logout } from 'tabler-icons-react';
- import Logo from '../../../Assets/logo/AppLogo';
  import auth from '../../../firebase.init';
  import CustomSignInOutButton from '../../Components/CustomSignInOutButton';
  import MoodToggleButton from '../../Components/MoodToggleButton';
@@ -58,10 +57,10 @@ import {
        <Container className={classes.inner}>
          <Group>
            {' '}
-           <Title onClick={() => navigate('/')} ml={-40} mt={10}>
-             <Logo />
+           <Title onClick={() => navigate('/')} ml={-10} mt={10}>
+            <div>AutoTeile</div>
            </Title>
-           <MoodToggleButton ml={-40} />
+           <MoodToggleButton ml={20} />
            {user ? (
              <CustomSignInOutButton
                leftIcon={<Logout color='pink' strokeOpacity={1} />}
