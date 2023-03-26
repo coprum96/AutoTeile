@@ -4,11 +4,9 @@ import {
     Container,
     createStyles,
     Grid,
-    Image,
     Title,
  } from "@mantine/core";
  import React from "react";
- import img from "../../../Assets/svg/faq.svg";
  import SectionTitle from "../../Shared/SectionTitle";
  
  const useStyles = createStyles((theme) => ({
@@ -40,9 +38,6 @@ import {
           <SectionTitle mb="xl">FAQ's</SectionTitle>
           <Container size="lg">
              <Grid id="faq-grid" gutter={50}>
-                <Col span={5} md={6}>
-                   <Image src={img} alt="Frequently Asked Questions" />
-                </Col>
                 <Col span={12} md={6}>
                    <Title order={2} align="left" className={classes.title}>
                       Frequently Asked Questions

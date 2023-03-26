@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mantine/carousel": "^6.0.4",
     "@mantine/core": "^6.0.4",
     "@mantine/dates": "^6.0.4",
     "@mantine/dropzone": "^6.0.4",
