@@ -1,5 +1,6 @@
 import { Container } from "@mantine/core";
 import Banner from "./Banner/Banner";
+import BusinessSummary from "./BusinessSummary/BusinessSummary";
 
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
       <>
          <Container>
             <Banner />
+            <BusinessSummary />
          </Container>
       </>
    );
