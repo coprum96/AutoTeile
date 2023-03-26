@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Navbar } from './Pages';
-// import Router from './routes';
+import Router from './routes';
 import { colors } from './Theme/theme.js';
 
 // Create a client
@@ -29,6 +29,7 @@ export default function App() {
                withGlobalStyles
                withNormalizeCSS>
                <Navbar />
+               <Router />
 
                <ToastContainer />
             </MantineProvider>
