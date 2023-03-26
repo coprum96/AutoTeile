@@ -19,16 +19,11 @@ import {
           <div className={classes.inner}>
              <div className={classes.content}>
                 <Title className={classes.title}>
-                   World's <span className={classes.highlight}>Leading</span>{" "}
+                   Willkommen zu <span className={classes.highlight}>German AutoTeile</span>{" "}
                    <br />
-                   <span className={classes.tagline}>
-                      Automotive components manufacturer
-                   </span>
                 </Title>
                 <Text color="gray" mt="sm">
-                   We are committed to supplying our customers with robust
-                   automotive components and reliable services through our
-                   international commercial and production network
+                Unsere Vision ist es, Ersatzteile so komfortabel und simpel zu liefern wie Autofahren. Wir kreieren Neuerungen und halten kontinuierlich unser Wort - täglich. Als Unternehmen aus Hamburg fühlen wir uns den hanseatischen Werten und Grundsätzen verpflichtet. "Das Tor zur Welt" verknüpft uns mit Individuen, Kulturen, Diversität, Fortschritt und Ideen auf der ganzen Erde. Wir sind bereit und ausgestattet, Unternehmen in ihren Branchen zu stärken - auf lange Sicht und umweltbewusst. Erlauben Sie uns Teil Ihrer Abläufe zu sein - nehmen Sie Kontakt mit uns auf.
                 </Text>
  
                 <List
@@ -42,32 +37,17 @@ import {
                    }
                 >
                    <List.Item>
-                      <b>Insure Best Quality</b> – components are manufactured to
-                      the strictest tolerances.
+                      <b>Finden Sie Ihr Teil online</b>
                    </List.Item>
                    <List.Item>
-                      <b>Deliver Best</b> – We deliver top quality injection
-                      molded parts produced by our IATF 16949 certified factory
-                      in Poland.
+                      <b>Bestellen Sie online oder rufen Sie die Verkaufsstelle an</b>
                    </List.Item>
                    <List.Item>
-                      <b>100% recyclable</b> – All of our products are 100%
-                      recyclable
+                      <b>Ihre Bestellung wird entweder geliefert oder zur Abholung bereitgestellt. Wir bieten eine einfache und schnelle Lieferoption, um Ihnen die bestmögliche Erfahrung zu bieten</b>
                    </List.Item>
                 </List>
  
                 <Group mt={30}>
-                   <Button
-                      variant="default"
-                      radius="xl"
-                      size="md"
-                      className={classes.control}
-                      component={Anchor}
-                      href="https://github.com/Saifurrahmanemon/SRE-Industries"
-                      target="_blank"
-                   >
-                      Source code
-                   </Button>
                 </Group>
              </div>
              <img className={classes.image} src={car} alt="" />

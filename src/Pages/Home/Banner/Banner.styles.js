@@ -1,10 +1,10 @@
-import { createStyles } from "@mantine/core";
+import { Center, createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
    inner: {
       display: "flex",
       justifyContent: "space-between",
-      paddingTop: theme.spacing.xl * 2,
+      paddingTop: theme.spacing.xl * 5,
       paddingBottom: theme.spacing.xl * 2,
    },
 
@@ -64,6 +64,6 @@ export const useStyles = createStyles((theme) => ({
             ? theme.fn.rgba(theme.colors[theme.primaryColor][6], 0.55)
             : theme.colors[theme.primaryColor][0],
       borderRadius: theme.radius.sm,
-      padding: "4px 12px",
+      padding: "6px 12px",
    },
 }));

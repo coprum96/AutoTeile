@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import image from "../../Assets/svg/404.svg";
+import image from "../../Assets/svg/404.png";
 
 const useStyles = createStyles((theme) => ({
     root: {
