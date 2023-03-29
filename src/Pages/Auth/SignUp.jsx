@@ -32,7 +32,7 @@ import {
     const [token] = useToken(user);
     useEffect(() => {
        if (token) {
-          toast.success('Yay !!  You have successfully Registered ! 😊');
+          toast.success('Sehr gut!  You have successfully Registered ! 😊');
  
           navigate(from, { replace: true });
        }
@@ -82,24 +82,20 @@ import {
     }
     return (
        <Container size={420} my={50}>
-          <HighlightName mt={30}>Welcome to SRE Industries</HighlightName>
+          <HighlightName mt={30}>Willkommen zu AutoTeile</HighlightName>
           <Text color='dimmed' size='sm' align='center' mt={5}>
-             Already have an account yet?{' '}
+             Hast du schon einen Account?{' '}
              <Anchor size='sm' onClick={() => navigate('/login')}>
-                Please Login
+                Bitte Anmelden
              </Anchor>
           </Text>
-          <Paper withBorder shadow='xl' p={30} mt={30} radius='md'>
-             <SocialAuth />
- 
-             <Divider label='Or continue with email' labelPosition='center' my='lg' />
- 
-             <form onSubmit={form.onSubmit(handleSignUpOnSubmit)}>
-                <Group direction='column' grow>
+          <Paper withBorder shadow='xl' p={30} mt={20} radius='md'>
+             <form onSubmit={form.onSubmit(handleSignUpOnSubmit)} style={{ display: 'flex', flexDirection: 'column' }}>
+                <Group direction='column'>
                    <TextInput
                       required
                       label='Email'
-                      placeholder='hello@mantine.dev'
+                      placeholder='hello@me.com'
                       icon={<Mail size={20} />}
                       value={form.values.email}
                       onChange={(event) => form.setFieldValue('email', event.currentTarget.value)}
@@ -108,7 +104,7 @@ import {
                    <TextInput
                       required
                       label='Name'
-                      placeholder='Your name'
+                      placeholder='Deine Name'
                       value={form.values.name}
                       onChange={(event) => form.setFieldValue('name', event.currentTarget.value)}
                       {...form.getInputProps('name')}
@@ -117,17 +113,18 @@ import {
                    <PasswordInput
                       required
                       label='Password'
-                      placeholder='Your password'
-                      icon={<Lock size={20} />}
+                      placeholder='Deine password'
+                      icon={<Lock size={30} />}
                       value={form.values.password}
                       onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
+                      style={{ width: '50%' }}
                       {...form.getInputProps('password')}
                    />
                    <PasswordInput
                       required
-                      icon={<Lock size={20} />}
-                      label='confirm Password'
-                      placeholder='confirm password'
+                      icon={<Lock size={30} />}
+                      label='Nochmal Password'
+                      placeholder='Nochmal password'
                       value={form.values.confirmPassword}
                       onChange={(event) =>
                          form.setFieldValue('confirmPassword', event.currentTarget.value)
@@ -136,7 +133,7 @@ import {
                    />
                    <Group position='apart' mt='sm'>
                       <Checkbox
-                         label='I accept terms and conditions'
+                         label='I stimme alles zu'
                          checked={form.values.terms}
                          onChange={(event) =>
                             form.setFieldValue('terms', event.currentTarget.checked)
@@ -150,9 +147,12 @@ import {
                    variant='outline'
                    fullWidth
                    mt='xl'>
-                   Sign in
+                   Anmelden
                 </Button>
              </form>
+             <Divider label='Oder setze mit dem email fort' labelPosition='center' my='lg' />
+             <SocialAuth />
+ 
           </Paper>
        </Container>
     );

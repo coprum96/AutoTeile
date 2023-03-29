@@ -83,9 +83,9 @@ export default function SignUp() {
    }
    return (
       <Container size={420} my={50}>
-         <HighlightName mt={30}>Welcome to SRE Industries</HighlightName>
+         <HighlightName mt={30}>Willkommen zu AutoTeile</HighlightName>
          <Text color='dimmed' size='sm' align='center' mt={5}>
-            Already have an account yet?{' '}
+            Hast du einen neuen Account?{' '}
             <Anchor size='sm' onClick={() => navigate('/login')}>
                Please Login
             </Anchor>
@@ -100,7 +100,7 @@ export default function SignUp() {
                   <TextInput
                      required
                      label='Email'
-                     placeholder='hello@mantine.dev'
+                     placeholder='hello@me.com'
                      icon={<Mail size={20} />}
                      value={form.values.email}
                      onChange={(event) => form.setFieldValue('email', event.currentTarget.value)}
@@ -109,7 +109,7 @@ export default function SignUp() {
                   <TextInput
                      required
                      label='Name'
-                     placeholder='Your name'
+                     placeholder='Deine Name'
                      value={form.values.name}
                      onChange={(event) => form.setFieldValue('name', event.currentTarget.value)}
                      {...form.getInputProps('name')}
@@ -118,7 +118,7 @@ export default function SignUp() {
                   <PasswordInput
                      required
                      label='Password'
-                     placeholder='Your password'
+                     placeholder='Dein password'
                      icon={<Lock size={20} />}
                      value={form.values.password}
                      onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
@@ -127,8 +127,8 @@ export default function SignUp() {
                   <PasswordInput
                      required
                      icon={<Lock size={20} />}
-                     label='confirm Password'
-                     placeholder='confirm password'
+                     label='Nochmal Dein Password'
+                     placeholder='Nochmal Dein password'
                      value={form.values.confirmPassword}
                      onChange={(event) =>
                         form.setFieldValue('confirmPassword', event.currentTarget.value)
@@ -137,7 +137,7 @@ export default function SignUp() {
                   />
                   <Group position='apart' mt='sm'>
                      <Checkbox
-                        label='I accept terms and conditions'
+                        label='Ich stimme alles zu'
                         checked={form.values.terms}
                         onChange={(event) =>
                            form.setFieldValue('terms', event.currentTarget.checked)
@@ -151,7 +151,7 @@ export default function SignUp() {
                   variant='outline'
                   fullWidth
                   mt='xl'>
-                  Sign in
+                  Anmelden
                </Button>
             </form>
          </Paper>

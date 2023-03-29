@@ -15,7 +15,7 @@ const SocialAuth = (props) => {
    const navigate = useNavigate();
    useEffect(() => {
       if (token) {
-         toast.success(`Welcome  ${user?.user?.displayName.split(' ')[0]} 👋👋!!`);
+         toast.success(`Willkommen  ${user?.user?.displayName.split(' ')[0]} 👋👋!!`);
          navigate(from, { replace: true });
       }
    }, [token, from, navigate, user?.user?.displayName]);
@@ -23,10 +23,10 @@ const SocialAuth = (props) => {
       if (error) {
          switch (error?.code) {
             case 'auth/popup-closed-by-user':
-               toast.error('You closed the popup window, please try again');
+               toast.error('Versuchen Sie bitte nochmal');
                break;
             default:
-               toast.error('Something went wrong');
+               toast.error('Etwas stimmt nicht');
          }
       }
    }, [error]);
@@ -37,7 +37,7 @@ const SocialAuth = (props) => {
    return (
       <Group grow mb='md' mt='md'>
          <GoogleButton radius='xl' {...props} onClick={() => signInWithGoogle()}>
-            Continue With Google
+            Setze mit dem Google fort
          </GoogleButton>
       </Group>
    );
