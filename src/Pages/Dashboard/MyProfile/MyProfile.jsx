@@ -1,10 +1,9 @@
-import { Box, createStyles, Image } from "@mantine/core";
+import { Box, createStyles } from "@mantine/core";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
-import profileSVG from "../../../Assets/svg/profileUpdate.jpg";
 import auth from "../../../firebase.init";
 import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 import Loading from "../../Shared/Loading";
@@ -41,13 +40,12 @@ const MyProfile = () => {
 
    return (
       <>
-         <CustomDashboardTitle>My Profile</CustomDashboardTitle>
+         <CustomDashboardTitle>Mein Profil</CustomDashboardTitle>
          <div className={classes.wrapper}>
             <Box>
                <Profile fixedInfo={user} userInfo={data?.data} />
                <UpdateProfile userInfo={data?.data} refetch={refetch} />
             </Box>
-            <Image className={classes.img} src={profileSVG}></Image>
          </div>
       </>
    );

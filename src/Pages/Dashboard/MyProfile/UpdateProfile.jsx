@@ -13,7 +13,7 @@ const useStyles = createStyles((theme) => ({
   },
   input: {
     height: "auto",
-    paddingTop: 14,
+    paddingTop: 6,
   },
   label: {
     position: "absolute",
@@ -26,17 +26,16 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function UpdateProfile({ userInfo, refetch }) {
-  const { phone, address, email, linkedIn } = userInfo;
+  const { phone, address, email } = userInfo ?? {};
   const { classes } = useStyles();
 
   const [formValues, setFormValues] = useState({
     address: "",
     phone: Number,
-    linkedIn: "",
   });
 
   const handleOnChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target ?? {};
     setFormValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
 
@@ -49,19 +48,18 @@ export default function UpdateProfile({ userInfo, refetch }) {
     );
 
     if (data.result.modifiedCount) {
-      toast.success("Profile updated successfully");
+      toast.success("Profil erfolgreich aktualisiert");
       refetch();
       setFormValues({
         address: "",
         phone: Number,
-        linkedIn: "",
       });
     }
   };
 
   return (
     <>
-      <CustomDashboardTitle>Update Profile</CustomDashboardTitle>
+      <CustomDashboardTitle>Profile Erneuen</CustomDashboardTitle>
 
       <form onSubmit={handleOnSubmit}>
         <TextInput
@@ -70,14 +68,6 @@ export default function UpdateProfile({ userInfo, refetch }) {
           classNames={classes}
           name="address"
           value={formValues.address}
-          onChange={handleOnChange}
-        />
-        <TextInput
-          label="LinkedIn"
-          placeholder={linkedIn}
-          classNames={classes}
-          name="linkedIn"
-          value={formValues.linkedIn}
           onChange={handleOnChange}
         />
         <NumberInput
@@ -90,7 +80,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
           onChange={handleOnChange}
         />
         <Button type="submit" mt="md" variant="light">
-          Save
+          Speichern
         </Button>
       </form>
     </>

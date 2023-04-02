@@ -1,6 +1,6 @@
-import { Anchor, Avatar, createStyles, Group, Text } from "@mantine/core";
+import {  Avatar, createStyles, Group, Text } from "@mantine/core";
 import React from "react";
-import { At, BrandLinkedin, Location, PhoneCall } from "tabler-icons-react";
+import { At, Location, PhoneCall } from "tabler-icons-react";
 const useStyles = createStyles((theme) => ({
    icon: {
       color:
@@ -18,10 +18,10 @@ const Profile = ({ fixedInfo, userInfo }) => {
 
    return (
       <>
-         <Group noWrap>
-            <Avatar src={userInfo?.img} size={94} radius="md" />
+         <Group noWrap style={{ display: 'flex' }}>
+            <Avatar src={userInfo?.img} size={120} radius="md" />
             <div>
-               <Text size="xs" weight={500} color="dimmed">
+               <Text size="lg" weight={800} color="dimmed">
                   {userInfo?.creationTime}
                </Text>
 
@@ -29,36 +29,24 @@ const Profile = ({ fixedInfo, userInfo }) => {
                   {fixedInfo.displayName}
                </Text>
 
-               <Group noWrap spacing={10} mt={3}>
-                  <At size={16} className={classes.icon} />
-                  <Text size="xs" weight={600} color="dimmed">
+               <Group noWrap spacing={10} mt={10}>
+                  <At size={36} className={classes.icon} />
+                  <Text size="lg" weight={600} color="dimmed">
                      {fixedInfo?.email}
                   </Text>
                </Group>
-               <Group noWrap spacing={10} mt={5}>
-                  <Location size={16} className={classes.icon} />
-                  <Text size="md" color="dimmed">
+               <Group noWrap spacing={10} mt={10}>
+                  <Location size={36} className={classes.icon} />
+                  <Text size="lg" color="dimmed">
                      {userInfo?.address}
                   </Text>
                </Group>
 
-               <Group noWrap spacing={10} mt={5}>
-                  <PhoneCall size={16} className={classes.icon} />
-                  <Text size="xs" color="dimmed">
+               <Group noWrap spacing={10} mt={10}>
+                  <PhoneCall size={36} className={classes.icon} />
+                  <Text size="lg" color="dimmed">
                      {userInfo?.phone}
                   </Text>
-               </Group>
-
-               <Group noWrap spacing={10} mt={5}>
-                  <BrandLinkedin size={16} className={classes.icon} />
-                  <Anchor
-                     size="xs"
-                     color="dimmed"
-                     target="_blank"
-                     href={userInfo?.linkedIn}
-                  >
-                     {userInfo?.linkedIn}
-                  </Anchor>
                </Group>
             </div>
          </Group>
