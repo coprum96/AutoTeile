@@ -4,8 +4,8 @@ import {
     ThemeIcon,
     Title,
   } from "@mantine/core";
-  import { Check } from "tabler-icons-react";
-  import car from "../../../Assets/svg/car.jpg";
+  import { AlertCircle } from "tabler-icons-react";
+  // import car from "../../../Assets/svg/car.jpg";
   import "./Banner.css";
   
   export default function Banner() {
@@ -32,10 +32,10 @@ import {
           <List
             className="control"
             spacing="sm"
-            size="sm"
+            size="md"
             icon={
               <ThemeIcon size={30} radius="xl">
-                <Check size={52} />
+                <AlertCircle size={32} />
               </ThemeIcon>
             }
           >
@@ -55,7 +55,7 @@ import {
           </List>
         </div>
   
-        <img src={car} alt="Car" className="image" />
+        {/* <img src={car} alt="Car" className="image" /> */}
       </div>
     );
   }

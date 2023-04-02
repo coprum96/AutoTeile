@@ -9,8 +9,8 @@ export const useStyles = createStyles((theme) => ({
 
     overlay: {
         position: "absolute",
-        height: 110,
-        width: 160,
+        height: 10,
+        width: 180,
         borderRadius: 10,
         top: 0,
         left: 0,

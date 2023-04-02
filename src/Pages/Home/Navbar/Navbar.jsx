@@ -19,11 +19,12 @@ import {
  import CustomSignInOutButton from '../../Components/CustomSignInOutButton';
  import MoodToggleButton from '../../Components/MoodToggleButton';
  import { HEADER_HEIGHT, useStyles } from './Navbar.Styles';
+ import './Navbar.css'
  
  const mainLinks = [
    { link: '', label: 'Startseite' },
-   { link: 'garage', label: 'Garage' },
-   { link: 'news', label: 'Nachrichten' }
+   { link: 'dashboard', label: 'Garage' },
+   { link: 'blog', label: 'Nachrichten' }
  ];
  
  export default function Navbar() {
@@ -58,7 +59,7 @@ import {
          <Group>
            {' '}
            <Title onClick={() => navigate('/')} ml={10} mt={10}>
-            <div>AutoTeile.de</div>
+           <div className="titleText">AutoTeile.de</div>
            </Title>
          </Group>
          <div className={classes.links}>
@@ -76,7 +77,7 @@ import {
              </CustomSignInOutButton>
            )}
              <Badge sx={{ marginRight: 5 }} radius='md' size='sm'>
-               {user ? user.displayName : 'Guest'}
+               {user ? user.displayName : 'Gast'}
              </Badge>
              <MoodToggleButton ml={10} />
            </Group>

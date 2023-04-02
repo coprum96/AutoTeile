@@ -16,8 +16,8 @@ const Home = () => {
             <Support />
             <Brand />
             <Contact />
-            <Footer />
          </Container>
+         <Footer />
       </>
    );
 };

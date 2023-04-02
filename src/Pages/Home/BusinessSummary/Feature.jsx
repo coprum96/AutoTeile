@@ -1,5 +1,4 @@
-import { Group, Highlight, Text, ThemeIcon } from "@mantine/core";
-import { ArrowUpRight } from "tabler-icons-react";
+import { Group, Highlight, Text} from "@mantine/core";
 import { useStyles } from "./Feature.Styles";
 
 export default function Feature({
@@ -20,28 +19,18 @@ export default function Feature({
             <Group noWrap>
                <Text
                   weight={700}
-                  size="lg"
+                  size="md"
                   mb="xs"
                   mt={1}
                   className={classes.title}
                >
                   {title}
                </Text>
-               <ThemeIcon
-                  color="gray"
-                  variant="light"
-                  className={classes.icon}
-                  size={50}
-                  radius="md"
-                  mb="sm"
-               >
-                  <ArrowUpRight size={38} />
-               </ThemeIcon>
             </Group>
 
             <Highlight
                color="gray"
-               weight={500}
+               weight={600}
                size="md"
                mt="sm"
                highlightStyles={(theme) => ({

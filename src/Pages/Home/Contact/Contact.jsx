@@ -22,7 +22,7 @@ import {
              theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
           borderRadius: theme.radius.lg,
           padding: 5,
-          border: `5px solid ${
+          border: `10px solid ${
              theme.colorScheme === "dark"
                 ? theme.colors.dark[8]
                 : theme.colors.gray[2]
@@ -108,8 +108,8 @@ import {
     const { classes } = useStyles();
  
     return (
-       <Container my={30}>
-          <SectionTitle my={20}>Contact</SectionTitle>
+       <Container my={40}>
+          <SectionTitle my={20}>Kontaktieren Sie mit uns</SectionTitle>
           <Paper shadow="md" radius="lg">
              <div className={classes.wrapper}>
                 <div className={classes.contacts}>
@@ -160,7 +160,7 @@ import {
                             variant="light"
                             className={classes.control}
                          >
-                            Send message
+                            Senden
                          </Button>
                       </Group>
                    </div>

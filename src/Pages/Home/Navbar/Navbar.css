@@ -1,0 +1,6 @@
+.titleText {
+    font-family: 'Carter One', cursive;
+    font-size: 46px; /* adjust the font size as needed */
+    cursor: pointer;
+    color: rgb(50, 44, 133);
+  }
