@@ -52,10 +52,10 @@ import {
  
        if (email) {
           await sendPasswordResetEmail(email);
-          toast.success("Please check your email for reset password link. 😀");
+          toast.success("Bitte überprüfen Sie Ihre E-Mail auf den Link zum Zurücksetzen des Passworts.");
        }
        if (!email) {
-          toast.error("Please enter your email! 😕 ");
+          toast.error("Bitte geben Sie Ihre E-Mail-Adresse ein! ");
        }
     };
  
@@ -74,8 +74,8 @@ import {
  
           <Paper withBorder shadow="md" p={30} radius="md" mt="xl">
              <TextInput
-                label="Your email"
-                placeholder="SRE@Industries.dev"
+                label="Deine Email"
+                placeholder="wolf@gmail.com"
                 required
                 ref={emailRef}
              />
@@ -84,7 +84,7 @@ import {
                    <Center inline>
                       <ArrowLeft size={12} />
                       <Box onClick={() => navigate("/login")} ml={5}>
-                         Back to login page
+                         Zurück zum Anmelden
                       </Box>
                    </Center>
                 </Anchor>
@@ -93,7 +93,7 @@ import {
                    variant="light"
                    className={classes.control}
                 >
-                   Reset password
+                   Erneuen password
                 </Button>
              </Group>
           </Paper>

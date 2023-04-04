@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Sommerreifen",
+        "price": 300,
+        "minimumQuantity":4,
+        "availableQuantity":200,
+        "description": "APlus A609 145/70 R12 69T",
+        "img": "https://cdn.autodoc.de/uploads/tyres/full/PKW/6924064108592_AP1947H1.jpg?ccf=94077838"
+    },
+    {
+        "name": "Bremstrommel",
+        "price": 500,
+        "minimumQuantity":2,
+        "availableQuantity":200,
+        "description": "Bremstrommel für VW Golf IV Schrägheck (1J1) 1.9 SDI Diesel 68 PS / 50 kW",
+        "img": "https://cdn.autodoc.de/uploads/custom-catalog/atd/categories/300x300/10133.png"
+    },
+    {
+        "name": "Glühlampe, Fernscheinwerfer ",
+        "price": 700,
+        "minimumQuantity":20,
+        "availableQuantity":112,
+        "description": "RIDEX 106B0006 Glühlampe, Fernscheinwerfer.",
+        "img": "https://cdn.autodoc.de/thumb?id=15183057&m=1&n=1&lng=de&ccf=94077838"
+    },
+    {
+        "name": "Blinker",
+        "price": 400,
+        "minimumQuantity":22,
+        "availableQuantity":232,
+        "description": "ABAKUS 441-1406N-UE-S Blinker",
+        "img": "https://cdn.autodoc.de/thumb?id=8359732&m=1&n=0&lng=de&ccf=94077838"
+    },
+    {
+        "name": "Halteclipsatz",
+        "price": 500,
+        "minimumQuantity":12,
+        "availableQuantity":200,
+        "description": "Hogert Technik HT8G560 Halteclipsatz, Karosserie ",
+        "img": "https://cdn.autodoc.de/thumb?id=19909400&m=1&n=0&lng=de&ccf=94077838"
+    },
+    {
+        "name": "Nebelscheinwerfer ",
+        "price": 800,
+        "minimumQuantity":5,
+        "availableQuantity":100,
+        "description": "CARPOINT 1510139 Nebelscheinwerfer ",
+        "img": "https://cdn.autodoc.de/thumb?id=17357240&m=1&n=0&lng=de&ccf=94077838"
+    }
+
+]

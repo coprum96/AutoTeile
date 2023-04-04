@@ -30,8 +30,9 @@ export default function UpdateProfile({ userInfo, refetch }) {
   const { classes } = useStyles();
 
   const [formValues, setFormValues] = useState({
-    address: "",
-    phone: Number,
+    address: address || "",
+    phone: phone || Number,
+    updatedAt: new Date(),
   });
 
   const handleOnChange = (event) => {
@@ -44,7 +45,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
 
     const { data } = await axiosPrivate.put(
       `${API_URL}users/${email}`,
-      formValues
+      { ...formValues, updatedAt: new Date() } // Include the updatedAt field in the request body
     );
 
     if (data.result.modifiedCount) {
@@ -53,6 +54,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
       setFormValues({
         address: "",
         phone: Number,
+        updatedAt: new Date(), // Update the updatedAt field in the state as well
       });
     }
   };
@@ -65,7 +67,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
         <TextInput
           label="Address"
           placeholder={address}
-          classNames={classes}
+          className={classes.input} // Use className instead of classNames
           name="address"
           value={formValues.address}
           onChange={handleOnChange}
@@ -73,7 +75,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
         <NumberInput
           label="Phone Number"
           placeholder={phone}
-          classNames={classes}
+          className={classes.input} // Use className instead of classNames
           hideControls
           name="phone"
           value={formValues.phone}
