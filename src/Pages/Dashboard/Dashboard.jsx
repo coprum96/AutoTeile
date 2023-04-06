@@ -15,7 +15,6 @@ import {
     BuildingStore,
     History,
     Settings,
-    UserPlus,
     Users,
     ListSearch,
     Paperclip,
@@ -44,7 +43,6 @@ import {
  
  //links for admin
  const adminLinks = [
-    { link: "/dashboard/makeadmin", label: "Make Admin", icon: UserPlus },
     {
        link: "/dashboard/manageproducts",
        label: "Manage Products",

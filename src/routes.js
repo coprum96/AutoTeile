@@ -7,7 +7,6 @@ import RequireUser from "./Pages/Auth/RequireUser";
 import SignUp from "./Pages/Auth/SignUp";
 import Blog from "./Pages/Blog/Blog";
 import AddProduct from "./Pages/Dashboard/Admin/AddProduct";
-import MakeAdmin from "./Pages/Dashboard/Admin/MakeAdmin";
 import ManageAllOrders from "./Pages/Dashboard/Admin/ManageAllOrders";
 import ManageProducts from "./Pages/Dashboard/Admin/ManageProducts";
 import Dashboard from "./Pages/Dashboard/Dashboard";
@@ -103,14 +102,6 @@ const Router = () => {
                element: (
                   <RequireAdmin>
                      <ManageProducts />
-                  </RequireAdmin>
-               ),
-            },
-            {
-               path: "makeadmin",
-               element: (
-                  <RequireAdmin>
-                     <MakeAdmin />
                   </RequireAdmin>
                ),
             },

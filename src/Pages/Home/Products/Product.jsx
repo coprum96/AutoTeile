@@ -22,7 +22,7 @@ export default function Product({ product }) {
             <Image
                withPlaceholder
                src={img}
-               height={260}
+               height={160}
                className={classes.image}
             />
          </Center>
@@ -31,7 +31,7 @@ export default function Product({ product }) {
                <Text transform="uppercase" weight={900} size="xs">
                   {name}
                </Text>
-               <Text className={classes.text} mt="sm" mb="md" lineClamp={4}>
+               <Text className={classes.text} mt="xs" mb="md" lineClamp={4}>
                   {description}...
                </Text>
                <Group noWrap spacing="xs">
@@ -51,9 +51,9 @@ export default function Product({ product }) {
                      <Text size="xs" weight={500} color="gray">
                         <Text component="span" size="xl" weight={700}>
                            {" "}
-                           €{price}
+                           ${price}
                         </Text>
-                        / per Einheit
+                        / per unit
                      </Text>
                   </Group>
                </Group>
@@ -67,7 +67,7 @@ export default function Product({ product }) {
                         navigate(`/purchase/${_id}`);
                      }}
                   >
-                     Kaufen
+                     Purchase
                   </Button>
                   <Wishlist />
                </Group>

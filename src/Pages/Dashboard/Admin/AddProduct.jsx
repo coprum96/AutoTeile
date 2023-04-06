@@ -1,50 +1,31 @@
-import { Box, Button, NumberInput, TextInput, useMantineTheme } from '@mantine/core';
-import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { Box, Button, NumberInput, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
-import toBase64 from 'tobase64converter';
 import axiosPrivate from '../../../API/axiosPrivate';
 import { API_URL } from '../../../API/rootURL';
 
 import CustomDashboardTitle from '../../Components/CustomDashboardTitle';
 import { useStyles } from './AddProduct.styles';
-import { dropzoneChildren } from './components/DropZoneConfig';
 
 export default function AddInventory() {
    const { classes } = useStyles();
-   const theme = useMantineTheme();
 
    const form = useForm({
-      initialValues: {
+      values: {
          name: '',
-         price: 1000,
+         price: 100,
          minimumQuantity: 0,
          availableQuantity: 0,
-         description: '',
-         img: '',
+         artikul: '',
       },
    });
 
-   const onDrop = useCallback(
-      async (acceptedFiles) => {
-         const [file] = acceptedFiles;
-
-         const img = await toBase64(file);
-         console.log(img);
-
-         form.setFieldValue('img', img);
-      },
-      [form],
-   );
-   const onReject = (files) => {
-      toast.error('File must be an image');
-   };
    const handleOnSubmit = async (values) => {
       const { data } = await axiosPrivate.post(`${API_URL}parts`, values);
 
       if (data?.insertedId) {
-         toast.success('Product added successfully');
+         toast.success('Produkt erfolgreich hinzugefügt');
          form.reset();
       }
    };
@@ -59,11 +40,11 @@ export default function AddInventory() {
                marginRight: '20%',
             }}>
             {' '}
-            <CustomDashboardTitle>Add Product:</CustomDashboardTitle>
+            <CustomDashboardTitle>Produkt hinzufügen:</CustomDashboardTitle>
             <form onSubmit={form.onSubmit(handleOnSubmit)}>
                <TextInput
                   label='Name'
-                  placeholder='Name of your product'
+                  placeholder='Name Ihres Produkts'
                   classNames={classes}
                   required
                   {...form.getInputProps('name')}
@@ -73,7 +54,7 @@ export default function AddInventory() {
                   classNames={classes}
                   my={20}
                   label='Price'
-                  defaultValue={1000}
+                  defaultValue={100}
                   parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
                   formatter={(value) =>
                      !Number.isNaN(parseFloat(value))
@@ -102,28 +83,17 @@ export default function AddInventory() {
                   {...form.getInputProps('availableQuantity')}
                />
 
+
                <TextInput
-                  label='Description'
-                  placeholder='About The product'
-                  classNames={{
-                     input: classes.descriptionInput,
-                     label: classes.label,
-                  }}
+                  label='Artikul'
+                  placeholder='Artikulnummer Ihres Produkts'
+                  classNames={classes}
                   required
-                  {...form.getInputProps('description')}
+                  {...form.getInputProps('artikul')}
                />
 
-               <Dropzone
-                  onDrop={onDrop}
-                  onReject={onReject}
-                  maxSize={264 ** 2}
-                  accept={IMAGE_MIME_TYPE}
-                  my={20}>
-                  {(status) => dropzoneChildren(status, theme)}
-               </Dropzone>
-
                <Button type='submit' variant='light' mt='lg'>
-                  Add Product
+                  Produkt hinzufügen
                </Button>
             </form>
          </Box>

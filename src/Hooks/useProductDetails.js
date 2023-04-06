@@ -9,7 +9,7 @@ const useProductDetails = (id) => {
       error,
       refetch,
    } = useQuery(
-      "parts",
+      ["product", id],
       async () => await axiosPrivate.get(`${API_URL}parts/${id}`)
    );
 
