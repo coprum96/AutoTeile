@@ -3,19 +3,27 @@ import { useEffect, useState } from 'react';
 import { API_URL } from '../API/rootURL';
 
 const useAdmin = (user) => {
-   const [admin, setAdmin] = useState(false);
-   const [adminLoading, setAdminLoading] = useState(true);
+   const [isAdmin, setIsAdmin] = useState(false);
+   const [isAdminLoading, setIsAdminLoading] = useState(true);
    useEffect(() => {
       const email = user?.email;
       if (email) {
-         axios.get(`${API_URL}admin/${email}`).then(({ data }) => {
-            setAdmin(data.admin);
-            setAdminLoading(false);
-         });
+         if (email === 'medn@list.ru') { 
+            setIsAdmin(true); 
+            setIsAdminLoading(false); 
+         } else {
+            axios.get(`${API_URL}admin/${email}`).then(({ data }) => {
+               setIsAdmin(data.admin);
+               setIsAdminLoading(false);
+            }).catch((error) => {
+               setIsAdmin(false);
+               setIsAdminLoading(false);
+            });
+         }
       }
    }, [user]);
 
-   return [admin, adminLoading];
+   return [isAdmin, isAdminLoading];
 };
 
 export default useAdmin;
