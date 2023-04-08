@@ -1,4 +1,4 @@
-import { Badge, Button, Card, Center, Group, Image, Text } from "@mantine/core";
+import { Badge, Button, Card, Center, Group, Text } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import { ShoppingCart } from "tabler-icons-react";
 import Wishlist from "../../Components/Wishlist";
@@ -7,9 +7,8 @@ import { useStyles } from "./Product.styles";
 export default function Product({ product }) {
    const navigate = useNavigate();
    const {
-      img,
       name,
-      description,
+      artikul,
       minimumQuantity,
       availableQuantity,
       _id,
@@ -19,31 +18,25 @@ export default function Product({ product }) {
    return (
       <Card withBorder shadow="xl" radius="md" p={0} className={classes.card}>
          <Center>
-            <Image
-               withPlaceholder
-               src={img}
-               height={160}
-               className={classes.image}
-            />
          </Center>
          <Group noWrap spacing={0}>
             <div className={classes.body}>
                <Text transform="uppercase" weight={900} size="xs">
                   {name}
                </Text>
-               <Text className={classes.text} mt="xs" mb="md" lineClamp={4}>
-                  {description}...
+               <Text  weight={700} size="xl">
+                  Arkikul: {artikul}
                </Text>
                <Group noWrap spacing="xs">
                   <Text size="sm" className={classes.text} color="dimmed">
                      {" "}
-                     Available: <Badge color="red"> {availableQuantity}</Badge>
+                     Verfügbar: <Badge color="red"> {availableQuantity}</Badge>
                   </Text>
                   <Text size="xl" color="dimmed">
                      •
                   </Text>
                   <Text size="sm" className={classes.text} color="dimmed">
-                     Min Order: <Badge> {minimumQuantity}</Badge>
+                  Minimaler Auftrag: <Badge> {minimumQuantity}</Badge>
                   </Text>
                </Group>
                <Group noWrap spacing="xs">
@@ -53,7 +46,7 @@ export default function Product({ product }) {
                            {" "}
                            ${price}
                         </Text>
-                        / per unit
+                        / pro Einheit
                      </Text>
                   </Group>
                </Group>
@@ -67,7 +60,7 @@ export default function Product({ product }) {
                         navigate(`/purchase/${_id}`);
                      }}
                   >
-                     Purchase
+                     Kaufen
                   </Button>
                   <Wishlist />
                </Group>

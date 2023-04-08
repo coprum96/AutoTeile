@@ -11,10 +11,9 @@ const useToken = (user) => {
 
          const userInfo = {
             email,
-            img: info?.photoURL,
             name: info?.displayName,
-            phone: info?.phoneNumber,
             creationTime: info?.metadata.creationTime,
+            password: info?.password
          };
 
          if (email) {
@@ -24,7 +23,7 @@ const useToken = (user) => {
             );
             // set token to state to get access
             setToken(data.accessToken);
-            localStorage.setItem("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", data.accessToken);
+            localStorage.setItem("eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.VFb0qJ1LRg_4ujbZoRMXnVkUgiuKq5KxWqNdbKq_G9Vvz-S1zZa9LPxtHWKa64zDl2ofkT8F6jBt_K4riU-fPg", data.accessToken);
          }
       };
       getToken();

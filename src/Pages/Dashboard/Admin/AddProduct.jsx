@@ -1,6 +1,5 @@
 import { Box, Button, NumberInput, TextInput } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import React from 'react';
+import React, { useRef } from 'react';
 import { toast } from 'react-toastify';
 import axiosPrivate from '../../../API/axiosPrivate';
 import { API_URL } from '../../../API/rootURL';
@@ -11,24 +10,34 @@ import { useStyles } from './AddProduct.styles';
 export default function AddInventory() {
    const { classes } = useStyles();
 
-   const form = useForm({
-      values: {
-         name: '',
-         price: 100,
-         minimumQuantity: 0,
-         availableQuantity: 0,
-         artikul: '',
-      },
-   });
+   const formRef = useRef();
+   const nameRef = useRef();
+   const priceRef = useRef();
+   const minimumQuantityRef = useRef();
+   const availableQuantityRef = useRef();
+   const artikulRef = useRef();
 
-   const handleOnSubmit = async (values) => {
-      const { data } = await axiosPrivate.post(`${API_URL}parts`, values);
-
-      if (data?.insertedId) {
-         toast.success('Produkt erfolgreich hinzugefügt');
-         form.reset();
+   const handleOnSubmit = async () => {
+      const values = {
+        name: nameRef.current.value,
+        price: priceRef.current.value,
+        minimumQuantity: minimumQuantityRef.current.value,
+        availableQuantity: availableQuantityRef.current.value,
+        artikul: artikulRef.current.value,
+      };
+      try {
+        const { data } = await axiosPrivate.post(`${API_URL}parts`, values);
+        if (data?.insertedId) {
+          toast.success('Produkt erfolgreich hinzugefügt');
+          formRef.current.reset();
+        } else {
+          toast.error('Ein Fehler ist aufgetreten: keine Einfüge-ID zurückgegeben.');
+        }
+      } catch (error) {
+        toast.error(`Ein Fehler ist aufgetreten: ${error.message}`);
       }
-   };
+    };
+    
 
    return (
       <>
@@ -41,13 +50,13 @@ export default function AddInventory() {
             }}>
             {' '}
             <CustomDashboardTitle>Produkt hinzufügen:</CustomDashboardTitle>
-            <form onSubmit={form.onSubmit(handleOnSubmit)}>
+            <form ref={formRef} onSubmit={(e) => { e.preventDefault(); handleOnSubmit(); }}>
                <TextInput
                   label='Name'
                   placeholder='Name Ihres Produkts'
                   classNames={classes}
                   required
-                  {...form.getInputProps('name')}
+                  ref={nameRef}
                />
 
                <NumberInput
@@ -62,7 +71,7 @@ export default function AddInventory() {
                         : '$ '
                   }
                   required
-                  {...form.getInputProps('price')}
+                  ref={priceRef}
                />
                <NumberInput
                   classNames={classes}
@@ -71,7 +80,7 @@ export default function AddInventory() {
                   min={0}
                   label='Minimum Quantity'
                   required
-                  {...form.getInputProps('minimumQuantity')}
+                  ref={minimumQuantityRef}
                />
                <NumberInput
                   classNames={classes}
@@ -80,7 +89,7 @@ export default function AddInventory() {
                   min={0}
                   label='Available Quantity'
                   required
-                  {...form.getInputProps('availableQuantity')}
+                  ref={availableQuantityRef}
                />
 
 
@@ -89,7 +98,7 @@ export default function AddInventory() {
                   placeholder='Artikulnummer Ihres Produkts'
                   classNames={classes}
                   required
-                  {...form.getInputProps('artikul')}
+                  ref={artikulRef}
                />
 
                <Button type='submit' variant='light' mt='lg'>

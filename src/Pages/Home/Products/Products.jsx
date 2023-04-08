@@ -14,7 +14,7 @@ const Products = () => {
 
    return (
       <Container mb={theme.spacing.xl * 2}>
-         <SectionTitle mb="xl">Parts</SectionTitle>
+         <SectionTitle mb="xl">Teile</SectionTitle>
          <Grid>
             {" "}
             {products.map((product) => (
