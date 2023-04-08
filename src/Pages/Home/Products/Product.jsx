@@ -24,7 +24,7 @@ export default function Product({ product }) {
                <Text transform="uppercase" weight={900} size="xs">
                   {name}
                </Text>
-               <Text  weight={700} size="xl">
+               <Text  weight={700} size="md">
                   Arkikul: {artikul}
                </Text>
                <Group noWrap spacing="xs">
@@ -32,19 +32,16 @@ export default function Product({ product }) {
                      {" "}
                      Verfügbar: <Badge color="red"> {availableQuantity}</Badge>
                   </Text>
-                  <Text size="xl" color="dimmed">
-                     •
-                  </Text>
                   <Text size="sm" className={classes.text} color="dimmed">
                   Minimaler Auftrag: <Badge> {minimumQuantity}</Badge>
                   </Text>
                </Group>
                <Group noWrap spacing="xs">
                   <Group spacing="xs" noWrap>
-                     <Text size="xs" weight={500} color="gray">
+                     <Text size="xs" weight={600} color="gray">
                         <Text component="span" size="xl" weight={700}>
                            {" "}
-                           ${price}
+                           {price}
                         </Text>
                         / pro Einheit
                      </Text>

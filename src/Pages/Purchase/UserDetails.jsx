@@ -1,6 +1,5 @@
 import {
    ActionIcon,
-   Avatar,
    Button,
    Group,
    NumberInput,
@@ -22,7 +21,6 @@ import { useStyles } from "./UserDetails.styles";
 
 const UserDetails = ({ email, name, productId, product }) => {
    const {
-      img,
       price,
       minimumQuantity: min,
       availableQuantity: max,
@@ -34,7 +32,6 @@ const UserDetails = ({ email, name, productId, product }) => {
    const {
       quantity,
       setQuantity,
-
       decreaseQuantity,
       increaseQuantity,
       shipping,
@@ -56,7 +53,6 @@ const UserDetails = ({ email, name, productId, product }) => {
    const handleOnSubmit = async ({ email, address, phone }) => {
       const productDetails = {
          productName: productName,
-         img: img,
          productId: productId,
          email,
          address,
@@ -84,7 +80,6 @@ const UserDetails = ({ email, name, productId, product }) => {
       <>
          <Paper className={classes.userDetailsWrapper}>
             <Group className={classes.responsiveText} spacing="xs" ml={25}>
-               <Avatar src={user?.photoURL} />
                <Group direction="column" spacing="xs">
                   <Text
                      className={classes.responsiveText}
@@ -94,15 +89,6 @@ const UserDetails = ({ email, name, productId, product }) => {
                      mb={-5}
                   >
                      {name}
-                  </Text>
-                  <Text
-                     className={classes.responsiveText}
-                     color="dimmed"
-                     weight={600}
-                     size="sm"
-                     mt={-5}
-                  >
-                     New Member
                   </Text>
                </Group>
             </Group>
@@ -125,7 +111,7 @@ const UserDetails = ({ email, name, productId, product }) => {
 
                      <NumberInput
                         placeholder="88"
-                        label="Phone Number"
+                        label="Habdy Number"
                         hideControls
                         required
                         classNames={{
@@ -136,7 +122,7 @@ const UserDetails = ({ email, name, productId, product }) => {
                         {...form.getInputProps("phone")}
                      />
                      <TextInput
-                        label="Shipping address"
+                        label="Lieferadresse"
                         placeholder="15329 Huston 21st"
                         mt="md"
                         required

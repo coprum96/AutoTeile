@@ -1,6 +1,5 @@
 import {
     ActionIcon,
-    Avatar,
     Badge,
     Button,
     Group,
@@ -18,7 +17,7 @@ import {
  import { API_URL } from "../../../API/rootURL";
  const MyOrder = ({ order, index, refetch }) => {
     const theme = useMantineTheme();
-    const { img, productName, phone, quantity, total, _id } = order;
+    const { productName, phone, quantity, total, _id } = order;
     const [opened, setOpened] = useState(false);
     const navigate = useNavigate();
  
@@ -27,7 +26,7 @@ import {
     const handleDeleteItem = async (id) => {
        const { data } = await axiosPrivate.delete(`${API_URL}orders/${id}`);
        if (data.deletedCount) {
-          toast.success("Order removed Successfully");
+          toast.success("Bestellung erfolgreich entfernt");
           refetch();
        }
     };
@@ -37,15 +36,15 @@ import {
              radius="md"
              opened={opened}
              onClose={() => setOpened(false)}
-             title="Remove Order!!"
+             title="Ordnung aufheben!"
           >
              <Text weight={500}>
-                Are you sure you want to remove {productName} from order list?
+             Sind Sie sicher, dass Sie {productName} von der Bestellliste entfernen möchten?
              </Text>
              <Group noWrap position="right" mt={theme.spacing.xl * 2}>
                 {" "}
                 <Button
-                   color="red"
+                   color="blue"
                    onClick={() => {
                       handleDeleteItem(_id);
                    }}
@@ -67,7 +66,6 @@ import {
              </td>
              <td>
                 <Group spacing="sm">
-                   <Avatar size={30} src={img} />
                    <Text size="sm" weight={500}>
                       {productName}
                    </Text>
@@ -90,7 +88,7 @@ import {
                       compact="true"
                       onClick={() => navigate(`/dashboard/payment/${_id}`)}
                    >
-                      Pay
+                      Bezahlen
                    </Button>
                 ) : (
                    <>
@@ -103,7 +101,7 @@ import {
                       >
                          {" "}
                          <Indicator size={10} withBorder>
-                            <Badge>Paid</Badge>
+                            <Badge>Schon bezahlt</Badge>
                          </Indicator>
                       </Tooltip>
                    </>
@@ -117,7 +115,7 @@ import {
              </td>
              <td>
                 <Text size="sm" weight={500} color="gray">
-                   $ {total}
+                € {total}
                 </Text>
              </td>
              <td>

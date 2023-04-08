@@ -1,5 +1,5 @@
 import { Button, createStyles, Group, Text, TextInput } from "@mantine/core";
-import { useLogger } from "@mantine/hooks";
+import { useForm } from "@mantine/form";
 import { toast } from "react-toastify";
 import { useStore } from "../Shared/store";
 
@@ -29,7 +29,7 @@ const OrderSummary = ({ product }) => {
    const { price } = product;
    const { quantity, shipping, promotion } = useStore();
 
-   const form = useLogger({
+   const form = useForm({
       initialValues: {
          voucher: "",
       },
@@ -44,8 +44,8 @@ const OrderSummary = ({ product }) => {
       const configVoucher = process.env.REACT_APP_VOUCHER;
 
       voucher === configVoucher
-         ? toast.success("voucher applied")
-         : toast.error("voucher did not matched");
+         ? toast.success("gutschein angewendet")
+         : toast.error("gutschein wurde nicht abgeglichen");
 
       form.reset();
    };
@@ -54,30 +54,27 @@ const OrderSummary = ({ product }) => {
    return (
       <>
          <Text className={classes.text} size="xl">
-            Order Summary:
+         Bestellübersicht:
          </Text>
          <Group className={classes.text} position="apart" mt="xs" mr={10}>
             <Text weight={400} color="dimmed" inherit>
-               Subtotal
+            Zwischensummen
             </Text>
             <Text weight={800} color="gray" inherit>
-               ${subTotal}
+            € {subTotal}
             </Text>
          </Group>
          <Group className={classes.text} position="apart" mt="xs" mr={10}>
             <Text weight={400} color="dimmed" inherit>
-               Promotion
-            </Text>
-            <Text weight={800} color="gray" inherit>
-               $00
+            Förderung
             </Text>
          </Group>
          <Group className={classes.text} position="apart" mt="xs" mr={10}>
             <Text weight={400} color="dimmed" inherit>
-               Shipping Fee:
+            Versandkosten:
             </Text>
             <Text weight={800} color="gray" inherit>
-               ${shipping}
+            €{shipping}
             </Text>
          </Group>
          <form
@@ -86,10 +83,10 @@ const OrderSummary = ({ product }) => {
             className={classes.form}
          >
             <TextInput
-               placeholder="Enter voucher code"
+               placeholder="Gutscheincode eingeben"
                size="xs"
                onChange={(event) =>
-                  form.setFieldValue("voucher", event.currentTarget.value)
+                  form.setFieldValue("Gutschein", event.currentTarget.value)
                }
             ></TextInput>
             <Button
@@ -99,7 +96,7 @@ const OrderSummary = ({ product }) => {
                compact
                mx="xs"
             >
-               Apply
+               Gelten
             </Button>
          </form>
          <Group className={classes.text} position="apart" mt="xs" mr={10}>
@@ -107,7 +104,7 @@ const OrderSummary = ({ product }) => {
                Total
             </Text>
             <Text weight={800} color="gray" inherit>
-               ${total}
+            € {total}
             </Text>
          </Group>
       </>

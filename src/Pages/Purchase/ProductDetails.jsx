@@ -1,9 +1,7 @@
 import {
     createStyles,
     Group,
-    Image,
     Paper,
-    Spoiler,
     Text,
  } from "@mantine/core";
  import CustomBadge from "../Components/CustomBadge";
@@ -30,28 +28,16 @@ import {
  const ProductDetails = ({ product }) => {
     const {
        name: productName,
-       description,
        price,
        minimumQuantity,
        availableQuantity,
-       img,
+       artikul,
     } = product;
  
     const { classes } = useStyles();
     return (
        <>
-          <Paper className={classes.main} p="lg">
-             <Group>
-                <Image
-                   src={img}
-                   alt={productName}
-                   width={150}
-                   mr="xs"
-                   style={{
-                      borderRadius: "md",
-                   }}
-                />
-             </Group>
+          <Paper className={classes.main} p="xl">
              <Group direction="column">
                 <Group>
                    <Text className={classes.text} size="lg" weight="bold">
@@ -59,33 +45,24 @@ import {
                    </Text>
                 </Group>
                 <Group>
-                   <Text size="xs" className={classes.text} color="dimmed">
-                      <Spoiler
-                         maxHeight={50}
-                         showLabel="Show more"
-                         hideLabel="Hide"
-                         styles={{
-                            control: classes.control,
-                         }}
-                      >
-                         {description}
-                      </Spoiler>
+                   <Text className={classes.text} size="lg" weight="bold">
+                      Artikul: {artikul}
                    </Text>
                 </Group>
                 <Group>
                    <Text className={classes.text} size="sm" color="dimmed">
-                      Price: <CustomBadge>${price}</CustomBadge>
+                   Preis: <CustomBadge>€{price}</CustomBadge>
                    </Text>
                 </Group>
                 <Group>
                    <Text className={classes.text} size="sm" color="dimmed">
-                      Minimum Quantity:{" "}
+                   Mindestmenge:{" "}
                       <CustomBadge>{minimumQuantity}</CustomBadge>
                    </Text>
                 </Group>
                 <Group>
                    <Text className={classes.text} size="sm" color="dimmed">
-                      Available Quantity:{" "}
+                   Verfügbare Menge:{" "}
                       <CustomBadge color="red">{availableQuantity}</CustomBadge>
                    </Text>
                 </Group>

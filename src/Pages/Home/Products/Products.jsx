@@ -18,7 +18,7 @@ const Products = () => {
          <Grid>
             {" "}
             {products.map((product) => (
-               <Grid.Col md={6} lg={6} key={product._id}>
+               <Grid.Col md={3} lg={3} key={product._id}>
                   <Product product={product}></Product>
                </Grid.Col>
             ))}

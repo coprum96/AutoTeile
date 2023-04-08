@@ -62,7 +62,7 @@ import {
    }
  
    if (error) {
-     return <div>Failed to load product details: {error.message}</div>;
+     return <div>Fehler beim Laden der Produktdetails: {error.message}</div>;
    }
  
    return (
@@ -84,11 +84,11 @@ import {
            <Grid.Col span={6}>
              <Container mt={30}>
                <Text className={classes.text} weight={600}>
-                 Shipping:
+               Versand:
                </Text>
  
                <Text size="xs" mt="xs" className={classes.textTagLine}>
-                 Our trusted Business Partner
+               Unser zuverlässiger Geschäftspartner
                </Text>
              </Container>
            </Grid.Col>
