@@ -32,7 +32,7 @@ export default function Login() {
    useEffect(() => {
       if (token) {
          toast.success(
-            `Welcome back ${user?.user?.displayName} You have successfully logged in! 😊`,
+            `Willkommen ${user?.user?.displayName} Du hast dich erfolgreich eingeloggt!`,
          );
          navigate(from, { replace: true });
       }
@@ -41,20 +41,20 @@ export default function Login() {
       if (error) {
          switch (error?.code) {
             case 'auth/invalid-email':
-               toast('Invalid email, please provide a valid email');
+               toast('Ungültige E-Mail-Adresse, bitte geben Sie eine gültige E-Mail-Adresse an');
                break;
             case 'auth/invalid-password':
-               toast('invalid password.😒');
+               toast('ungültiges Passwort');
                break;
             case 'auth/user-not-found':
-               toast('User not found. 🤔');
+               toast('Benutzer nicht gefunden');
                break;
             case 'auth/wrong-password':
-               toast('Wrong password. 😑');
+               toast('Falsches Passwort');
                break;
 
             default:
-               toast('something went wrong. 🤯');
+               toast('irgendwas ist schief gelaufen');
          }
       }
    }, [error]);
@@ -119,7 +119,7 @@ export default function Login() {
                          value={password}
                          onChange={(event) => {
                             setPassword(event.currentTarget.value);
-                            setPasswordError(event.currentTarget.value.length >= 6 ? null : 'Password should be at least 6 characters long');
+                            setPasswordError(event.currentTarget.value.length >= 6 ? null : 'Das Passwort sollte mindestens 6 Zeichen lang sein');
                          }}
                          error={passwordError}
                          style={{ marginTop: '20px' }}
@@ -132,7 +132,7 @@ export default function Login() {
                             </Text>
                          </Link>
                       </Group>
-                      <Divider label='oder setze mit email fort' labelPosition='center' my='lg' />
+                      <Divider label='oder setze mit Email fort' labelPosition='center' my='lg' />
                       <SocialAuth />
                       <Button
                          variant='gradient'

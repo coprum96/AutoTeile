@@ -72,13 +72,13 @@ import {
                          : theme.colors.gray[0],
                 },
              }}
-             navbarOffsetBreakpoint="sm"
+             navbarOffsetBreakpoint="md"
              navbar={
                 <Navbar
                    p="md"
-                   hiddenBreakpoint="sm"
+                   hiddenBreakpoint="xs"
                    hidden={!opened}
-                   width={{ sm: 200, lg: 300 }}
+                   width={{ sm: 200, lg: 200 }}
                    onClick={() => setOpened(!opened)}
                    style={{
                       position: "sticky",

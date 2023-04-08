@@ -11,22 +11,23 @@ const ManageProducts = () => {
 
    return (
       <>
-         <CustomDashboardTitle>manage product</CustomDashboardTitle>
+         <CustomDashboardTitle>Produkt verwalten</CustomDashboardTitle>
 
          <ScrollArea>
             <Table
                sx={{ minWidth: 600 }}
                verticalSpacing="xs"
                highlightOnHover
+               withColumnBorders
                striped
                mb="lg"
             >
                <thead>
                   <tr>
-                     <th>Product Name</th>
-                     <th>Price</th>
-                     <th>Available </th>
-                     <th>Remove</th>
+                     <th>Produktbezeichnung</th>
+                     <th>Preis</th>
+                     <th>Verfügbar</th>
+                     <th>Entfernen</th>
                   </tr>
                </thead>
                <tbody>

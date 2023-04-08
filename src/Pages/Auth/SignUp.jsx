@@ -32,7 +32,7 @@ import {
     const [token] = useToken(user);
     useEffect(() => {
        if (token) {
-          toast.success('Sehr gut!  You have successfully Registered ! 😊');
+          toast.success('Sehr gut! Du hast dich erfolgreich registriert! ');
  
           navigate(from, { replace: true });
        }
@@ -43,13 +43,13 @@ import {
        if (error) {
           switch (error?.code) {
              case 'auth/email-already-in-use':
-                toast.error('Email already in use 😔😔');
+                toast.error('E-Mail wird bereits verwendet');
                 break;
              case 'auth/weak-password':
-                toast.error('Password is too weak 😕');
+                toast.error('Dein Passwort ist zu schwach');
                 break;
              default:
-                toast.error('something went wrong 🤯🤯');
+                toast.error('Etwas ist schief gelaufen ');
           }
        }
     }, [error]);
@@ -65,10 +65,10 @@ import {
        },
  
        validate: ({ name, email, password, confirmPassword }) => ({
-          name: name.length < 3 ? 'Too short name' : null,
-          email: /^\S+@\S+$/.test(email) ? null : 'Please Provide a valid email',
-          password: password.length < 6 ? 'Password should include at least 6 characters' : null,
-          confirmPassword: password !== confirmPassword ? 'Passwords did not match' : null,
+          name: name.length < 3 ? 'Zu kurzer Name' : null,
+          email: /^\S+@\S+$/.test(email) ? null : 'Bitte geben Sie eine gültige E-Mail-Adresse an',
+          password: password.length < 6 ? 'Passwort sollte mindestens 6 Zeichen enthalten' : null,
+          confirmPassword: password !== confirmPassword ? 'Passwörter stimmten nicht überein' : null,
        }),
     });
  
@@ -113,7 +113,7 @@ import {
                    <PasswordInput
                       required
                       label='Password'
-                      placeholder='Deine password'
+                      placeholder='Deine Password'
                       icon={<Lock size={30} />}
                       value={form.values.password}
                       onChange={(event) => form.setFieldValue('password', event.currentTarget.value)}
@@ -124,7 +124,7 @@ import {
                       required
                       icon={<Lock size={30} />}
                       label='Nochmal Password'
-                      placeholder='Nochmal password'
+                      placeholder='Nochmal Password'
                       value={form.values.confirmPassword}
                       onChange={(event) =>
                          form.setFieldValue('confirmPassword', event.currentTarget.value)
@@ -150,7 +150,7 @@ import {
                    Anmelden
                 </Button>
              </form>
-             <Divider label='Oder setze mit dem email fort' labelPosition='center' my='lg' />
+             <Divider label='oder setze mit Email fort' labelPosition='center' my='lg' />
              <SocialAuth />
  
           </Paper>

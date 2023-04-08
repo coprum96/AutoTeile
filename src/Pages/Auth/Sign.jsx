@@ -87,7 +87,7 @@ export default function SignUp() {
          <Text color='dimmed' size='sm' align='center' mt={5}>
             Hast du einen neuen Account?{' '}
             <Anchor size='sm' onClick={() => navigate('/login')}>
-               Please Login
+               Bitte Login
             </Anchor>
          </Text>
          <Paper withBorder shadow='xl' p={30} mt={30} radius='md'>

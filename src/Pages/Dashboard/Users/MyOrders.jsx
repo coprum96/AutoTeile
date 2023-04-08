@@ -5,6 +5,7 @@ import useMyOrders from "../../../Hooks/useMyOrders";
 import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 import Loading from "../../Shared/Loading";
 import MyOrder from "./MyOrder";
+import './MyOrders.css'
 
 
 
@@ -19,13 +20,13 @@ const MyOrders = () => {
    }
 
    return (
-      <>
+      <div className="bestellung"
+      >
          <CustomDashboardTitle>Meine Bestellungen : </CustomDashboardTitle>
          <ScrollArea>
-            <Table
-               sx={{ minWidth: 700 }}
-               verticalSpacing="xl"
-               HorizontalSpacing="xl"
+            <Table 
+               sx={{ minWidth: 100 }}
+               verticalSpacing="md"
                fontSize="md"
                highlightOnHover
                striped
@@ -37,7 +38,7 @@ const MyOrders = () => {
                   <tr>
                      <th />
                      <th>Produkt</th>
-                     <th>Wohin?</th>
+                     <th>Telefon</th>
                      <th>Status</th>
                      <th>Stückzahl</th>
                      <th>Total</th>
@@ -56,7 +57,7 @@ const MyOrders = () => {
                </tbody>
             </Table>
          </ScrollArea>
-      </>
+      </div>
    );
 };
 

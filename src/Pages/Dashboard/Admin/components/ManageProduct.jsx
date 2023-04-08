@@ -22,7 +22,7 @@ import {
     const handleDeleteItem = async (id) => {
        const { data } = await axiosPrivate.delete(`${API_URL}parts/${id}`);
        if (data.deletedCount) {
-          toast.success("Removed Item Successfully");
+          toast.success("Artikel erfolgreich entfernt");
           refetch();
        }
     };
@@ -35,7 +35,7 @@ import {
              title="Remove Order!!"
           >
              <Text weight={500}>
-                Are you sure you want to remove {name} from product list?
+             Bist du sicher, dass du {name} aus der Produktliste entfernen möchten?
              </Text>
              <Group noWrap position="right" mt={theme.spacing.xl * 2}>
                 {" "}

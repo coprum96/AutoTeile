@@ -22,7 +22,7 @@ const ManageAllOrders = () => {
 
    return (
       <>
-         <CustomDashboardTitle>manage all orders</CustomDashboardTitle>
+         <CustomDashboardTitle>Alle Bestellungen verwalten</CustomDashboardTitle>
 
          <ScrollArea>
             <Table
@@ -30,15 +30,16 @@ const ManageAllOrders = () => {
                verticalSpacing="xs"
                highlightOnHover
                striped
+               withColumnBorders
                mb="lg"
             >
                <thead>
                   <tr>
                      <th></th>
-                     <th>User</th>
-                     <th>Product Name</th>
+                     <th>Benutzer</th>
+                     <th>Produkt Name</th>
                      <th>Status </th>
-                     <th>Remove</th>
+                     <th>Entfernen</th>
                   </tr>
                </thead>
                <tbody>
