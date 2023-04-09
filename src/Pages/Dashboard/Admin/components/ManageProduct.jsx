@@ -32,7 +32,7 @@ import {
              radius="md"
              opened={opened}
              onClose={() => setOpened(false)}
-             title="Remove Order!!"
+             title="Ordnung aufheben!"
           >
              <Text weight={500}>
              Bist du sicher, dass du {name} aus der Produktliste entfernen möchten?
@@ -46,10 +46,10 @@ import {
                       setOpened(false);
                    }}
                 >
-                   Delete
+                   Löschen
                 </Button>
                 <Button variant="default" onClick={() => setOpened(false)}>
-                   cancel
+                stornieren
                 </Button>
              </Group>
           </Modal>
@@ -57,14 +57,14 @@ import {
              <td>{name}</td>
              <td>
                 <Text size="sm" color="gray" weight={600}>
-                   ${price}
+                   {price}
                 </Text>
              </td>
              <td>{availableQuantity}</td>
              <td>
                 <Group spacing={0}>
                    <ActionIcon color="red" onClick={() => setOpened(true)}>
-                      <Trash size={18} color="orange" />
+                      <Trash size={20} color="orange" />
                    </ActionIcon>
                 </Group>
              </td>

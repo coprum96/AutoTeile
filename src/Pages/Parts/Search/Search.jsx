@@ -68,9 +68,9 @@ class Search extends Component {
   render() {
     return (
       <MantineProvider>
-        <div style={{ padding: '20px', fontSize: '16px', maxWidth: '600px', margin: 'auto' }}>
+        <div style={{ padding: '30px', fontSize: '25px', margin: 'auto', backgroundColor: "#63759F" }}>
           <Input
-            style={{ padding: '10px', fontSize: '16px', marginBottom: '10px' }}
+            style={{ margin: '15px', fontSize: '30px', marginBottom: '15px' }}
             onClick={this.onIptClick}
             onChange={this.onLsChange}
             type="text"

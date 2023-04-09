@@ -33,7 +33,7 @@ import {
        });
        if (data.status) {
           setLoading(!loading);
-          toast.success("Order Shipped Successfully");
+          toast.success("Bestellung erfolgreich versendet");
           refetch();
        }
     };
@@ -47,8 +47,7 @@ import {
              title="Remove Order!!"
           >
              <Text color="red" weight={500}>
-                Are you sure you want to remove from order list? This is very
-                dangerous action. As this might effect the data of the user.
+             Sind Sie sicher, dass Sie von der Bestellliste entfernen möchten? Das ist sehr gefährliche Aktion. Da dies Auswirkungen auf die Daten des Benutzers haben könnte.
              </Text>
              <Group noWrap position="right" mt={theme.spacing.xl * 2}>
                 {" "}
@@ -59,10 +58,10 @@ import {
                       setOpened(false);
                    }}
                 >
-                   Delete
+                   Löschen
                 </Button>
                 <Button variant="default" onClick={() => setOpened(false)}>
-                   cancel
+                stornieren
                 </Button>
              </Group>
           </Modal>
@@ -95,7 +94,7 @@ import {
                    <>
                       {order.status === "shipped" ? (
                          <>
-                            <Badge color="green">Shipped</Badge>
+                            <Badge color="green">Versenden</Badge>
                          </>
                       ) : (
                          <>
@@ -109,7 +108,7 @@ import {
                                }}
                                color="yellow"
                             >
-                               Pending
+                               angemeldet
                             </Button>
                          </>
                       )}

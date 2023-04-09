@@ -21,7 +21,8 @@ import Purchase from "./Pages/Purchase/Purchase";
 import Pricelist from "./Pages/Dashboard/Pricelist/Pricelist";
 import Invoices from "./Pages/Dashboard/Invoices/Invoices";
 import Parts from "./Pages/Parts/Parts";
-
+import ClientInvoices from "./Pages/Dashboard/Admin/ClientsInvoices";
+import ImportProducts from "./Pages/Dashboard/ImportProducts/ImportProducts";
 
 const Router = () => {
    return useRoutes([
@@ -83,10 +84,26 @@ const Router = () => {
                ),
             },
             {
+               path: "importproducts",
+               element: (
+                  <RequireUser>
+                     <ImportProducts />
+                  </RequireUser>
+               ),
+            },
+            {
                path: "manageallorders",
                element: (
                   <RequireAdmin>
                      <ManageAllOrders />
+                  </RequireAdmin>
+               ),
+            },
+            {
+               path: "clientinvoices",
+               element: (
+                  <RequireAdmin>
+                     <ClientInvoices />
                   </RequireAdmin>
                ),
             },

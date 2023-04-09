@@ -18,7 +18,9 @@ import {
     Users,
     ListSearch,
     Paperclip,
-    ReportMoney,
+    ReportMoney, 
+    Article,
+    ArrowBarToDown
  } from "tabler-icons-react";
  import auth from "../../firebase.init";
  import useAdmin from "../../Hooks/useAdmin";
@@ -33,6 +35,7 @@ import {
     { link: "/dashboard/payment", label: "Zahlungen", icon: ReportMoney },
     { link: "", label: "Profile", icon: Users },
     { link: "/dashboard/addreview", label: "Add Review", icon: Ballpen },
+    { link: "/dashboard/importproducts", label: "Import Teile per CSV", icon: ArrowBarToDown },
     { link: "/dashboard/history", label: "Geschichte", icon: History },
     {
        link: "/dashboard/othersettings",
@@ -54,6 +57,11 @@ import {
        label: "Manage All Orders",
        icon: History,
     },
+    {
+      link: "/dashboard/clientinvoices",
+      label: "Kunden Invoices",
+      icon: Article,
+   },
     { link: "", label: "My Profile", icon: Users },
  ];
  export default function Dashboard() {
@@ -78,7 +86,7 @@ import {
                    p="md"
                    hiddenBreakpoint="xs"
                    hidden={!opened}
-                   width={{ sm: 200, lg: 200 }}
+                   width={{ sm: 300, lg: 300 }}
                    onClick={() => setOpened(!opened)}
                    style={{
                       position: "sticky",
