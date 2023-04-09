@@ -14,7 +14,7 @@ export const useStyles = createStyles((theme) => ({
 
    text: {
       color: "gray",
-      fontSize: 10,
+      fontSize: 12,
       lineHeight: 1.2,
       [theme.fn.smallerThan("xs")]: {
          fontSize: 12,

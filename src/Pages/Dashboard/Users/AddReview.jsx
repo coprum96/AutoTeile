@@ -38,7 +38,7 @@ const AddReview = () => {
       };
       const { data } = await axiosPrivate.post(`${API_URL}reviews`, review);
       if (data.insertedId) {
-         toast.success("Review added successfully");
+         toast.success("Bewertung erfolgreich hinzugefügt");
          reset();
       }
    };
@@ -49,7 +49,7 @@ const AddReview = () => {
 
    return (
       <>
-         <CustomDashboardTitle ml={6}>add review: </CustomDashboardTitle>
+         <CustomDashboardTitle ml={6}>Bewertung hinzufügen: </CustomDashboardTitle>
 
          {paid.includes(true) ? (
             <form
@@ -72,8 +72,8 @@ const AddReview = () => {
                </Group>
                <textarea
                   className={classes.textarea}
-                  name="description"
-                  placeholder="Write a review"
+                  name="Beschreibung"
+                  placeholder="Schreiben Sie eine Rezension"
                   id=""
                   cols="40"
                   rows="10"
@@ -82,7 +82,7 @@ const AddReview = () => {
 
                <Group>
                   <Button variant="light" mt="md" type="submit">
-                     Submit
+                  vorlegen
                   </Button>
                </Group>
             </form>
@@ -93,7 +93,7 @@ const AddReview = () => {
                      <Lock></Lock>
                   </ThemeIcon>
                   <div>
-                     Please purchase any of our product to unlock this feature
+                  Bitte eines unserer Produkte, um diese Funktion freizuschalten
                   </div>
                </Box>
             </Center>

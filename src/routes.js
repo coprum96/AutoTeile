@@ -20,6 +20,7 @@ import NotFound from "./Pages/NotFound/NotFound";
 import Purchase from "./Pages/Purchase/Purchase";
 import Pricelist from "./Pages/Dashboard/Pricelist/Pricelist";
 import Invoices from "./Pages/Dashboard/Invoices/Invoices";
+import Parts from "./Pages/Parts/Parts";
 
 
 const Router = () => {
@@ -110,6 +111,10 @@ const Router = () => {
       {
          path: "/",
          element: <Home />,
+      },
+      {
+         path: "/parts",
+         element: <Parts />,
       },
       { path: "forgotPassword", element: <ForgotPassword /> },
       { path: "login", element: <Login /> },

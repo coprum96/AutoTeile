@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Itim&display=swap');
+
+.inner {
+   display: flex;
+   justify-content: space-between;
+   padding-top: 30px;
+   padding-bottom: 40px;
+}
+
+@media screen and (max-width: 767.98px) {
+   .content {
+      max-width: 100%;
+      margin-right: 0;
+   }
+}
+
+.title {
+   color: #000;
+   font-family: 'Greycliff CF', sans-serif;
+   font-size: 45px;
+   line-height: 1.2;
+   font-weight: 900;
+}
+
+@media screen and (max-width: 599.98px) {
+   .title {
+      font-size: 35px;
+   }
+}
+
+.tagline {
+   color: #000;
+   font-family: 'Greycliff CF', sans-serif;
+   font-size: 23px;
+   line-height: 1.1;
+   font-weight: 700;
+   margin: 6;
+}
+
+.text {
+   color: grey;
+   margin-bottom: 30px;
+}
+
+@media screen and (max-width: 599.98px) {
+   .tagline {
+      font-size: 18px;
+   }
+}
+
+.control {
+   flex: 1;
+   font-size: 20px;
+}
+
+@media screen and (max-width: 599.98px) {
+   .control {
+      flex: 1;
+   }
+}
+
+.image {
+   max-width: 420px;
+   max-height: 400px;
+   flex: 1;
+}
+
+@media screen and (max-width: 859.98px) {
+   .image {
+      display: none;
+   }
+}
+

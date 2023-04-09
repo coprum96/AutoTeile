@@ -13,7 +13,7 @@ const Products = () => {
    if (error) return "An error has occurred: " + error.message;
 
    return (
-      <Container mb={theme.spacing.xl * 2}>
+      <Container mb={theme.spacing.md * 2}>
          <SectionTitle mb="xl">Teile</SectionTitle>
          <Grid>
             {" "}

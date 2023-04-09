@@ -23,8 +23,10 @@ import {
  
  const mainLinks = [
    { link: '', label: 'Startseite' },
+   { link: 'parts', label: 'Teile' },
    { link: 'dashboard', label: 'Garage' },
    { link: 'blog', label: 'Nachrichten' }
+   
  ];
  
  export default function Navbar() {
