@@ -18,7 +18,6 @@ import {
     Users,
     ListSearch,
     Paperclip,
-    ReportMoney, 
     Article,
     ArrowBarToDown
  } from "tabler-icons-react";
@@ -32,7 +31,7 @@ import {
     { link: "/dashboard/myorders", label: "Bestellungen", icon: BellRinging },
     { link: "/dashboard/pricelists", label: "Price Lists", icon: ListSearch },
     { link: "/dashboard/invoice", label: "Invoices", icon: Paperclip },
-    { link: "/dashboard/payment", label: "Zahlungen", icon: ReportMoney },
+    
     { link: "", label: "Profile", icon: Users },
     { link: "/dashboard/addreview", label: "Add Review", icon: Ballpen },
     { link: "/dashboard/importproducts", label: "Import Teile per CSV", icon: ArrowBarToDown },

@@ -12,7 +12,7 @@ import { useStyles } from "./Payment.styles";
 
 // stripe open key
 const stripePromise = loadStripe(
-   "pk_test_51Jn2enKEK5s8ugFqWpDRBr1nYooCWmIs7BiPe9M5XAsbjeF2IU8peOKxX01UBs2G39QH3xZP8mn0qUDYVNaEV32100lhf7RYW0"
+   "pk_test_51MuxmHII9ZOTHZyQSdc2dVWCpiaxgmVPiFEI0vFjI2HeBt82nOyfRw0SfR0scKizqKV8P9oZ6Tptp476vEmL1yHJ00gy5yVfoZ"
 );
 
 const Payment = () => {

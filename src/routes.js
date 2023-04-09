@@ -23,6 +23,7 @@ import Invoices from "./Pages/Dashboard/Invoices/Invoices";
 import Parts from "./Pages/Parts/Parts";
 import ClientInvoices from "./Pages/Dashboard/Admin/ClientsInvoices";
 import ImportProducts from "./Pages/Dashboard/ImportProducts/ImportProducts";
+import Payment from "./Pages/Dashboard/Users/Payment";
 
 const Router = () => {
    return useRoutes([
@@ -39,6 +40,14 @@ const Router = () => {
                element: (
                   <RequireUser>
                      <MyOrders />
+                  </RequireUser>
+               ),
+            },
+            {
+               path: "payment/:id",
+               element: (
+                  <RequireUser>
+                     <Payment />
                   </RequireUser>
                ),
             },
