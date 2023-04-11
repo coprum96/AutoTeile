@@ -26,7 +26,7 @@ export default function Product({ product }) {
                  {name}
                </Text>
                <Text  weight={700} size="md">
-                  Arkikul: {artikul}
+                  Artikul: {artikul}
                </Text>
                <Group noWrap spacing="xs">
                   <Text size="sm" className={classes.text} color="dimmed">

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Itim&display=swap');
 
 .inner {
-   display: flex;
+   display: block;
    justify-content: space-between;
    padding-top: 30px;
    padding-bottom: 32px;
@@ -72,10 +72,11 @@
 }
 
 .image {
-   max-width: 420px;
-   max-height: 400px;
-   flex: 1;
-}
+   display: block;
+   margin: 0 auto;
+   width: 100%;
+   max-width: 600px; /* adjust as needed */
+ }
 
 @media screen and (max-width: 859.98px) {
    .image {

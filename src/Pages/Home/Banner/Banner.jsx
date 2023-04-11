@@ -5,7 +5,7 @@ import {
     Title,
   } from "@mantine/core";
   import { AlertCircle } from "tabler-icons-react";
-  // import car from "../../../Assets/svg/car.jpg";
+  import car from "../../../Assets/svg/parts.png";
   import "./Banner.css";
   
   export default function Banner() {
@@ -28,7 +28,6 @@ import {
             lange Sicht und umweltbewusst. Erlauben Sie uns Teil Ihrer Abläufe zu sein -
             nehmen Sie Kontakt mit uns auf.
           </Text>
-  
           <List
             className="control"
             spacing="sm"
@@ -53,9 +52,9 @@ import {
               </b>
             </List.Item>
           </List>
+          <img src={car} alt="Car" className="image" />
         </div>
   
-        {/* <img src={car} alt="Car" className="image" /> */}
       </div>
     );
   }

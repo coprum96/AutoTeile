@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useRef } from 'react';
 import { MantineProvider, Input, List, Button } from '@mantine/core';
 import axios from 'axios';
+import axiosPrivate from '../../../API/axiosPrivate';
+import { API_URL } from '../../../API/rootURL';
 
 class Search extends Component {
   constructor(props) {
@@ -11,14 +13,20 @@ class Search extends Component {
       searchTerm: '',
     };
 
-    this.cancelToken = '';
-    this.onIptClick = this.onIptClick.bind(this);
+    this.cancelToken = axios.CancelToken.source();
     this.node = React.createRef();
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     document.addEventListener('mousedown', this.onIptClick);
-    this.fetchParts();
+    try {
+      const { data } = await axiosPrivate.get(`${API_URL}parts`);
+      this.setState({
+        parts: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   componentWillUnmount() {
@@ -34,11 +42,11 @@ class Search extends Component {
     });
   };
 
-  onLsChange = async (e) => {
+  onLsChange = (e) => {
     const searchTerm = e.target.value.toLowerCase();
 
-    let searchRes = this.state.parts.filter((part) => {
-      let finalRes = part.name.toLowerCase();
+    const searchRes = this.state.parts.filter((part) => {
+      const finalRes = part.name.toLowerCase();
       return finalRes.indexOf(searchTerm) !== -1;
     });
 
@@ -48,41 +56,21 @@ class Search extends Component {
     });
   };
 
-  async fetchParts() {
-    if (this.isReqToken) {
-      this.isReqToken.cancel();
-    }
-
-    this.isReqToken = axios.CancelToken.source();
-
-    await axios
-      .get('/parts', {
-        cancelToken: this.isReqToken.token,
-      })
-      .then((res) => {
-        this.setState({
-          parts: res.data,
-        });
-      })
-      .catch((error) => {
-        if (axios.isCancel(error) || error) {
-          console.log('Could not get');
-        }
-      });
-  }
-
   onSearchButtonClick = async () => {
     const searchTerm = this.state.searchTerm;
 
-    let searchRes = await axios.get(`/parts?search=${searchTerm}`).then((res) => {
-      return res.data;
-    });
-
-    this.setState({
-      searchResults: searchRes,
-    });
+    try {
+      const { data } = await axios.get(`/parts?search=${searchTerm}`, {
+        cancelToken: this.cancelToken.token,
+      });
+      this.setState({
+        searchResults: data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-
+  
   render() {
     return (
       <MantineProvider>
