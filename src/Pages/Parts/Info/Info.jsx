@@ -1,7 +1,7 @@
 import {
     Title,
   } from "@mantine/core";
-  import car from "../../../Assets/svg/car.jpg";
+  import car from "../../../Assets/svg/pngegg.png";
   import "./Info.css";
   
   export default function Banner() {

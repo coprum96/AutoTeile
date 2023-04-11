@@ -9,6 +9,9 @@ import lamborghini from "../../../Assets/brands/lamborghini.png";
 import toyota from "../../../Assets/brands/toyota1.png";
 import vw from "../../../Assets/brands/vw1.png";
 import porsche from "../../../Assets/brands/porsche.png";
+import volvo from "../../../Assets/brands/volvo.png";
+import bently from "../../../Assets/brands/bently.png";
+import audi from "../../../Assets/brands/audi.png";
 
 
 
@@ -49,9 +52,15 @@ export default function Brand() {
         <Carousel.Slide>
         <Image src={porsche} width={250} height={110} fit="contain" alt="porsche"/>
         </Carousel.Slide>
-        <Carousel.Slide>3</Carousel.Slide>
-        <Carousel.Slide>3</Carousel.Slide>
-        <Carousel.Slide>3</Carousel.Slide>
+        <Carousel.Slide>
+        <Image src={volvo} width={250} height={110} fit="contain" alt="volvo"/>
+        </Carousel.Slide>
+        <Carousel.Slide>
+        <Image src={bently} width={250} height={110} fit="contain" alt="bently"/>
+        </Carousel.Slide>
+        <Carousel.Slide>
+        <Image src={audi} width={250} height={130} fit="contain" alt="audi"/>
+        </Carousel.Slide>
       </Carousel>
 
         </Container>

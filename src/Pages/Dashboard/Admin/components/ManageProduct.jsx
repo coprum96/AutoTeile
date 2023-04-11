@@ -13,7 +13,9 @@ import {
  import { API_URL } from "../../../../API/rootURL";
  
  const ManageProduct = ({ product, index, refetch }) => {
-    const { _id, name, price, availableQuantity } = product;
+    const { _id, name, artikul,
+      price, minimumQuantity
+    } = product;
  
     const theme = useMantineTheme();
  
@@ -55,12 +57,13 @@ import {
           </Modal>
           <tr key={index}>
              <td>{name}</td>
+             <td>{artikul}</td>
              <td>
                 <Text size="sm" color="gray" weight={600}>
                    {price}
                 </Text>
              </td>
-             <td>{availableQuantity}</td>
+             <td>{minimumQuantity}</td>
              <td>
                 <Group spacing={0}>
                    <ActionIcon color="red" onClick={() => setOpened(true)}>

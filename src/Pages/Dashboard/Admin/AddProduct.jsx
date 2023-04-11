@@ -1,4 +1,4 @@
-import { Box, Button, NumberInput, TextInput } from '@mantine/core';
+import { Box, Button,TextInput } from '@mantine/core';
 import React, { useRef } from 'react';
 import { toast } from 'react-toastify';
 import axiosPrivate from '../../../API/axiosPrivate';
@@ -14,16 +14,16 @@ export default function AddInventory() {
    const nameRef = useRef();
    const priceRef = useRef();
    const minimumQuantityRef = useRef();
-   const availableQuantityRef = useRef();
    const artikulRef = useRef();
+   const weightRef = useRef();
 
    const handleOnSubmit = async () => {
       const values = {
         name: nameRef.current.value,
         price: priceRef.current.value,
         minimumQuantity: minimumQuantityRef.current.value,
-        availableQuantity: availableQuantityRef.current.value,
         artikul: artikulRef.current.value,
+        weight: weightRef.current.value,
       };
       try {
         const { data } = await axiosPrivate.post(`${API_URL}parts`, values);
@@ -51,15 +51,23 @@ export default function AddInventory() {
             {' '}
             <CustomDashboardTitle>Produkt hinzufügen:</CustomDashboardTitle>
             <form ref={formRef} onSubmit={(e) => { e.preventDefault(); handleOnSubmit(); }}>
+
+            <TextInput
+                  label='Artikul'
+                  placeholder='Artikulnummer Ihres Produkts'
+                  classNames={classes}
+                  required
+                  ref={artikulRef}
+               />
                <TextInput
-                  label='Name'
-                  placeholder='Name Ihres Produkts'
+                  label='Brand'
+                  placeholder='Brand Name'
                   classNames={classes}
                   required
                   ref={nameRef}
                />
 
-               <NumberInput
+               <TextInput
                   classNames={classes}
                   my={20}
                   label='Price'
@@ -73,7 +81,7 @@ export default function AddInventory() {
                   required
                   ref={priceRef}
                />
-               <NumberInput
+               <TextInput
                   classNames={classes}
                   my={20}
                   max={100}
@@ -82,23 +90,13 @@ export default function AddInventory() {
                   required
                   ref={minimumQuantityRef}
                />
-               <NumberInput
-                  classNames={classes}
-                  my={20}
-                  max={1000}
-                  min={0}
-                  label='Available Quantity'
-                  required
-                  ref={availableQuantityRef}
-               />
 
-
-               <TextInput
-                  label='Artikul'
-                  placeholder='Artikulnummer Ihres Produkts'
+                  <TextInput
+                  label='Gewicht'
+                  placeholder='bitte mit Komma angeben'
                   classNames={classes}
                   required
-                  ref={artikulRef}
+                  ref={weightRef}
                />
 
                <Button type='submit' variant='light' mt='lg'>

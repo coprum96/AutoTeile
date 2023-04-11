@@ -3,7 +3,7 @@ import useParts from "../../../Hooks/useParts";
 import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 import Loading from "../../Shared/Loading";
 import ManageProduct from "./components/ManageProduct";
-
+import Search from "../../Parts/Search/Search"
 const ManageProducts = () => {
    const { products, isLoading, refetch } = useParts();
 
@@ -11,6 +11,7 @@ const ManageProducts = () => {
 
    return (
       <>
+         <Search />
          <CustomDashboardTitle>Produkt verwalten</CustomDashboardTitle>
 
          <ScrollArea>
@@ -25,6 +26,7 @@ const ManageProducts = () => {
                <thead>
                   <tr>
                      <th>Produktbezeichnung</th>
+                     <th>Art.Nr</th>
                      <th>Preis</th>
                      <th>Verfügbar</th>
                      <th>Entfernen</th>

@@ -46,7 +46,7 @@ const ImportProducts = () => {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1 style={{ marginBottom: theme.spacing.xl }}>REACTJS CSV IMPORT EXAMPLE </h1>
+      <h1 style={{ marginBottom: theme.spacing.xl }}>CSV IMPORT</h1>
       <form style={{ marginBottom: theme.spacing.md }}>
         <Input
           type={"file"}

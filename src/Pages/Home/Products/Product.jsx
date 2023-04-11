@@ -10,9 +10,10 @@ export default function Product({ product }) {
       name,
       artikul,
       minimumQuantity,
-      availableQuantity,
       _id,
       price,
+      weight,
+      pfand
    } = product;
    const { classes } = useStyles();
    return (
@@ -21,17 +22,13 @@ export default function Product({ product }) {
          </Center>
          <Group noWrap spacing={0}>
             <div className={classes.body}>
-               <Text transform="uppercase" weight={900} size="xs">
-                  {name}
+               <Text transform="uppercase" weight={500} size="xs">
+                 {name}
                </Text>
                <Text  weight={700} size="md">
                   Arkikul: {artikul}
                </Text>
                <Group noWrap spacing="xs">
-                  <Text size="sm" className={classes.text} color="dimmed">
-                     {" "}
-                     Verfügbar: <Badge color="red"> {availableQuantity}</Badge>
-                  </Text>
                   <Text size="sm" className={classes.text} color="dimmed">
                   Minimaler Auftrag: <Badge> {minimumQuantity}</Badge>
                   </Text>
@@ -40,13 +37,24 @@ export default function Product({ product }) {
                   <Group spacing="xs" noWrap>
                      <Text size="xs" weight={600} color="gray">
                         <Text component="span" size="xl" weight={700}>
-                           {" "}
-                           {price}
+                           {" "} €
+                           {price} 
                         </Text>
                         / pro Einheit
                      </Text>
                   </Group>
                </Group>
+               <Group spacing="xs" noWrap>
+                     <Text size="xs" weight={600} color="gray">
+                        <Text component="span" size="xs" weight={400}>
+                           {" "}
+                           Gewicht: {weight}
+                        </Text>
+                     </Text>
+                  </Group>
+               <Text transform="uppercase" weight={300} size="xs">
+                 Pfand: {pfand}
+               </Text>
                <Group noWrap spacing="sm" my="sm" position="apart">
                   <Button
                      uppercase
