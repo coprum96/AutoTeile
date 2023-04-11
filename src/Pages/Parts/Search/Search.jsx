@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MantineProvider, Input, List } from '@mantine/core';
+import { MantineProvider, Input, List, Button } from '@mantine/core';
 import axios from 'axios';
 
 class Search extends Component {
@@ -8,6 +8,7 @@ class Search extends Component {
     this.state = {
       parts: [],
       searchResults: [],
+      searchTerm: '',
     };
 
     this.cancelToken = '';
@@ -43,6 +44,7 @@ class Search extends Component {
 
     this.setState({
       searchResults: searchRes,
+      searchTerm: searchTerm,
     });
   };
 
@@ -69,18 +71,35 @@ class Search extends Component {
       });
   }
 
+  onSearchButtonClick = async () => {
+    const searchTerm = this.state.searchTerm;
+
+    let searchRes = await axios.get(`/parts?search=${searchTerm}`).then((res) => {
+      return res.data;
+    });
+
+    this.setState({
+      searchResults: searchRes,
+    });
+  };
+
   render() {
     return (
       <MantineProvider>
         <div style={{ padding: '30px', fontSize: '25px', margin: 'auto', borderColor: 'blue' }}>
-          <Input
-            style={{ margin: '15px', fontSize: '30px', marginBottom: '15px' }}
-            onClick={this.onIptClick}
-            onChange={this.onLsChange}
-            type="text"
-            placeholder="AutoTeil suchen..."
-            ref={this.node}
-          />
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Input
+              style={{ margin: '15px', fontSize: '30px', marginBottom: '15px', flex: 1 }}
+              onClick={this.onIptClick}
+              onChange={this.onLsChange}
+              type="text"
+              placeholder="AutoTeil suchen..."
+              ref={this.node}
+            />
+            <Button style={{ marginLeft: '10px' }} onClick={this.onSearchButtonClick}>
+              Suchen
+            </Button>
+          </div>
           <List style={{ fontSize: '16px' }}>
             {this.state.searchResults.map((part) => {
               return <List.Item key={part._id}>{part.name}</List.Item>;

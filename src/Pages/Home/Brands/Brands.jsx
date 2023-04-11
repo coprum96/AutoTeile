@@ -20,7 +20,7 @@ export default function Brand() {
     return (
         <Container>
             <SectionTitle my="md" mb="xl">
-                Brands
+                Autos
             </SectionTitle>
       <Carousel
         withIndicators

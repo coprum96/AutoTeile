@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Button, Input, Table } from '@mantine/core';
-import { useMantineTheme } from '@mantine/core';
+import { Button, Input, Table, Select } from "@mantine/core";
+import { useMantineTheme } from "@mantine/core";
 
 const ImportProducts = () => {
   const [file, setFile] = useState();
   const [array, setArray] = useState([]);
+  const [csvFormat, setCsvFormat] = useState("format1");
   const theme = useMantineTheme();
 
   const fileReader = new FileReader();
@@ -19,10 +20,15 @@ const ImportProducts = () => {
 
     const array = csvRows.map((i) => {
       const values = i.split(",");
-      const obj = csvHeader.reduce((object, header, index) => {
-        object[header] = values[index];
-        return object;
-      }, {});
+      const obj = {};
+      if (csvFormat === "format1") {
+        obj.ArtikelNr = values[0];
+        obj.Price = values[1];
+      } else if (csvFormat === "format2") {
+        obj.ArtikelNr = values[0];
+        obj.Price = values[1];
+        obj.minimumQuantity = values[2];
+      }
       return obj;
     });
 
@@ -44,8 +50,20 @@ const ImportProducts = () => {
 
   const headerKeys = Object.keys(Object.assign({}, ...array));
 
+  const formatOptions = [
+    { value: "format1", label: "ArtikelNr Price; " },
+    { value: "format2", label: "ArtikelNr Price minimumQuantity" },
+  ];
+
   return (
     <div style={{ textAlign: "center" }}>
+      <Select
+        data={formatOptions}
+        value={csvFormat}
+        onChange={(value) => setCsvFormat(value)}
+        placeholder="Select CSV format"
+        style={{ marginLeft: theme.spacing.md }}
+      />
       <h1 style={{ marginBottom: theme.spacing.xl }}>CSV IMPORT</h1>
       <form style={{ marginBottom: theme.spacing.md }}>
         <Input
@@ -62,11 +80,11 @@ const ImportProducts = () => {
             handleOnSubmit(e);
           }}
         >
-          IMPORT CSV
+          IMPORT Ergebnisse
         </Button>
       </form>
 
-      <Table style={{ marginBottom: theme.spacing.lg }}>
+      <Table striped highlightOnHover withBorder withColumnBorders style={{ marginBottom: theme.spacing.lg, textAlign: "left" }}>
         <thead>
           <tr key={"header"}>
             {headerKeys.map((key) => (
@@ -78,8 +96,8 @@ const ImportProducts = () => {
         <tbody>
           {array.map((item, index) => (
             <tr key={index}>
-              {Object.values(item).map((val, i) => (
-                <td key={i}>{val}</td>
+              {headerKeys.map((key) => (
+                <td key={key}>{item[key]}</td>
               ))}
             </tr>
           ))}
