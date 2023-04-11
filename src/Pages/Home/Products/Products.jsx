@@ -3,6 +3,7 @@ import useParts from "../../../Hooks/useParts";
 import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
 import Product from "./Product";
+import Search from '../../Parts/Search/Search';
 
 const Products = () => {
    const theme = useMantineTheme();
@@ -15,6 +16,7 @@ const Products = () => {
    return (
       <Container mb={theme.spacing.md * 2}>
          <SectionTitle mb="xl">Teile</SectionTitle>
+         <Search />
          <Grid>
             {" "}
             {products.map((product) => (

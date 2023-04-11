@@ -18,7 +18,7 @@ const useStyles = createStyles((theme) => ({
    },
 
    body: {
-      paddingLeft: 54,
+      paddingLeft: 57,
       paddingTop: theme.spacing.sm,
       fontSize: theme.fontSizes.sm,
       overflow: "hidden",

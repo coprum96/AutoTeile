@@ -31,18 +31,18 @@ const Payment = () => {
    return (
       <>
          <Container>
-            <CustomDashboardTitle>Payment: </CustomDashboardTitle>
+            <CustomDashboardTitle>Zahlung: </CustomDashboardTitle>
             <Paper className={classes.container} shadow="xl" radius="md" p="xl">
                <Box className={classes.wrapper}>
                   <Box>
                      <Text size="xl" weight={700} className={classes.text}>
-                        Greetings!{" "}
+                     Grüße!{" "}
                         <span className={classes.span}>
                            {product?.data.name}
                         </span>
                      </Text>
                      <Text className={classes.text}>
-                        Payment Details for:
+                     Zahlungsdetails für:
                         <span className={classes.span}>
                            {" "}
                            {product?.data.productName}
@@ -50,14 +50,14 @@ const Payment = () => {
                      </Text>
 
                      <Text className={classes.text}>
-                        Quantity:
+                     Menge:
                         <span className={classes.span}>
                            {" "}
                            {product?.data.quantity} pcs
                         </span>
                      </Text>
                      <Text className={classes.text}>
-                        You have to pay:
+                     Du musst bezahlen:
                         <span className={classes.span}>
                            {" "}
                            ${product?.data?.total}
@@ -69,10 +69,10 @@ const Payment = () => {
                      {" "}
                      <Text size="xl" className={classes.text}>
                         {" "}
-                        Billing Address :{" "}
+                        Rechnungsadresse :{" "}
                      </Text>
                      <Text className={classes.text}>
-                        Phone :{" "}
+                     Telefon :{" "}
                         <span className={classes.span}>
                            {" "}
                            {product?.data?.phone}
@@ -86,7 +86,7 @@ const Payment = () => {
                         </span>
                      </Text>
                      <Text className={classes.text}>
-                        Shipping Address :{" "}
+                     Lieferadresse :{" "}
                         <span className={classes.span}>
                            {" "}
                            {product?.data?.address}

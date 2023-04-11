@@ -6,7 +6,8 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Posts: [],
+      parts: [],
+      searchResults: [],
     };
 
     this.cancelToken = '';
@@ -16,6 +17,7 @@ class Search extends Component {
 
   componentDidMount() {
     document.addEventListener('mousedown', this.onIptClick);
+    this.fetchParts();
   }
 
   componentWillUnmount() {
@@ -27,11 +29,24 @@ class Search extends Component {
       return;
     }
     this.setState({
-      Posts: [],
+      searchResults: [],
     });
   };
 
   onLsChange = async (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+
+    let searchRes = this.state.parts.filter((part) => {
+      let finalRes = part.name.toLowerCase();
+      return finalRes.indexOf(searchTerm) !== -1;
+    });
+
+    this.setState({
+      searchResults: searchRes,
+    });
+  };
+
+  async fetchParts() {
     if (this.isReqToken) {
       this.isReqToken.cancel();
     }
@@ -39,12 +54,12 @@ class Search extends Component {
     this.isReqToken = axios.CancelToken.source();
 
     await axios
-      .get('https://jsonplaceholder.typicode.com/albums', {
-        isReqToken: this.isReqToken.token,
+      .get('/parts', {
+        cancelToken: this.isReqToken.token,
       })
       .then((res) => {
         this.setState({
-          Posts: res.data,
+          parts: res.data,
         });
       })
       .catch((error) => {
@@ -52,23 +67,12 @@ class Search extends Component {
           console.log('Could not get');
         }
       });
-
-    let filterSearch = e.target.value.toLowerCase();
-
-    let searchRes = this.state.Posts.filter((e) => {
-      let finalRes = e.title.toLowerCase();
-      return finalRes.indexOf(filterSearch) !== -1;
-    });
-
-    this.setState({
-      Posts: searchRes,
-    });
-  };
+  }
 
   render() {
     return (
       <MantineProvider>
-        <div style={{ padding: '30px', fontSize: '25px', margin: 'auto', backgroundColor: "#63759F" }}>
+        <div style={{ padding: '30px', fontSize: '25px', margin: 'auto', borderColor: 'blue' }}>
           <Input
             style={{ margin: '15px', fontSize: '30px', marginBottom: '15px' }}
             onClick={this.onIptClick}
@@ -78,8 +82,8 @@ class Search extends Component {
             ref={this.node}
           />
           <List style={{ fontSize: '16px' }}>
-            {this.state.Posts.map((res) => {
-              return <List.Item key={res.id}>{res.title}</List.Item>;
+            {this.state.searchResults.map((part) => {
+              return <List.Item key={part._id}>{part.name}</List.Item>;
             })}
           </List>
         </div>

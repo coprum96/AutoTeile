@@ -6,6 +6,7 @@ import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
 import Review from "./Review";
 
+
 const Reviews = () => {
    const { data: reviews, isLoading } = useQuery("reviews", () =>
       axiosPrivate.get(`${API_URL}reviews`)
@@ -18,16 +19,15 @@ const Reviews = () => {
    return (
       <>
          <SectionTitle>Bewertungen</SectionTitle>
-         <ScrollArea>
+         <ScrollArea h={250} type="scroll">
             <Box
                style={{
-                  display: "flex",
+                  display: "inline",
                }}
                my="md"
             >
                {reviews?.data
                   .slice()
-                  .reverse()
                   .map((review, index) => (
                      <Review review={review} key={index}></Review>
                   ))}
