@@ -4,8 +4,8 @@ import { At, MapPin, Phone, Sun } from "tabler-icons-react";
 
 const useStyles = createStyles((theme, { variant }) => ({
    wrapper: {
-      display: "flex",
-      alignItems: "center",
+      display: "inline",
+      alignItems: "right",
       color: theme.white,
    },
 
@@ -48,11 +48,11 @@ function ContactIcon({
       <div className={cx(classes.wrapper, className)} {...others}>
          {variant === "gradient" ? (
             <ThemeIcon size={40} radius="md" className={classes.icon}>
-               <Icon size={44} />
+               <Icon size={24} />
             </ThemeIcon>
          ) : (
             <Box mr="md">
-               <Icon size={44} />
+               <Icon size={24} />
             </Box>
          )}
 
@@ -79,3 +79,5 @@ export function ContactIconsList({ data = MOCKDATA, variant }) {
    ));
    return <Group direction="column">{items}</Group>;
 }
+
+export const ContactIcons = ContactIconsList;

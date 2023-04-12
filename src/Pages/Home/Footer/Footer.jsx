@@ -8,6 +8,7 @@ import {
 } from "@mantine/core";
 import React from "react";
 import { BrandInstagram, BrandTwitter, BrandYoutube } from "tabler-icons-react";
+// import { ContactIconsList } from "../ContactTwo/ContactIconsList";
 
 const useStyles = createStyles((theme) => ({
     footer: {

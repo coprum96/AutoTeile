@@ -11,18 +11,17 @@ import {
  } from "@mantine/core";
  import React from "react";
  import SectionTitle from "../../Shared/SectionTitle.jsx";
- import { ContactIconsList } from "./ContactIcons.jsx";
  const useStyles = createStyles((theme) => {
     const BREAKPOINT = theme.fn.smallerThan("sm");
  
     return {
        wrapper: {
-          display: "inline-block",
+          display: "flex",
           backgroundColor:
              theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
           borderRadius: theme.radius.lg,
           padding: 5,
-          border: `10px solid ${
+          border: `30px solid ${
              theme.colorScheme === "dark"
                 ? theme.colors.dark[8]
                 : theme.colors.gray[2]
@@ -112,13 +111,6 @@ import {
           <SectionTitle my={20}>Kontaktieren Sie mit uns</SectionTitle>
           <Paper shadow="md" radius="lg">
              <div className={classes.wrapper}>
-                <div className={classes.contacts}>
-                   <Text size="lg" weight={700} className={classes.title}>
-                      Kontakt Daten
-                   </Text>
-                   <ContactIconsList></ContactIconsList>
-                </div>
- 
                 <form
                    className={classes.form}
                    onSubmit={(event) => event.preventDefault()}
@@ -132,26 +124,26 @@ import {
                          cols={2}
                          breakpoints={[{ maxWidth: "sm", cols: 1 }]}
                       >
-                         <TextInput label="Your name" placeholder="Your name" />
+                         <TextInput label="Name" placeholder="Name" />
                          <TextInput
-                            label="Your email"
-                            placeholder="customer@SREIdustries.dev"
+                            label="Email"
+                            placeholder="bekko@gamil.com"
                             required
                          />
                       </SimpleGrid>
  
                       <TextInput
                          mt="md"
-                         label="Subject"
-                         placeholder="Subject"
+                         label="Theme"
+                         placeholder="Theme"
                          required
                       />
  
                       <Textarea
                          mt="md"
                          label="Your message"
-                         placeholder="Please include all relevant information"
-                         minRows={3}
+                         placeholder="Bitte Information angeben"
+                         minRows={4}
                       />
  
                       <Group position="right" mt="md">
