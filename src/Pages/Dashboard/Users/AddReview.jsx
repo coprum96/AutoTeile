@@ -1,15 +1,14 @@
-import { Box, Button, Center, Group, Text, ThemeIcon } from "@mantine/core";
+import { Button,Group, Text } from "@mantine/core";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import ReactStars from "react-rating-stars-component";
 import { toast } from "react-toastify";
-import { Lock, Star, StarHalf } from "tabler-icons-react";
+import { Star, StarHalf } from "tabler-icons-react";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
 import auth from "../../../firebase.init";
 import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
-import Loading from "../../Shared/Loading";
 import { useStyles } from "./AddReview.styles";
 
 const AddReview = () => {
@@ -41,7 +40,7 @@ const AddReview = () => {
 
       <form className={classes.wrapper} action="" onSubmit={handleSubmit(onSubmit)}>
         <Group noWrap spacing="xs">
-          <Text className={classes.text}>Give a Rating: </Text>
+          <Text className={classes.text}>Bewerte uns bitte: </Text>
           <ReactStars
             count={5}
             onChange={setRatings}

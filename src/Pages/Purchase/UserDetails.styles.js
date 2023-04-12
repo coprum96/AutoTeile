@@ -36,7 +36,7 @@ export const useStyles = createStyles((theme) => ({
 
    description: {
       color: theme.colors[theme.primaryColor][0],
-      maxWidth: 300,
+      maxWidth: 400,
 
       [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
          maxWidth: "100%",
@@ -86,8 +86,8 @@ export const useStyles = createStyles((theme) => ({
       marginTop: theme.spacing.xl,
       width: 150,
       display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
+      // alignItems: "center",
+      // justifyContent: "space-between",
       padding: `6px ${theme.spacing.xs}px`,
       borderRadius: theme.radius.sm,
       border: `1px solid ${

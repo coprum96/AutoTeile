@@ -110,8 +110,8 @@ const UserDetails = ({ email, name, productId, product }) => {
                      />
 
                      <NumberInput
-                        placeholder="88"
-                        label="Habdy Number"
+                        placeholder="+49911954241"
+                        label="Handy Number"
                         hideControls
                         required
                         classNames={{
@@ -123,7 +123,7 @@ const UserDetails = ({ email, name, productId, product }) => {
                      />
                      <TextInput
                         label="Lieferadresse"
-                        placeholder="15329 Huston 21st"
+                        placeholder="37242 Bad Sooden-Allendorf 4"
                         mt="md"
                         required
                         classNames={{
@@ -141,7 +141,7 @@ const UserDetails = ({ email, name, productId, product }) => {
                            className={classes.quantityControl}
                            onMouseDown={(event) => event.preventDefault()}
                         >
-                           <Minus size={16} />
+                           <Minus size={20} />
                         </ActionIcon>
 
                         <NumberInput

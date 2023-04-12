@@ -37,8 +37,12 @@ const ManageAllOrders = () => {
                   <tr>
                      <th></th>
                      <th>Benutzer</th>
+                     <th>Email</th>
                      <th>Produkt Name</th>
+                     <th>Menge</th>
                      <th>Status </th>
+                     <th>Handy </th>
+                     <th>Adresse</th>
                      <th>Entfernen</th>
                   </tr>
                </thead>

@@ -7,21 +7,20 @@ import {
  import CustomBadge from "../Components/CustomBadge";
  const useStyles = createStyles((theme) => ({
     main: {
-       display: "flex",
+       display: "inline",
     },
  
     text: {
-       fontSize: 15,
- 
-       [theme.fn.smallerThan("sm")]: {
-          fontSize: 11,
+       fontSize: 19,
+       [theme.fn.smallerThan("md")]: {
+          fontSize: 15,
        },
     },
     control: {
        color: theme.colors.gray[6],
        textDecoration: "none",
        [theme.fn.smallerThan("sm")]: {
-          fontSize: 11,
+          fontSize: 13,
        },
     },
  }));
@@ -30,7 +29,6 @@ import {
        name: productName,
        price,
        minimumQuantity,
-       availableQuantity,
        artikul,
     } = product;
  
@@ -51,19 +49,13 @@ import {
                 </Group>
                 <Group>
                    <Text className={classes.text} size="sm" color="dimmed">
-                   Preis: <CustomBadge>€{price}</CustomBadge>
+                   Preis: <CustomBadge color="violet">€{price}</CustomBadge>
                    </Text>
                 </Group>
                 <Group>
                    <Text className={classes.text} size="sm" color="dimmed">
-                   Mindestmenge:{" "}
-                      <CustomBadge>{minimumQuantity}</CustomBadge>
-                   </Text>
-                </Group>
-                <Group>
-                   <Text className={classes.text} size="sm" color="dimmed">
-                   Verfügbare Menge:{" "}
-                      <CustomBadge color="red">{availableQuantity}</CustomBadge>
+                   Min:{" "}
+                      <CustomBadge color="red">{minimumQuantity}</CustomBadge>
                    </Text>
                 </Group>
              </Group>

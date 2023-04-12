@@ -18,8 +18,9 @@ const Products = () => {
   const handleSearch = (searchTerm) => {
    const searchRes = products.filter((product) => {
      const artikul = product.artikul.toLowerCase();
-     return artikul.includes(searchTerm.toLowerCase());
-   });
+     const name = product.name.toLowerCase();
+     return artikul.includes(searchTerm.toLowerCase()) || name.includes(searchTerm.toLowerCase());
+    });;
    setSearchResults(searchRes);
  };
 
