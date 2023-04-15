@@ -32,7 +32,7 @@
     "zustand": "^4.3.6"
   },
   "scripts": {
-    "start": "react-scripts start --env setupMiddlewares",
+    "start": "NODE_OPTIONS=--max-old-space-size=2048 react-scripts start --env setupMiddlewares",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
