@@ -31,6 +31,20 @@
     "webpack-dev-middleware": "^6.0.2",
     "zustand": "^4.3.6"
   },
+  "setupMiddlewares": [
+    {
+      "handler": "webpack-dev-middleware",
+      "options": {
+        "publicPath": "/",
+        "stats": "minimal",
+        "watchOptions": {
+          "ignored": [
+            "node_modules"
+          ]
+        }
+      }
+    }
+  ],
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
