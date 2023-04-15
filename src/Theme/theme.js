@@ -1,5 +1,5 @@
 export const customTheme = {
-    headings: { fontFamily: "Roboto, sans-serif" },
+    headings: { fontFamily: "Montserrat, sans-serif" },
 
     colors: {
         brand: [
@@ -53,7 +53,7 @@ export const customTheme = {
     },
     primaryColor: "custom",
 
-    primaryShade: { light: 6, dark: 8 },
+    primaryShade: { light: 4, dark: 8 },
 };
 
 export const colors = {
