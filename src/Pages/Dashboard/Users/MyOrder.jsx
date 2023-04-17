@@ -17,7 +17,7 @@ import {
  import { API_URL } from "../../../API/rootURL";
  const MyOrder = ({ order, index, refetch }) => {
     const theme = useMantineTheme();
-    const { productName, phone, quantity, total, _id } = order;
+    const { productName, phone, quantity, total, _id, artikul } = order;
     const [opened, setOpened] = useState(false);
     const navigate = useNavigate();
  
@@ -71,7 +71,7 @@ import {
                    </Text>
                 </Group>
              </td>
- 
+                   
              <td>
                 <Badge
                    variant="gradient"

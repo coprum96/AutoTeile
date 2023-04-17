@@ -19,7 +19,7 @@ import Wishlist from "../Components/Wishlist";
 import { useStore } from "../Shared/store";
 import { useStyles } from "./UserDetails.styles";
 
-const UserDetails = ({ email, name, productId, product }) => {
+const UserDetails = ({ email, name, productId, product, artikul }) => {
    const {
       price,
       minimumQuantity: min,
@@ -47,6 +47,7 @@ const UserDetails = ({ email, name, productId, product }) => {
          name: name,
          address: "",
          phone: Number,
+         artikul: "",
       },
    });
 
@@ -54,6 +55,7 @@ const UserDetails = ({ email, name, productId, product }) => {
       const productDetails = {
          productName: productName,
          productId: productId,
+         artikul,
          email,
          address,
          phone,

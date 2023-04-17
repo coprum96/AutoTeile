@@ -33,7 +33,7 @@ import {
     { link: "/dashboard/invoice", label: "Invoices", icon: Paperclip },
     
     { link: "", label: "Profile", icon: Users },
-    { link: "/dashboard/addreview", label: "Add Review", icon: Ballpen },
+    { link: "/dashboard/addreview", label: "Bewertung hinzufügen", icon: Ballpen },
     { link: "/dashboard/importproducts", label: "Import Teile per CSV", icon: ArrowBarToDown },
     { link: "/dashboard/history", label: "Geschichte", icon: History },
     {
@@ -47,13 +47,13 @@ import {
  const adminLinks = [
     {
        link: "/dashboard/manageproducts",
-       label: "Manage Products",
+       label: "Produkte verwalten",
        icon: BuildingStore,
     },
-    { link: "/dashboard/addproduct", label: "Add Product", icon: Ballpen },
+    { link: "/dashboard/addproduct", label: "Produkt hinzufügen", icon: Ballpen },
     {
        link: "/dashboard/manageallorders",
-       label: "Manage All Orders",
+       label: "Alle Bestellungen verwalten",
        icon: History,
     },
     {

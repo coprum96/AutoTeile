@@ -17,12 +17,12 @@ import {
     const [opened, setOpened] = useState(false);
     const theme = useMantineTheme();
     const [loading, setLoading] = useState(false);
-    const { name, productName, _id, phone, address, quantity, email } = order;
+    const { name, artikul, productName, _id, phone, address, quantity, email } = order;
  
     const handleDeleteItem = async (id) => {
        const { data } = await axiosPrivate.delete(`${API_URL}orders/${id}`);
        if (data.deletedCount) {
-          toast.success("Removed Item Successfully");
+          toast.success("Artikel erfolgreich entfernt");
           refetch();
        }
     };
@@ -73,6 +73,11 @@ import {
              <td>
                 <Text size="sm" color="gray" weight={600}>
                    {name}
+                </Text>
+             </td>
+             <td>
+                <Text size="sm" color="gray" weight={600}>
+                   {artikul}
                 </Text>
              </td>
              <td>

@@ -8,6 +8,7 @@ import {
 } from "@mantine/core";
 import React from "react";
 import { BrandInstagram, BrandTwitter, BrandYoutube } from "tabler-icons-react";
+import Impressum from "./Impressum";
 // import { ContactIconsList } from "../ContactTwo/ContactIconsList";
 
 const useStyles = createStyles((theme) => ({
@@ -118,49 +119,24 @@ const useStyles = createStyles((theme) => ({
 
 const footerLinks = [
     {
-        title: "About",
+        title: "Projekt",
         links: [
             {
-                label: "Features",
+                label: "Impressum",
+                link: <Impressum />,
+            },
+            {
+                label: "AGB",
                 link: "#",
             },
             {
-                label: "Pricing",
-                link: "#",
-            },
-            {
-                label: "Support",
-                link: "#",
-            },
-            {
-                label: "Forums",
+                label: "Datenschutzerklarung",
                 link: "#",
             },
         ],
     },
     {
-        title: "Project",
-        links: [
-            {
-                label: "Contribute",
-                link: "#",
-            },
-            {
-                label: "Media assets",
-                link: "#",
-            },
-            {
-                label: "Changelog",
-                link: "#",
-            },
-            {
-                label: "Releases",
-                link: "#",
-            },
-        ],
-    },
-    {
-        title: "Community",
+        title: "Über Uns",
         links: [
             {
                 label: "BERNER Consulting Group, Meessen 10, 22113 Oststeinbek",
