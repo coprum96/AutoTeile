@@ -7,8 +7,6 @@ import Loading from "../../Shared/Loading";
 import MyOrder from "./MyOrder";
 import './MyOrders.css'
 
-
-
 const MyOrders = () => {
    const [user] = useAuthState(auth);
    const email = user?.email;
@@ -19,10 +17,15 @@ const MyOrders = () => {
       return <Loading />;
    }
 
+   let totalSum = 0;
+   orders?.data.forEach((order) => {
+      totalSum += order.total;
+   });
+
    return (
-      <div className="bestellung"
-      >
-         <CustomDashboardTitle>Meine Bestellungen : </CustomDashboardTitle>
+      <div className="bestellung">
+         <CustomDashboardTitle>Meine Bestellungen :</CustomDashboardTitle>
+         <p>Total Sum: {totalSum}</p>
          <ScrollArea>
             <Table 
                sx={{ minWidth: 100 }}

@@ -61,7 +61,7 @@ import {
       label: "Kunden Invoices",
       icon: Article,
    },
-    { link: "", label: "My Profile", icon: Users },
+    { link: "", label: "Mein Profile", icon: Users },
  ];
  export default function Dashboard() {
     const theme = useMantineTheme();

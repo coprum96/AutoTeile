@@ -139,13 +139,13 @@ const footerLinks = [
         title: "Über Uns",
         links: [
             {
-                label: "BERNER Consulting Group, Meessen 10, 22113 Oststeinbek",
+                label: "Bekko B.V, 3192 BS Hoogviliet, Rotterdam",
             },
             {
-                label: "+49 (0) 40 524 7371 90",
+                label: "+31 6 10860565",
             },
             {
-                label: "sales@autoteile.de",
+                label: "purchase@bekkobv.nl",
             },
         ],
     },

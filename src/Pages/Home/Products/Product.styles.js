@@ -34,4 +34,7 @@ export const useStyles = createStyles((theme) => ({
          width: "100%",
       },
    },
+   cardbutton: {
+      color: "red",
+   }
 }));

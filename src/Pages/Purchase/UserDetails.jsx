@@ -15,7 +15,6 @@ import { Mail, Minus, Plus } from "tabler-icons-react";
 import axiosPrivate from "../../API/axiosPrivate";
 import { API_URL } from "../../API/rootURL";
 import auth from "../../firebase.init";
-import Wishlist from "../Components/Wishlist";
 import { useStore } from "../Shared/store";
 import { useStyles } from "./UserDetails.styles";
 
@@ -47,7 +46,7 @@ const UserDetails = ({ email, name, productId, product, artikul }) => {
          name: name,
          address: "",
          phone: Number,
-         artikul: "",
+         artikul: Number,
       },
    });
 
@@ -134,6 +133,7 @@ const UserDetails = ({ email, name, productId, product, artikul }) => {
                         }}
                         {...form.getInputProps("address")}
                      />
+                     
                      <div className={classes.quantityWrapper}>
                         <ActionIcon
                            size={28}
@@ -176,7 +176,6 @@ const UserDetails = ({ email, name, productId, product, artikul }) => {
                         >
                            Bestellung aufgeben
                         </Button>
-                        <Wishlist />
                      </Group>
                   </form>
                </Group>

@@ -13,57 +13,78 @@ import volvo from "../../../Assets/brands/volvo.png";
 import bently from "../../../Assets/brands/bently.png";
 import audi from "../../../Assets/brands/audi.png";
 
-
-
+const styles = {
+  container: {
+    maxWidth: "1000px",
+    margin: "0 auto",
+    padding: "0 1rem",
+    textAlign: "center",
+  },
+  slide: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    border: "2px solid #121212",
+    borderRadius: "10px",
+    boxShadow: "0 5px 10px rgba(0, 0, 0, 0.4)",
+    overflow: "hidden",
+    cursor: "pointer",
+  },
+  image: {
+    maxWidth: "150%",
+    maxHeight: "100%",
+    objectFit: "contain",
+  },
+};
 
 export default function Brand() {
-    return (
-        <Container>
-            <SectionTitle my="md" mb="xl">
-                Autos
-            </SectionTitle>
+  return (
+    <Container style={{...styles.container }}>
+      <SectionTitle my="md" mb="sm">
+        Autos
+      </SectionTitle>
       <Carousel
         withIndicators
         height={140}
-        slideSize="33.333333%"
-        slideGap="md"
+        slideSize="30%"
+        slideGap="xl"
         loop
-        align="start"
+        align="center"
         slidesToScroll={1}
+        autoPlay
+        autoPlayTimeout={2000}
       >
-        <Carousel.Slide>
-            <Image src={bmw} width={250} height={100} fit="contain" alt="BMW" />
+        <Carousel.Slide style={styles.slide}>
+          <Image src={bmw} width={180} height={100} fit="contain" alt="BMW" style={styles.image} />
         </Carousel.Slide>
-        <Carousel.Slide>
-            <Image src={ferrari} width={250} height={100} fit="contain" alt="ferrari"/>
+        <Carousel.Slide style={styles.slide}>
+          <Image src={ferrari} width={180} height={100} fit="contain" alt="ferrari" style={styles.image} />
         </Carousel.Slide>
-        <Carousel.Slide>
-        <Image src={mercedes} width={250} height={100} fit="contain" alt="mercedes"/>
+        <Carousel.Slide style={styles.slide}>
+          <Image src={mercedes} width={180} height={100} fit="contain" alt="mercedes" style={styles.image} />
         </Carousel.Slide>
-        <Carousel.Slide>
-        <Image src={lamborghini} width={250} height={100} fit="contain" alt="lamborghini"/>
+        <Carousel.Slide style={styles.slide}>
+          <Image src={lamborghini} width={180} height={100} fit="contain" alt="lamborghini" style={styles.image} />
         </Carousel.Slide>
-        <Carousel.Slide>
-        <Image src={toyota} width={250} height={140} fit="contain" alt="toyota"/>
+        <Carousel.Slide style={styles.slide}>
+          <Image src={toyota} width={150} height={170} fit="contain" alt="toyota" style={styles.image} />
         </Carousel.Slide>
-        <Carousel.Slide>
-        <Image src={vw} width={250} height={110} fit="contain" alt="vw"/>
+        <Carousel.Slide style={styles.slide}>
+          <Image src={vw} width={180} height={110} fit="contain" alt="vw" style={styles.image} />
         </Carousel.Slide>
-        <Carousel.Slide>
-        <Image src={porsche} width={250} height={110} fit="contain" alt="porsche"/>
+        <Carousel.Slide style={styles.slide}>
+        <Image src={porsche} width={180} height={110} fit="contain" alt="porsche" style={styles.image} />
         </Carousel.Slide>
-        <Carousel.Slide>
-        <Image src={volvo} width={250} height={110} fit="contain" alt="volvo"/>
+        <Carousel.Slide style={styles.slide}>
+        <Image src={volvo} width={180} height={110} fit="contain" alt="volvo" style={styles.image} />
         </Carousel.Slide>
-        <Carousel.Slide>
-        <Image src={bently} width={250} height={110} fit="contain" alt="bently"/>
+        <Carousel.Slide style={styles.slide}>
+        <Image src={bently} width={140} height={90} fit="contain" alt="bently" style={styles.image} />
         </Carousel.Slide>
-        <Carousel.Slide>
-        <Image src={audi} width={250} height={130} fit="contain" alt="audi"/>
+        <Carousel.Slide style={styles.slide}>
+        <Image src={audi} width={190} height={90} fit="contain" alt="audi" style={styles.image} />
         </Carousel.Slide>
       </Carousel>
-
         </Container>
     );
   }
-

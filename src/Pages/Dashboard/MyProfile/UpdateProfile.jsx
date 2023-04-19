@@ -29,7 +29,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function UpdateProfile({ userInfo, refetch }) {
-   const { phone, address, email } = userInfo ?? {};
+   const { phone, address, email} = userInfo ?? {};
 
    const { classes } = useStyles();
 
@@ -37,7 +37,6 @@ export default function UpdateProfile({ userInfo, refetch }) {
       initialValues: {
          address: "",
          phone: Number,
-         email: "",
       },
    });
 
@@ -56,15 +55,9 @@ export default function UpdateProfile({ userInfo, refetch }) {
 
    return (
       <>
-         <CustomDashboardTitle>Update Profile</CustomDashboardTitle>
+         <CustomDashboardTitle>Profile erneuen</CustomDashboardTitle>
 
          <form onSubmit={form.onSubmit(handleOnSubmit)}>
-         <TextInput
-               label="Email"
-               placeholder={email}
-               classNames={classes}
-               {...form.getInputProps("email")}
-            />
             <TextInput
                label="Address"
                placeholder={address}
@@ -79,7 +72,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
                {...form.getInputProps("phone")}
             />
             <Button type="submit" mt="md" variant="light">
-               Save
+               Speichern
             </Button>
          </form>
       </>
