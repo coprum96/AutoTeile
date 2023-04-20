@@ -10,6 +10,7 @@ import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
 import Product from "./Product";
 import Papa from "papaparse";
+import { FaTimes } from 'react-icons/fa';
 
 const Products = () => {
   const theme = useMantineTheme();
@@ -24,7 +25,16 @@ const Products = () => {
     });
     setSearchResults(searchRes);
   };
-
+  
+  const handleCancel = () => {
+    // Reset the search results
+    setSearchResults([]);
+  
+    // Reset the input field for file upload
+    const fileInput = document.getElementById('file-upload');
+    fileInput.value = null;
+  };
+  
   const handleSearchCSV = (event) => {
     // Get the uploaded file
     const file = event.target.files[0];
@@ -59,13 +69,25 @@ const Products = () => {
         onChange={(event) => handleSearch(event.target.value)}
       />
       <SectionTitle mb="sm">Teile mit CSV suchen</SectionTitle>
-      <Input
-        style={{ margin: "15px", fontSize: "30px", marginBottom: "45px",  }}
-        type="file"
-        accept=".csv"
-        placeholder="AutoTeil mit CSV file suchen..."
-        onChange={(event) => handleSearchCSV(event)}
-      />
+      <Grid
+  style={{
+    display: "inline",
+  }}
+>
+  <Input
+    style={{ fontSize: "40px" }}
+    id="file-upload"
+    type="file"
+    accept=".csv"
+    placeholder="AutoTeil mit CSV file suchen..."
+    onChange={(event) => handleSearchCSV(event)}
+  />
+  {searchResults.length > 0 && (
+    <button style={{ border: "none", background: "none" }} onClick={handleCancel}>
+      <FaTimes style={{ fontSize: "30px", color: "#121212" }} />
+    </button>
+  )}
+</Grid>
       <Grid>
         {searchResults.length > 0 &&
           searchResults.map((product) => (

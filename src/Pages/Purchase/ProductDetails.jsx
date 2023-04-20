@@ -11,13 +11,13 @@ import {
     },
  
     text: {
-       fontSize: 19,
-       [theme.fn.smallerThan("md")]: {
-          fontSize: 15,
+       fontSize: 25,
+       [theme.fn.smallerThan("xs")]: {
+          fontSize: 25,
        },
     },
     control: {
-       color: theme.colors.gray[6],
+       color: theme.colors.gray[1],
        textDecoration: "none",
        [theme.fn.smallerThan("sm")]: {
           fontSize: 13,
@@ -38,7 +38,7 @@ import {
           <Paper className={classes.main} p="xl">
              <Group direction="column">
                 <Group>
-                   <Text className={classes.text} size="lg" weight="bold">
+                   <Text className={classes.text} size="lg" weight="dimmed">
                       {productName}
                    </Text>
                 </Group>

@@ -46,7 +46,7 @@ export default function Brand() {
       <Carousel
         withIndicators
         height={140}
-        slideSize="30%"
+        slideSize="35%"
         slideGap="xl"
         loop
         align="center"

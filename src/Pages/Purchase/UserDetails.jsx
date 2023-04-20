@@ -4,7 +4,6 @@ import {
    Group,
    NumberInput,
    Paper,
-   Text,
    TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -46,7 +45,7 @@ const UserDetails = ({ email, name, productId, product, artikul }) => {
          name: name,
          address: "",
          phone: Number,
-         artikul: Number,
+         artikul: artikul,
       },
    });
 
@@ -76,22 +75,10 @@ const UserDetails = ({ email, name, productId, product, artikul }) => {
          toast.error(data.error);
       }
    };
-
    return (
       <>
          <Paper className={classes.userDetailsWrapper}>
-            <Group className={classes.responsiveText} spacing="xs" ml={25}>
-               <Group direction="column" spacing="xs">
-                  <Text
-                     className={classes.responsiveText}
-                     color="gray"
-                     weight={700}
-                     size="sm"
-                     mb={-5}
-                  >
-                     {name}
-                  </Text>
-               </Group>
+            <Group className={classes.responsiveText} spacing="xl" ml={21}>
             </Group>
             <Group>
                <Group direction="column">
@@ -164,11 +151,11 @@ const UserDetails = ({ email, name, productId, product, artikul }) => {
                            className={classes.quantityControl}
                            onMouseDown={(event) => event.preventDefault()}
                         >
-                           <Plus size={16} />
+                           <Plus size={10} />
                         </ActionIcon>
+                        
                      </div>
-
-                     <Group position="left" variant="light" mt="md">
+                     <Group  variant="light" mt="md">
                         <Button
                            className={classes.button}
                            variant="light"

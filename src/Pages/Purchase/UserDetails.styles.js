@@ -9,7 +9,7 @@ export const useStyles = createStyles((theme) => ({
       },
    },
    wrapper: {
-      minHeight: 400,
+      minHeight: 200,
       boxSizing: "border-box",
       backgroundImage: `linear-gradient(-60deg, ${
          theme.colors[theme.primaryColor][4]
@@ -44,11 +44,7 @@ export const useStyles = createStyles((theme) => ({
    },
 
    form: {
-      width: "50vh",
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "left",
-
+      display: "inline",
       padding: theme.spacing.xl,
    },
 
@@ -86,11 +82,11 @@ export const useStyles = createStyles((theme) => ({
       marginTop: theme.spacing.xl,
       width: 150,
       display: "flex",
-      // alignItems: "center",
-      // justifyContent: "space-between",
+      alignItems: "center",
+      justifyContent: "space-between",
       padding: `6px ${theme.spacing.xs}px`,
       borderRadius: theme.radius.sm,
-      border: `1px solid ${
+      border: `4px solid ${
          theme.colorScheme === "dark" ? "transparent" : theme.colors.gray[3]
       }`,
       backgroundColor:
@@ -123,7 +119,7 @@ export const useStyles = createStyles((theme) => ({
       textAlign: "center",
       paddingRight: `${theme.spacing.sm}px !important`,
       paddingLeft: `${theme.spacing.sm}px !important`,
-      height: 28,
+      height: 18,
       flex: 1,
    },
 

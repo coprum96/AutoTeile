@@ -6,6 +6,7 @@ import Brand from "./Brands/Brands";
 import Contact from "./Contact/Contact";
 import Support from "./Support/Support";
 import Reviews from "./Reviews/Reviews";
+import Details from "./Details/Details";
 
 
 
@@ -16,8 +17,9 @@ const Home = () => {
             <Banner />
             <Reviews />
             <BusinessSummary />
-            <Support />
             <Brand />
+            <Details />
+            <Support />
             <Contact />
          </Container>
          <Footer />
