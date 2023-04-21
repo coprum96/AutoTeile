@@ -1,9 +1,10 @@
-import { BackgroundImage, Center, Text, Box } from '@mantine/core';
+import { Container, BackgroundImage, Center, Text, Box } from '@mantine/core';
 import SectionTitle from "../../Shared/SectionTitle.jsx";
 import support from "../../../Assets/products/support.avif";
 
 export default function Support() {
   return (
+    <Container size="xl" px="md">
     <Box maw={1000} mx="auto">
       <SectionTitle my={30}>Support</SectionTitle>
       <BackgroundImage
@@ -17,5 +18,6 @@ export default function Support() {
         </Center>
       </BackgroundImage>
     </Box>
+    </Container>
   );
 }

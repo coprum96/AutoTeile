@@ -24,6 +24,7 @@ import Parts from "./Pages/Parts/Parts";
 import ClientInvoices from "./Pages/Dashboard/Admin/ClientsInvoices";
 import ImportProducts from "./Pages/Dashboard/ImportProducts/ImportProducts";
 import Payment from "./Pages/Dashboard/Users/Payment";
+import AddInventoryPerCSV from "./Pages/Dashboard/Admin/AddProductCSV";
 
 const Router = () => {
    return useRoutes([
@@ -121,6 +122,14 @@ const Router = () => {
                element: (
                   <RequireAdmin>
                      <AddProduct />
+                  </RequireAdmin>
+               ),
+            },
+            {
+               path: "addproductCSV",
+               element: (
+                  <RequireAdmin>
+                     <AddInventoryPerCSV />
                   </RequireAdmin>
                ),
             },

@@ -7,13 +7,15 @@ import Contact from "./Contact/Contact";
 import Support from "./Support/Support";
 import Reviews from "./Reviews/Reviews";
 import Details from "./Details/Details";
+import CarDemo from "../CarDemo/CarDemo";
 
 
 
 const Home = () => {
    return (
       <>
-         <Container>
+         <Container size="xl" px="md">
+         <CarDemo />
             <Banner />
             <Reviews />
             <BusinessSummary />

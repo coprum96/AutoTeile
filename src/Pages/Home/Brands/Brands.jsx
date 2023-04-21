@@ -24,9 +24,8 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    border: "2px solid #121212",
     borderRadius: "10px",
-    boxShadow: "0 5px 10px rgba(0, 0, 0, 0.4)",
+    boxShadow: "0 5px 10px rgba(0, 0, 0, 0.1)",
     overflow: "hidden",
     cursor: "pointer",
   },
@@ -39,7 +38,7 @@ const styles = {
 
 export default function Brand() {
   return (
-    <Container style={{...styles.container }}>
+    <Container size="xl" px="md" style={{...styles.container }}>
       <SectionTitle my="md" mb="sm">
         Autos
       </SectionTitle>
@@ -47,7 +46,7 @@ export default function Brand() {
         withIndicators
         height={140}
         slideSize="35%"
-        slideGap="xl"
+        slideGap="xs"
         loop
         align="center"
         slidesToScroll={1}

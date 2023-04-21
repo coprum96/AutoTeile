@@ -10,6 +10,7 @@ import React from "react";
 import { BrandInstagram, BrandTwitter, BrandYoutube } from "tabler-icons-react";
 import Impressum from "./Impressum";
 // import { ContactIconsList } from "../ContactTwo/ContactIconsList";
+import Contacts from "../Contact/Contacts"
 
 const useStyles = createStyles((theme) => ({
     footer: {
@@ -192,6 +193,7 @@ export default function Footer() {
                     >
                         Wir sind weltweit rund um die Uhr für Sie im Einsatz!
                     </Text>
+                    <Contacts />
                 </div>
                 <div className={classes.groups}>{groups}</div>
             </Container>

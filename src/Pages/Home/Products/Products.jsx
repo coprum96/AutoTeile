@@ -11,6 +11,7 @@ import SectionTitle from "../../Shared/SectionTitle";
 import Product from "./Product";
 import Papa from "papaparse";
 import { FaTimes } from 'react-icons/fa';
+import Footer from "../Footer/Footer"
 
 const Products = () => {
   const theme = useMantineTheme();
@@ -61,7 +62,9 @@ const Products = () => {
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <Container mb={theme.spacing.md * 2}>
+    <>
+
+    <Container size="xl" px="md" mb={theme.spacing.md * 2}>
       <SectionTitle mb="sm">Teile</SectionTitle>
       <Input
         style={{ margin: "15px", fontSize: "30px", marginBottom: "15px" }}
@@ -103,6 +106,8 @@ const Products = () => {
           ))}
       </Grid>
     </Container>
+    <Footer />
+    </>
   );
 };
 

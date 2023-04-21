@@ -21,7 +21,7 @@ const Contacts = () => {
           href={`https://wa.me/9119068159`}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: theme.colors.green[9], marginRight: 32, marginBottom: 20 }}
+          style={{ color: theme.colors.green[9], marginRight: 12, marginBottom: 5, marginTop: 30 }}
           onClick={handleWhatsAppClick}
         >
           <FaWhatsapp size={120}/>
@@ -31,7 +31,7 @@ const Contacts = () => {
           href={`tel:+9119068159`}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: theme.colors.red[9], marginRight: 32, marginBottom: 20 }}
+          style={{ color: theme.colors.red[9], marginRight: 12, marginBottom: 5, marginTop: 30 }}
         >
           <FaPhone size={120} />
         </ActionIcon>
@@ -40,7 +40,7 @@ const Contacts = () => {
           href={`mailto:info@example.com`}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: theme.colors.blue[9], marginRight: 32, marginBottom: 20 }}
+          style={{ color: theme.colors.blue[9], marginRight: 12, marginBottom: 5, marginTop: 30 }}
         >
           <FaEnvelope size={120} />
         </ActionIcon>
@@ -49,7 +49,7 @@ const Contacts = () => {
           href={`https://t.me/coprum`}
           target="_blank"
           rel="noopener noreferrer"
-          style={{ color: theme.colors.blue[9], marginBottom: 20 }}
+          style={{ color: theme.colors.blue[9], marginBottom: 12, marginBottom: 5, marginTop: 30}}
           onClick={handleTelegramClick}
         >
           <FaTelegram size={120} />

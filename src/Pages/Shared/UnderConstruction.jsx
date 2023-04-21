@@ -1,5 +1,5 @@
 import { Image } from "@mantine/core";
-import underConstruction from "../../Assets/svg/underconstruction.jpg";
+import underConstruction from "../../Assets/svg/underconstruction.png";
 const UnderConstruction = () => {
    return (
       <div

@@ -19,7 +19,8 @@ import {
     ListSearch,
     Paperclip,
     Article,
-    ArrowBarToDown
+    ArrowBarToDown,
+    DatabaseImport
  } from "tabler-icons-react";
  import auth from "../../firebase.init";
  import useAdmin from "../../Hooks/useAdmin";
@@ -51,6 +52,7 @@ import {
        icon: BuildingStore,
     },
     { link: "/dashboard/addproduct", label: "Produkt hinzufügen", icon: Ballpen },
+    { link: "/dashboard/addproductCSV", label: "CSV hinzufügen", icon: DatabaseImport },
     {
        link: "/dashboard/manageallorders",
        label: "Alle Bestellungen verwalten",

@@ -57,7 +57,7 @@ import {
  
    return (
      <Header height={HEADER_HEIGHT}>
-       <Container className={classes.inner}>
+       <Container className={classes.inner} size="xl" px="md">
          <Group>
            {' '}
            <Title onClick={() => navigate('/')} ml={10} mt={10}>
