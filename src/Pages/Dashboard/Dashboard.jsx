@@ -20,13 +20,20 @@ import {
     Paperclip,
     Article,
     ArrowBarToDown,
-    DatabaseImport
+    DatabaseImport,
+    DoorExit
  } from "tabler-icons-react";
  import auth from "../../firebase.init";
  import useAdmin from "../../Hooks/useAdmin";
  import { MainLinks } from "./Dashboard/_MainLinks";
  import User from "./Dashboard/_User";
+ import CustomSignInOutButton from '../../Pages/Components/CustomSignInOutButton';
+ import { signOut } from 'firebase/auth';
  
+ const handleSignOut = () => {
+   signOut(auth);
+ }; 
+
  //links for users
  const userLinks = [
     { link: "/dashboard/myorders", label: "Bestellungen", icon: BellRinging },
@@ -42,6 +49,7 @@ import {
        label: "Einstellungen",
        icon: Settings,
     },
+
  ];
  
  //links for admin
@@ -65,11 +73,14 @@ import {
    },
     { link: "", label: "Mein Profile", icon: Users },
  ];
+
  export default function Dashboard() {
     const theme = useMantineTheme();
     const [opened, setOpened] = useState(false);
     const [user] = useAuthState(auth);
     const [admin] = useAdmin(user);
+    
+    
     return (
        <Box>
           <AppShell
@@ -97,16 +108,22 @@ import {
                       <MainLinks links={admin ? adminLinks : userLinks} />
                    </Navbar.Section>
                    <Navbar.Section>
+                   <CustomSignInOutButton
+                           color='pink'
+                           onClick={handleSignOut}>
+                              <DoorExit style={{ marginRight: '16px' }} />
+                              Ausloggen
+                     </CustomSignInOutButton>
                       <User />
                    </Navbar.Section>
                 </Navbar>
              }
           >
-             <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+             <MediaQuery largerThan="sm" styles={{ display: "none" }} >
                <Burger
                   opened={opened}
                   onClick={() => setOpened((o) => !o)}
-                  size="xs"
+                  size="sm"
                   color={
                      theme.colorScheme === "dark"
                         ? theme.white
@@ -114,7 +131,6 @@ import {
                }
                />
                </MediaQuery>
-
              <Outlet />
           </AppShell>
        </Box>
