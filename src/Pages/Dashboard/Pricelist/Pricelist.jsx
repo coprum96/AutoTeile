@@ -3,6 +3,9 @@ import { Button, Table, Image } from '@mantine/core';
 import BMWLogo from "../../../Assets/brands/BMW.svg.png";
 import VolvoLogo from "../../../Assets/brands/volvo.png";
 import VAGLogo from "../../../Assets/brands/vw.png";
+import BMW from "../../../Assets/pricelists/Bmw.csv"
+import Volvo from "../../../Assets/pricelists/test.csv"
+import VAG from "../../../Assets/pricelists/VAG.csv"
 
 const Priceslist = () => {
    const downloadCsv = (fileName, url) => {
@@ -41,7 +44,7 @@ const Priceslist = () => {
                  color="blue"
                  size="sm"
                  onClick={() =>
-                   downloadCsv('Bmw.csv', '/static/media/Bmw.7aa604f89c475d287e35.csv')
+                   downloadCsv("BMW.csv", BMW) // added filename as first argument
                  }
                >
                  Download BMW Prices as CSV
@@ -59,7 +62,7 @@ const Priceslist = () => {
                  variant="outline"
                  color="blue"
                  size="sm"
-                 onClick={() => downloadCsv('Volvo.csv', '/static/media/Volvo.csv')}
+                 onClick={() => downloadCsv("Bmw.csv", Volvo)} // added filename as first argument
                >
                  Download Volvo Prices as CSV
                </Button>
@@ -74,9 +77,9 @@ const Priceslist = () => {
              <td>
                <Button
                  variant="outline"
-                 color="red"
+                 color="blue"
                  size="sm"
-                 onClick={() => downloadCsv('VAG.csv', '/static/media/VAG.csv')}
+                 onClick={() => downloadCsv("VAG.csv", VAG)} // added filename as first argument
                >
                  Download VAG Prices as CSV
                </Button>

@@ -6,7 +6,7 @@ import Products from "../Home/Products/Products";
 const Home = () => {
    return (
       <>
-         <Container>
+          <Container size="xl" px="md">
             <Info />
             <Products />
          </Container>

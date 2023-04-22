@@ -1,8 +1,8 @@
 import { Badge, Button, Card, Center, Group, Text } from "@mantine/core";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ShoppingCart, Plus } from "tabler-icons-react";
 import { useStyles } from "./Product.styles";
+import { ShoppingCart, Plus} from "tabler-icons-react";
 
 export default function Product({ product }) {
    const navigate = useNavigate();
@@ -20,8 +20,9 @@ export default function Product({ product }) {
    const [cart, setCart] = useState([]);
 
    const addToCart = () => {
-      setCart([...cart, product]);
-   };
+      setCart([...cart, { artikul, price }]);
+    };
+
    return (
       <Card withBorder shadow="xl" radius="md" p={0} className={classes.card}>
          <Center>
@@ -71,17 +72,14 @@ export default function Product({ product }) {
                         navigate(`/purchase/${_id}`);
                      }}
                   >
-                     Kaufen
                   </Button>
                   <Button
-                     uppercase
-                     variant="light"
-                     className={classes.cartButton}
-                     px="sm"
-                     centerIcon={<Plus size={15} />}
-                     onClick={addToCart}
+                  uppercase
+                  variant="light"
+                  px="sm"
+                  rightIcon={<Plus size={18} />}
+                  onClick={() => addToCart({ artikul, price })}
                   >
-                     +1
                   </Button>
                </Group>
             </div>
