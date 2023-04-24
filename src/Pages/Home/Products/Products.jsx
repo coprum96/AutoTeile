@@ -3,41 +3,42 @@ import {
   Container,
   Grid,
   useMantineTheme,
-  Input
+  Input, 
+  Table, 
+  Button
 } from "@mantine/core";
 import useParts from "../../../Hooks/useParts";
 import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
-import Product from "./Product";
+import { useNavigate } from "react-router-dom";
+import FileInput from "./FileInput";
 import Papa from "papaparse";
 import { FaTimes } from 'react-icons/fa';
-import Footer from "../Footer/Footer";
-import Shopping from "./Shopping";
 
 const Products = () => {
   const theme = useMantineTheme();
   const { products, isLoading, error } = useParts();
   const [searchResults, setSearchResults] = useState([]);
-  const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
 
   const handleSearch = (searchTerm) => {
-    const searchRes = products.filter((product) => {
-      const artikul = product.artikul.toLowerCase();
-      const name = product.name.toLowerCase();
-      return artikul.includes(searchTerm.toLowerCase()) || name.includes(searchTerm.toLowerCase());
-    });
+    const searchTerms = searchTerm.toLowerCase().split(/\t+/); // Split search term by tabs
+    const searchRes = [];
+    for (let i = 0; i < searchTerms.length; i++) {
+      const term = searchTerms[i].trim(); // Trim whitespace from search term
+      if (term) {
+        // Only search for non-empty terms
+        const res = products.filter((product) => {
+          const artikul = product.artikul.toLowerCase();
+          const name = product.name.toLowerCase();
+          return artikul.includes(term) || name.includes(term);
+        });
+        searchRes.push(...res);
+      }
+    }
     setSearchResults(searchRes);
   };
-  
-  const handleCancel = () => {
-    // Reset the search results
-    setSearchResults([]);
-  
-    // Reset the input field for file upload
-    const fileInput = document.getElementById('file-upload');
-    fileInput.value = null;
-  };
-  
+
   const handleSearchCSV = (event) => {
     // Get the uploaded file
     const file = event.target.files[0];
@@ -58,9 +59,14 @@ const Products = () => {
       },
     });
   };
-
-  const addItemToCart = (item) => {
-    setCart([...cart, item]);
+  
+  const handleCancel = () => {
+    // Reset the search results
+    setSearchResults([]);
+  
+    // Reset the input field for file upload
+    const fileInput = document.getElementById('file-upload');
+    fileInput.value = null;
   };
 
   if (isLoading) return <Loading />;
@@ -71,55 +77,57 @@ const Products = () => {
     <>
       <Container size="xl" px="xl">
         <Grid>
-          <Grid.Col md={2} lg={2}>
-          <Shopping cart={cart} />
+          <Grid.Col>
           </Grid.Col>
-          <Grid.Col md={10} lg={10}>
+          <Grid.Col>
             <SectionTitle mb="sm">Teile suchen</SectionTitle>
             <Input
               style={{ margin: "15px", fontSize: "30px", marginBottom: "15px" }}
               placeholder="AutoTeil suchen..."
               onChange={(event) => handleSearch(event.target.value)}
             />
-            <SectionTitle mb="sm">Teile mit CSV suchen</SectionTitle>
-            <Grid
-              style={{
-                display: "inline",
-              }}
-            >
-              <Input
-                style={{ fontSize: "40px" }}
-                id="file-upload"
-                type="file"
-                accept=".csv"
-                placeholder="AutoTeil mit CSV file suchen..."
-                onChange={(event) => handleSearchCSV(event)}
-              />
-              {searchResults.length > 0 && (
-                <button style={{ border: "none", background: "none" }} onClick={handleCancel}>
-                  <FaTimes style={{ fontSize: "30px", color: "#121212" }} />
-                </button>
-              )}
-            </Grid>
-            <Grid>
-              {searchResults.length > 0
-                ? searchResults.map((product) => (
-                    <Grid.Col md={3} lg={2} key={product._id}>
-                      <Product product={product} />
-                    </Grid.Col>
-                  ))
-                : products.map((product) => (
-                    <Grid.Col md={3} lg={2} key={product._id}>
-                      <Product product={product} />
-                    </Grid.Col>
+            <SectionTitle mb="sm">Import Products</SectionTitle>
+            <FileInput onFileUpload={(data) => setSearchResults(data)} />
+            {searchResults.length > 0 && (
+              <Table>
+                <thead>
+                  <tr>
+                    <th>Artikul</th>
+                    <th>Name</th>
+                    <th>Price, in €</th>
+                    <th>Min</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {searchResults.map((product) => (
+                    <tr key={product.artikul}>
+                      <td>{product.artikul}</td>
+                      <td>{product.name}</td>
+                      <td>{product.price}</td>
+                      <td>{product.minimumQuantity}</td>
+                      <td>
+                        <Button
+                          uppercase
+                          variant="light"
+                          px="sm"
+                          onClick={() => {
+                            navigate(`/purchase/${product._id}`);
+                          }}
+                        >
+                          Kaufen
+                        </Button>
+                      </td>
+                    </tr>
                   ))}
-            </Grid>
+                </tbody>
+              </Table>
+            )}
           </Grid.Col>
         </Grid>
       </Container>
-      <Footer />
     </>
   );
-}
+}  
 
 export default Products;

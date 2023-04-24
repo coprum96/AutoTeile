@@ -29,13 +29,17 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function UpdateProfile({ userInfo, refetch }) {
-   const { phone, address, email} = userInfo ?? {};
+   const { phone, address, email, country, tax, zip, firma} = userInfo ?? {};
 
    const { classes } = useStyles();
 
    const form = useForm({
       initialValues: {
+         country: "",
          address: "",
+         tax: Number,
+         zip: Number,
+         firma: "",
          phone: Number,
       },
    });
@@ -55,14 +59,36 @@ export default function UpdateProfile({ userInfo, refetch }) {
 
    return (
       <>
-         <CustomDashboardTitle>Profile erneuen</CustomDashboardTitle>
 
          <form onSubmit={form.onSubmit(handleOnSubmit)}>
+            <div style={{display:"flex"}}>
+         <TextInput
+               label="Country"
+               placeholder={country}
+               classNames={classes}
+               {...form.getInputProps("country")}
+            />
+            <NumberInput
+               label="Zip"
+               placeholder={zip}
+               classNames={classes}
+               hideControls
+               {...form.getInputProps("zip")}
+            />
             <TextInput
                label="Address"
                placeholder={address}
                classNames={classes}
                {...form.getInputProps("address")}
+            />
+
+            </div >
+            <NumberInput
+               label="TAX number"
+               placeholder={tax}
+               classNames={classes}
+               hideControls
+               {...form.getInputProps("tax")}
             />
             <NumberInput
                label="Phone Number"
@@ -70,6 +96,12 @@ export default function UpdateProfile({ userInfo, refetch }) {
                classNames={classes}
                hideControls
                {...form.getInputProps("phone")}
+            />
+            <TextInput
+               label="Firma"
+               placeholder={firma}
+               classNames={classes}
+               {...form.getInputProps("firma")}
             />
             <Button type="submit" mt="md" variant="light">
                Speichern
