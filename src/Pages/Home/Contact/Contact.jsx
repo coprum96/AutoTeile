@@ -11,7 +11,6 @@ import {
 } from "@mantine/core";
 import React from "react";
 import SectionTitle from "../../Shared/SectionTitle.jsx";
-import Contacts from "./Contacts.jsx";
 const useStyles = createStyles((theme) => {
    const BREAKPOINT = theme.fn.smallerThan("sm");
 
@@ -156,7 +155,6 @@ export default function Contact() {
                            Senden
                         </Button>
                      </Group>
-                     <Contacts />
                   </div>
                </form>
             </div>

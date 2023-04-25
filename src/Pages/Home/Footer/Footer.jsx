@@ -176,7 +176,7 @@ export default function Footer() {
     });
     return (
         <footer className={classes.footer}>
-            <Container className={classes.inner}>
+            <Container className={classes.inner} size="xl" px="md">
                 <div className={classes.logo}>
                     <Title order={3}>AutoTeile</Title>
                     <Text
@@ -197,7 +197,7 @@ export default function Footer() {
                 </div>
                 <div className={classes.groups}>{groups}</div>
             </Container>
-            <Container className={classes.afterFooter}>
+            <Container className={classes.afterFooter} size="xl" px="md">
                 <Text color="dimmed" size="sm">
                     © 2023 All rights reserved.
                 </Text>

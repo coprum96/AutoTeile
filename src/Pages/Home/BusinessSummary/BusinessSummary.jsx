@@ -52,7 +52,7 @@ export default function BusinessSummary() {
     ));
 
     return (
-        <Container mt={10} mb={30} size="sm">
+        <Container mt={10} mb={30} size="xl" px="md">
             <SectionTitle my="md" mb="xl">
                 Unsere Vorteile
             </SectionTitle>

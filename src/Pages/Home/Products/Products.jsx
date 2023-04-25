@@ -13,7 +13,7 @@ import SectionTitle from "../../Shared/SectionTitle";
 import { useNavigate } from "react-router-dom";
 import FileInput from "./FileInput";
 import Papa from "papaparse";
-import { FaTimes } from 'react-icons/fa';
+
 
 const Products = () => {
   const theme = useMantineTheme();
@@ -22,7 +22,9 @@ const Products = () => {
   const navigate = useNavigate();
 
   const handleSearch = (searchTerm) => {
-    const searchTerms = searchTerm.toLowerCase().split(/\t+/); // Split search term by tabs
+    const searchTerms = searchTerm
+      .toLowerCase()
+      .split(/[\t; ]/); // Split search term by tabs or semicolons
     const searchRes = [];
     for (let i = 0; i < searchTerms.length; i++) {
       const term = searchTerms[i].trim(); // Trim whitespace from search term
@@ -42,32 +44,36 @@ const Products = () => {
   const handleSearchCSV = (event) => {
     // Get the uploaded file
     const file = event.target.files[0];
-
+  
+    // Check file type
+    const fileType = file.type;
+    if (fileType !== "text/csv") {
+      // Handle file type error
+      return;
+    }
+  
     // Parse the CSV data
     Papa.parse(file, {
       complete: (results) => {
         // Extract the artikul numbers from the CSV data
         const artikuls = results.data.map((item) => item[0]);
-
+  
         // Filter the products by the artikul numbers
         const filteredProducts = products.filter((product) =>
           artikuls.includes(product.artikul)
         );
-
+  
         // Render the filtered products
         setSearchResults(filteredProducts);
       },
+      error: (error) => {
+        // Handle parsing error
+      }
     });
   };
   
-  const handleCancel = () => {
-    // Reset the search results
-    setSearchResults([]);
   
-    // Reset the input field for file upload
-    const fileInput = document.getElementById('file-upload');
-    fileInput.value = null;
-  };
+
 
   if (isLoading) return <Loading />;
 
@@ -87,7 +93,7 @@ const Products = () => {
               onChange={(event) => handleSearch(event.target.value)}
             />
             <SectionTitle mb="sm">Import Products</SectionTitle>
-            <FileInput onFileUpload={(data) => setSearchResults(data)} />
+            <FileInput onFileUpload={(data) => handleSearchCSV(data)} />
             {searchResults.length > 0 && (
               <Table>
                 <thead>
@@ -121,6 +127,24 @@ const Products = () => {
                     </tr>
                   ))}
                 </tbody>
+                <Button
+                variant="outline"
+                onClick={() => {
+                // Create a new CSV file
+            const csv = Papa.unparse(searchResults);
+            const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+
+            // Create a link to download the file
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(csvData);
+            link.setAttribute("download", "search_results.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            }}
+            >
+            Export
+            </Button>
               </Table>
             )}
           </Grid.Col>

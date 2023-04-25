@@ -4,7 +4,6 @@ import BusinessSummary from "./BusinessSummary/BusinessSummary";
 import Footer from "./Footer/Footer";
 import Brand from "./Brands/Brands";
 import Contact from "./Contact/Contact";
-import Support from "./Support/Support";
 import Reviews from "./Reviews/Reviews";
 import Details from "./Details/Details";
 import CarDemo from "../CarDemo/CarDemo";
@@ -21,7 +20,6 @@ const Home = () => {
             <BusinessSummary />
             <Brand />
             <Details />
-            <Support />
             <Contact />
          </Container>
          <Footer />
