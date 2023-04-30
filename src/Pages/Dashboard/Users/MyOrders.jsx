@@ -1,4 +1,4 @@
-import { ScrollArea, Table } from "@mantine/core";
+import { Button, ScrollArea, Table } from "@mantine/core";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import useMyOrders from "../../../Hooks/useMyOrders";
@@ -41,7 +41,6 @@ const MyOrders = () => {
                   <tr>
                      <th />
                      <th>Produkt</th>
-                     <th>Telefon</th>
                      <th>Status</th>
                      <th>Stückzahl</th>
                      <th>Total</th>
@@ -59,6 +58,7 @@ const MyOrders = () => {
                   ))}
                </tbody>
             </Table>
+            <Button>Bezahlen alles</Button>
          </ScrollArea>
       </div>
    );

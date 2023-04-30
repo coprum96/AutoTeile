@@ -14,12 +14,10 @@ import {
     BellRinging,
     BuildingStore,
     History,
-    Settings,
     Users,
     ListSearch,
     Paperclip,
     Article,
-    ArrowBarToDown,
     DatabaseImport,
     DoorExit
  } from "tabler-icons-react";
@@ -42,13 +40,6 @@ import {
     
     { link: "", label: "Profile", icon: Users },
     { link: "/dashboard/addreview", label: "Bewertung hinzufügen", icon: Ballpen },
-    { link: "/dashboard/importproducts", label: "Import Teile per CSV", icon: ArrowBarToDown },
-    { link: "/dashboard/history", label: "Geschichte", icon: History },
-    {
-       link: "/dashboard/othersettings",
-       label: "Einstellungen",
-       icon: Settings,
-    },
 
  ];
  

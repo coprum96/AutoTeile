@@ -13,8 +13,6 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyProfile from "./Pages/Dashboard/MyProfile/MyProfile";
 import AddReview from "./Pages/Dashboard/Users/AddReview";
 import MyOrders from "./Pages/Dashboard/Users/MyOrders";
-import OtherSettings from "./Pages/Dashboard/Users/OtherSettings";
-import UserHistory from "./Pages/Dashboard/Users/UserHistory";
 import Home from "./Pages/Home/Home";
 import NotFound from "./Pages/NotFound/NotFound";
 import Purchase from "./Pages/Purchase/Purchase";
@@ -22,7 +20,6 @@ import Pricelist from "./Pages/Dashboard/Pricelist/Pricelist";
 import Invoices from "./Pages/Dashboard/Invoices/Invoices";
 import Parts from "./Pages/Parts/Parts";
 import ClientInvoices from "./Pages/Dashboard/Admin/ClientsInvoices";
-import ImportProducts from "./Pages/Dashboard/ImportProducts/ImportProducts";
 import Payment from "./Pages/Dashboard/Users/Payment";
 import AddInventoryPerCSV from "./Pages/Dashboard/Admin/AddProductCSV";
 
@@ -68,36 +65,12 @@ const Router = () => {
                   </RequireUser>
                ),
             },
-            {
-               path: "history",
-               element: (
-                  <RequireUser>
-                     <UserHistory />
-                  </RequireUser>
-               ),
-            },
-            {
-               path: "othersettings",
-               element: (
-                  <RequireUser>
-                     <OtherSettings />
-                  </RequireUser>
-               ),
-            },
             { index: true, element: <MyProfile /> },
             {
                path: "addreview",
                element: (
                   <RequireUser>
                      <AddReview />
-                  </RequireUser>
-               ),
-            },
-            {
-               path: "importproducts",
-               element: (
-                  <RequireUser>
-                     <ImportProducts />
                   </RequireUser>
                ),
             },

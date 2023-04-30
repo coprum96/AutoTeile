@@ -82,8 +82,6 @@ export const useStyles = createStyles((theme) => ({
       marginTop: theme.spacing.xl,
       width: 150,
       display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
       padding: `6px ${theme.spacing.xs}px`,
       borderRadius: theme.radius.sm,
       border: `4px solid ${

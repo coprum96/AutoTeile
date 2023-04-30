@@ -1,5 +1,4 @@
 import {
-   ActionIcon,
    Button,
    Group,
    NumberInput,
@@ -10,7 +9,7 @@ import { useForm } from "@mantine/form";
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { toast } from "react-toastify";
-import { Mail, Minus, Plus } from "tabler-icons-react";
+import { Mail } from "tabler-icons-react";
 import axiosPrivate from "../../API/axiosPrivate";
 import { API_URL } from "../../API/rootURL";
 import auth from "../../firebase.init";
@@ -21,7 +20,6 @@ const UserDetails = ({ email, name, productId, product, artikul }) => {
    const {
       price,
       minimumQuantity: min,
-      availableQuantity: max,
       name: productName,
    } = product;
    const { classes } = useStyles();
@@ -30,8 +28,6 @@ const UserDetails = ({ email, name, productId, product, artikul }) => {
    const {
       quantity,
       setQuantity,
-      decreaseQuantity,
-      increaseQuantity,
       shipping,
       promotion,
    } = useStore();
@@ -97,7 +93,7 @@ const UserDetails = ({ email, name, productId, product, artikul }) => {
                         }}
                      />
 
-                     <NumberInput
+                     <TextInput
                         placeholder="+49911954241"
                         label="Handy Number"
                         hideControls
@@ -121,40 +117,6 @@ const UserDetails = ({ email, name, productId, product, artikul }) => {
                         {...form.getInputProps("address")}
                      />
                      
-                     <div className={classes.quantityWrapper}>
-                        <ActionIcon
-                           size={28}
-                           variant="transparent"
-                           onClick={decreaseQuantity}
-                           disabled={quantity === min}
-                           className={classes.quantityControl}
-                           onMouseDown={(event) => event.preventDefault()}
-                        >
-                           <Minus size={20} />
-                        </ActionIcon>
-
-                        <NumberInput
-                           variant="unstyled"
-                           min={min}
-                           max={max}
-                           value={quantity}
-                           classNames={{
-                              input: classes.quantityInput,
-                           }}
-                        />
-
-                        <ActionIcon
-                           size={28}
-                           variant="transparent"
-                           onClick={increaseQuantity}
-                           disabled={quantity >= max}
-                           className={classes.quantityControl}
-                           onMouseDown={(event) => event.preventDefault()}
-                        >
-                           <Plus size={10} />
-                        </ActionIcon>
-                        
-                     </div>
                      <Group  variant="light" mt="md">
                         <Button
                            className={classes.button}

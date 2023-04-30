@@ -13,7 +13,7 @@ import SectionTitle from "../../Shared/SectionTitle";
 import { useNavigate } from "react-router-dom";
 import FileInput from "./FileInput";
 import Papa from "papaparse";
-
+import { ShoppingCart, Backspace } from "tabler-icons-react";
 
 const Products = () => {
   const theme = useMantineTheme();
@@ -72,7 +72,9 @@ const Products = () => {
     });
   };
   
-  
+  const handleDeleteProduct = (product) => {
+    setSearchResults(searchResults.filter((p) => p.artikul !== product.artikul));
+  };
 
 
   if (isLoading) return <Loading />;
@@ -102,6 +104,7 @@ const Products = () => {
                     <th>Name</th>
                     <th>Price, in €</th>
                     <th>Min</th>
+                    <th><ShoppingCart /> </th>
                     <th></th>
                   </tr>
                 </thead>
@@ -124,27 +127,40 @@ const Products = () => {
                           Kaufen
                         </Button>
                       </td>
+                      <Backspace onClick={() => handleDeleteProduct(product)} />
                     </tr>
                   ))}
                 </tbody>
-                <Button
-                variant="outline"
-                onClick={() => {
-                // Create a new CSV file
-            const csv = Papa.unparse(searchResults);
-            const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+                <div style={{ display: "flex", padding: "10px"}}>
 
-            // Create a link to download the file
-            const link = document.createElement("a");
-            link.href = window.URL.createObjectURL(csvData);
-            link.setAttribute("download", "search_results.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            }}
-            >
-            Export
-            </Button>
+                <Button
+                   variant="outline"
+                   onClick={() => {
+                   // Create a new CSV file with only the desired fields
+                  const csv = Papa.unparse(
+                   searchResults.map(({ _id, ...rest }) => rest) // exclude _id field
+                  );
+                   const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+
+                  // Create a link to download the file
+                  const link = document.createElement("a");
+                  link.href = window.URL.createObjectURL(csvData);
+                   link.setAttribute("download", "search_results.csv");
+                   document.body.appendChild(link);
+                   link.click();
+                   document.body.removeChild(link);
+                  }}
+                  >
+                  Export
+                  </Button>
+                </div>
+                <Button
+                          uppercase
+                          variant="light"
+                          px="xl"
+                        >
+                          Kaufen Alle Teile
+                </Button>
               </Table>
             )}
           </Grid.Col>

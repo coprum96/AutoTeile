@@ -47,7 +47,7 @@ const Priceslist = () => {
                    downloadCsv("BMW.csv", BMW) // added filename as first argument
                  }
                >
-                 Download BMW Prices as CSV
+                 Download
                </Button>
              </td>
            </tr>
@@ -64,7 +64,7 @@ const Priceslist = () => {
                  size="sm"
                  onClick={() => downloadCsv("Bmw.csv", Volvo)} // added filename as first argument
                >
-                 Download Volvo Prices as CSV
+                 Download
                </Button>
              </td>
            </tr>
@@ -81,7 +81,7 @@ const Priceslist = () => {
                  size="sm"
                  onClick={() => downloadCsv("VAG.csv", VAG)} // added filename as first argument
                >
-                 Download VAG Prices as CSV
+                 Download
                </Button>
              </td>
            </tr>

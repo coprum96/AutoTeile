@@ -58,9 +58,9 @@ const Purchase = () => {
   }
 
   return (
-    <Container my="sm">
-      <SimpleGrid cols={1} spacing="sm" breakpoints={[{ maxWidth: "sm", cols: 2 }]}>
-        <Grid gutter="xs">
+    <Container size="xl" px="xl">
+      <SimpleGrid cols={2} spacing="xl" breakpoints={[{ maxWidth: "sm", cols: 2 }]}>
+        <Grid gutter="xl">
           <Grid.Col>
             <ProductDetails product={product?.data} />
           </Grid.Col>
@@ -70,11 +70,11 @@ const Purchase = () => {
             </Paper>
           </Grid.Col>
           <Grid.Col span={3}>
-            <Container mt={3}>
+            <Container mt={2}>
               <Text className={classes.text} weight={600}>
                 Versand:
               </Text>
-              <Text size="xs" mt="xs" className={classes.textTagLine}>
+              <Text size="sm" mt="xs" className={classes.textTagLine}>
                 Unser zuverlässiger Geschäftspartner
               </Text>
             </Container>
