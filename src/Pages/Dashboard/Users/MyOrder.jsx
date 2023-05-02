@@ -15,6 +15,7 @@ import {
  import { Trash } from "tabler-icons-react";
  import axiosPrivate from "../../../API/axiosPrivate";
  import { API_URL } from "../../../API/rootURL";
+ 
  const MyOrder = ({ order, index, refetch }) => {
     const theme = useMantineTheme();
     const { productName, quantity, total, _id,} = order;

@@ -14,22 +14,22 @@ import { useNavigate } from "react-router-dom";
 import FileInput from "./FileInput";
 import Papa from "papaparse";
 import { ShoppingCart, Backspace } from "tabler-icons-react";
+import PurchaseAllPartsButton from "../../Purchase/PurchaseAllPartsButton";
+
 
 const Products = () => {
   const theme = useMantineTheme();
   const { products, isLoading, error } = useParts();
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
+  const [selectedPartIds, setselectedPartIds] = useState([]);
 
   const handleSearch = (searchTerm) => {
-    const searchTerms = searchTerm
-      .toLowerCase()
-      .split(/[\t; ]/); // Split search term by tabs or semicolons
+    const searchTerms = searchTerm.toLowerCase().split(/[\t; ]/);
     const searchRes = [];
     for (let i = 0; i < searchTerms.length; i++) {
-      const term = searchTerms[i].trim(); // Trim whitespace from search term
+      const term = searchTerms[i].trim();
       if (term) {
-        // Only search for non-empty terms
         const res = products.filter((product) => {
           const artikul = product.artikul.toLowerCase();
           const name = product.name.toLowerCase();
@@ -38,40 +38,41 @@ const Products = () => {
         searchRes.push(...res);
       }
     }
-    setSearchResults(searchRes);
+    setSearchResults(
+      searchRes.map((product) => ({
+        ...product,
+        isSelected: selectedPartIds.some((part) => part.artikul === product.artikul),
+      }))
+    );
   };
-
-  const handleSearchCSV = (event) => {
-    // Get the uploaded file
-    const file = event.target.files[0];
   
-    // Check file type
+  const handleSearchCSV = (event) => {
+    const file = event.target.files[0];
+
     const fileType = file.type;
     if (fileType !== "text/csv") {
-      // Handle file type error
       return;
     }
-  
-    // Parse the CSV data
+
     Papa.parse(file, {
       complete: (results) => {
-        // Extract the artikul numbers from the CSV data
         const artikuls = results.data.map((item) => item[0]);
-  
-        // Filter the products by the artikul numbers
+
         const filteredProducts = products.filter((product) =>
           artikuls.includes(product.artikul)
         );
-  
-        // Render the filtered products
-        setSearchResults(filteredProducts);
+
+        setSearchResults(
+          filteredProducts.map((product) => ({
+            ...product,
+            isSelected: selectedPartIds.some((part) => part.artikul === product.artikul),
+          }))
+        );
       },
-      error: (error) => {
-        // Handle parsing error
-      }
+      error: (error) => {},
     });
   };
-  
+
   const handleDeleteProduct = (product) => {
     setSearchResults(searchResults.filter((p) => p.artikul !== product.artikul));
   };
@@ -131,18 +132,23 @@ const Products = () => {
                     </tr>
                   ))}
                 </tbody>
-                <div style={{ display: "flex", padding: "10px"}}>
+                <PurchaseAllPartsButton
+  searchResults={searchResults}
+  selectedPartIds={selectedPartIds}
+  setselectedPartIds={setselectedPartIds}
+/>
 
+                <div style={{ display: "flex", padding: "10px"}}>
                 <Button
                    variant="outline"
                    onClick={() => {
-                   // Create a new CSV file with only the desired fields
+
                   const csv = Papa.unparse(
-                   searchResults.map(({ _id, ...rest }) => rest) // exclude _id field
+                   searchResults.map(({ _id, ...rest }) => rest) 
                   );
                    const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
 
-                  // Create a link to download the file
+ 
                   const link = document.createElement("a");
                   link.href = window.URL.createObjectURL(csvData);
                    link.setAttribute("download", "search_results.csv");
@@ -154,13 +160,6 @@ const Products = () => {
                   Export
                   </Button>
                 </div>
-                <Button
-                          uppercase
-                          variant="light"
-                          px="xl"
-                        >
-                          Kaufen Alle Teile
-                </Button>
               </Table>
             )}
           </Grid.Col>

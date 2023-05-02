@@ -1,4 +1,4 @@
-import { Container, createStyles, Grid, Paper, SimpleGrid, Text, useMantineTheme } from "@mantine/core";
+import { Container, createStyles, Grid, Paper, SimpleGrid, Text} from "@mantine/core";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useParams } from "react-router-dom";
 
@@ -9,7 +9,6 @@ import OrderSummary from "./OrderSummary";
 import ProductDetails from "./ProductDetails";
 import UserDetails from "./UserDetails";
 
-const PRIMARY_COL_HEIGHT = 300;
 
 const useStyles = createStyles((theme) => ({
   text: {
@@ -59,17 +58,17 @@ const Purchase = () => {
 
   return (
     <Container size="xl" px="xl">
-      <SimpleGrid cols={2} spacing="xl" breakpoints={[{ maxWidth: "sm", cols: 2 }]}>
+      <SimpleGrid cols={1} spacing="xl" breakpoints={[{ maxWidth: "sm", cols: 2 }]}>
         <Grid gutter="xl">
           <Grid.Col>
             <ProductDetails product={product?.data} />
           </Grid.Col>
-          <Grid.Col span={8}>
+          <Grid.Col span={4} >
             <Paper>
               <OrderSummary product={product?.data} />
             </Paper>
           </Grid.Col>
-          <Grid.Col span={3}>
+          <Grid.Col span={2}>
             <Container mt={2}>
               <Text className={classes.text} weight={600}>
                 Versand:
@@ -79,8 +78,8 @@ const Purchase = () => {
               </Text>
             </Container>
           </Grid.Col>
-        </Grid>
         <UserDetails name={name} email={email} productId={purchaseId} product={product?.data} />
+        </Grid>
       </SimpleGrid>
     </Container>
   );

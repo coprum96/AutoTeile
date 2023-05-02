@@ -22,6 +22,8 @@ import Parts from "./Pages/Parts/Parts";
 import ClientInvoices from "./Pages/Dashboard/Admin/ClientsInvoices";
 import Payment from "./Pages/Dashboard/Users/Payment";
 import AddInventoryPerCSV from "./Pages/Dashboard/Admin/AddProductCSV";
+import ShoppingCart from "./Pages/Dashboard/Users/ShoppingCart";
+
 
 const Router = () => {
    return useRoutes([
@@ -33,6 +35,14 @@ const Router = () => {
             </RequireAuth>
          ),
          children: [
+            {
+               path: "shoppingcart",
+               element: (
+                  <RequireUser>
+                     <ShoppingCart />
+                  </RequireUser>
+               ),
+            },
             {
                path: "myorders",
                element: (

@@ -19,7 +19,8 @@ import {
     Paperclip,
     Article,
     DatabaseImport,
-    DoorExit
+    DoorExit,
+    ShoppingCart
  } from "tabler-icons-react";
  import auth from "../../firebase.init";
  import useAdmin from "../../Hooks/useAdmin";
@@ -34,6 +35,7 @@ import {
 
  //links for users
  const userLinks = [
+    { link: "/dashboard/shoppingcart", label: "Shopping Card", icon: ShoppingCart },
     { link: "/dashboard/myorders", label: "Bestellungen", icon: BellRinging },
     { link: "/dashboard/pricelists", label: "Price Lists", icon: ListSearch },
     { link: "/dashboard/invoice", label: "Invoices", icon: Paperclip },

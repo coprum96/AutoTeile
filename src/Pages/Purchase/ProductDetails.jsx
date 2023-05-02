@@ -1,13 +1,6 @@
 import {
    createStyles,
-   Group,
    Table,
-   Tbody,
-   Td,
-   Text,
-   Th,
-   Thead,
-   Tr,
    NumberInput
 } from "@mantine/core";
 import CustomBadge from "../Components/CustomBadge";
@@ -21,7 +14,7 @@ const useStyles = createStyles((theme) => ({
    text: {
       fontSize: 25,
       [theme.fn.smallerThan("xs")]: {
-         fontSize: 25,
+         fontSize: 20,
       },
    },
    control: {
@@ -75,7 +68,7 @@ const ProductDetails = ({ product }) => {
          </thead>
          <tbody>
             <th>
-                     {productName}
+               {productName}
             </th>
                <th>{artikul}</th>
                <th>
