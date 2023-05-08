@@ -1,26 +1,22 @@
 import { useQuery } from "react-query";
 import axiosPrivate from "../API/axiosPrivate";
 import { API_URL } from "../API/rootURL";
-import { useMemo } from "react";
 
-const useAllTeile = (selectedPartIds = []) => {
-  const { data: products, isLoading, error, refetch } = useQuery(
-    ["product", selectedPartIds],
-    async () => {
-      const response = await axiosPrivate.get(
-        `${API_URL}parts?id=${selectedPartIds}`
-      );
-      return response.data;
-    }
-  );
+const useAllTeile = (ids) => {
+   const {
+      data: parts,
+      isLoading,
+      error,
+      refetch,
+   } = useQuery(
+      "parts",
+      async () => await axiosPrivate.get(`${API_URL}parts`)
+   );
 
-  const selectedProducts = useMemo(() => {
-    return selectedPartIds.length
-      ? products.filter((product) => selectedPartIds.includes(product.id))
-      : [];
-  }, [selectedPartIds, products]);
+   const filteredParts = ids ? parts.filter((part) => ids.includes(part.id)) : parts;
+   // If ids are provided, filter the parts array to get only the parts that match the list of ids
 
-  return { products: selectedProducts, isLoading, error, refetch };
+   return { parts: filteredParts, isLoading, error, refetch };
 };
 
 export default useAllTeile;

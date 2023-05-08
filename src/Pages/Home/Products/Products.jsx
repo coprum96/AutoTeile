@@ -11,10 +11,10 @@ import useParts from "../../../Hooks/useParts";
 import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
 import { useNavigate } from "react-router-dom";
-import FileInput from "./FileInput";
 import Papa from "papaparse";
 import { ShoppingCart, Backspace } from "tabler-icons-react";
-import PurchaseAllPartsButton from "../../Purchase/PurchaseAllPartsButton";
+
+
 
 
 const Products = () => {
@@ -22,7 +22,6 @@ const Products = () => {
   const { products, isLoading, error } = useParts();
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
-  const [selectedPartIds, setselectedPartIds] = useState([]);
 
   const handleSearch = (searchTerm) => {
     const searchTerms = searchTerm.toLowerCase().split(/[\t; ]/);
@@ -41,40 +40,40 @@ const Products = () => {
     setSearchResults(
       searchRes.map((product) => ({
         ...product,
-        isSelected: selectedPartIds.some((part) => part.artikul === product.artikul),
+        isSelected: true,
       }))
     );
   };
   
+
   const handleSearchCSV = (event) => {
     const file = event.target.files[0];
-
-    const fileType = file.type;
-    if (fileType !== "text/csv") {
-      return;
-    }
 
     Papa.parse(file, {
       complete: (results) => {
         const artikuls = results.data.map((item) => item[0]);
-
         const filteredProducts = products.filter((product) =>
           artikuls.includes(product.artikul)
         );
-
-        setSearchResults(
-          filteredProducts.map((product) => ({
-            ...product,
-            isSelected: selectedPartIds.some((part) => part.artikul === product.artikul),
-          }))
-        );
+        setSearchResults(filteredProducts);
       },
-      error: (error) => {},
     });
   };
-
+  
+  
   const handleDeleteProduct = (product) => {
     setSearchResults(searchResults.filter((p) => p.artikul !== product.artikul));
+  };
+
+
+  const handlePurchaseAllParts = () => {
+    const selectedProducts = searchResults
+      .filter((product) => product.isSelected)
+      .map(({ _id, ...rest }) => rest);
+  
+    navigate(`/dashboard/shoppingcart`, { // navigate to the shopping cart page
+      state: { selectedProducts } // pass the selected products as state
+    });
   };
 
 
@@ -83,62 +82,71 @@ const Products = () => {
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <>
-      <Container size="xl" px="xl">
-        <Grid>
-          <Grid.Col>
-          </Grid.Col>
-          <Grid.Col>
-            <SectionTitle mb="sm">Teile suchen</SectionTitle>
-            <Input
-              style={{ margin: "15px", fontSize: "30px", marginBottom: "15px" }}
-              placeholder="AutoTeil suchen..."
-              onChange={(event) => handleSearch(event.target.value)}
-            />
-            <SectionTitle mb="sm">Import Products</SectionTitle>
-            <FileInput onFileUpload={(data) => handleSearchCSV(data)} />
-            {searchResults.length > 0 && (
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Artikul</th>
-                    <th>Name</th>
-                    <th>Price, in €</th>
-                    <th>Min</th>
-                    <th><ShoppingCart /> </th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {searchResults.map((product) => (
-                    <tr key={product.artikul}>
-                      <td>{product.artikul}</td>
-                      <td>{product.name}</td>
-                      <td>{product.price}</td>
-                      <td>{product.minimumQuantity}</td>
-                      <td>
-                        <Button
-                          uppercase
-                          variant="light"
-                          px="sm"
-                          onClick={() => {
-                            navigate(`/purchase/${product._id}`);
-                          }}
-                        >
-                          Kaufen
-                        </Button>
-                      </td>
-                      <Backspace onClick={() => handleDeleteProduct(product)} />
-                    </tr>
-                  ))}
-                </tbody>
-                <PurchaseAllPartsButton
-  searchResults={searchResults}
-  selectedPartIds={selectedPartIds}
-  setselectedPartIds={setselectedPartIds}
-/>
+<>
+  <Container size="sm" px="xs">
+    <Grid>
+      <Grid.Col>
+      </Grid.Col>
+      <Grid.Col>
+        <SectionTitle mb="sm">Teile suchen</SectionTitle>
+        <Input
+          style={{ margin: "15px", fontSize: "30px", marginBottom: "15px" }}
+          placeholder="AutoTeil suchen..."
+          onChange={(event) => handleSearch(event.target.value)}
+        />
+        <SectionTitle mb="sm">Import Products</SectionTitle>
+        <Input
+        style={{ margin: "15px", fontSize: "30px", marginBottom: "45px",  }}
+        type="file"
+        accept=".csv"
+        placeholder="AutoTeil mit CSV file suchen..."
+        onChange={(event) => handleSearchCSV(event)}
+      />
+        {searchResults.length > 0 && (
+          <Table>
+            <thead>
+              <tr>
+                <th>Artikul</th>
+                <th>Name</th>
+                <th>Price, in €</th>
+                <th>Min</th>
+                <th></th>
+                <th>Löschen</th>
+              </tr>
+            </thead>
+            <tbody>
+              {searchResults.map((product) => (
+                <tr key={product.artikul}>
+                  <td>{product.artikul}</td>
+                  <td>{product.name}</td>
+                  <td>{product.price}</td>
+                  <td>{product.minimumQuantity}</td>
+                  <td>
+                    <Button
+                    uppercase
+                    variant="light"
+                      onClick={() => {
+                        navigate(`/purchase/${product._id}`);
+                      }}
+                    >
+                      <ShoppingCart />
+                    </Button>
+                  </td>
+                  <td>
 
-                <div style={{ display: "flex", padding: "10px"}}>
+                  <Backspace onClick={() => handleDeleteProduct(product)} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+            <Button
+  uppercase
+  variant="light"
+  onClick={() => handlePurchaseAllParts()}
+>
+  Kaufen Alle Teile
+</Button>
+            <div style={{ display: "flex", padding: "10px"}}>
                 <Button
                    variant="outline"
                    onClick={() => {
@@ -159,13 +167,14 @@ const Products = () => {
                   >
                   Export
                   </Button>
-                </div>
-              </Table>
-            )}
-          </Grid.Col>
-        </Grid>
-      </Container>
-    </>
+                  </div>
+          </Table>
+        )}
+      </Grid.Col>
+    </Grid>
+  </Container>
+</>
+
   );
 }  
 

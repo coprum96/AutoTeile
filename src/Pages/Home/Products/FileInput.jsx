@@ -17,7 +17,10 @@ const FileInput = ({ onFileUpload }) => {
           onFileUpload(results.data);
         },
       });
-    } else if (fileType === "application/vnd.ms-excel") {
+    } else if (
+      fileType === "application/vnd.ms-excel" ||
+      fileType === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    ) {
       readXlsxFile(file).then((rows) => {
         onFileUpload(rows);
       });
