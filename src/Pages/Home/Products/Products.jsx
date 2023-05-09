@@ -48,17 +48,23 @@ const Products = () => {
 
   const handleSearchCSV = (event) => {
     const file = event.target.files[0];
-
+  
     Papa.parse(file, {
       complete: (results) => {
         const artikuls = results.data.map((item) => item[0]);
         const filteredProducts = products.filter((product) =>
           artikuls.includes(product.artikul)
         );
-        setSearchResults(filteredProducts);
+        setSearchResults(
+          filteredProducts.map((product) => ({
+            ...product,
+            isSelected: true,
+          }))
+        );
       },
     });
   };
+  
   
   
   const handleDeleteProduct = (product) => {
