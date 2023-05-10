@@ -48,16 +48,14 @@ const ShoppingCart = ({ isLoading, error }) => {
     }
   };
 
+  // update local storage whenever cart items change
   useEffect(() => {
-    const cartItemsFromStorage = JSON.parse(localStorage.getItem("cartItems"));
-    if (cartItemsFromStorage) {
-      setCartItems(cartItemsFromStorage);
-    } else if (selectedProducts.length > 0) {
-      // if there are selected products from the previous page,
-      // add them to the cart items
-      setCartItems(selectedProducts);
-    }
-  }, [selectedProducts]);
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const handleAddToCart = (product) => {
+    setCartItems([...cartItems, product]);
+  };
   
 
   if (isLoading) return <div><Loading/>.</div>;
