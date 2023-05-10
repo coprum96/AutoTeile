@@ -14,17 +14,19 @@ const ShoppingCart = ({ isLoading, error }) => {
 
   const [cartItems, setCartItems] = useState(selectedProducts);
 
-  useEffect(() => {
+   // load cart items from local storage on component mount
+   useEffect(() => {
     const cartItemsFromStorage = JSON.parse(localStorage.getItem("cartItems"));
     if (cartItemsFromStorage) {
       setCartItems(cartItemsFromStorage);
-    } else if (selectedProducts.length > 0) {
-      // if there are selected products from the previous page,
-      // add them to the cart items
-      setCartItems(selectedProducts);
     }
-  }, [selectedProducts]);
-  
+  }, []);
+
+  // update local storage whenever cart items change
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const handleQuantityChange = (index, value) => {
     const updatedCartItems = [...cartItems];
     const product = updatedCartItems[index];
