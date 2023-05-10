@@ -1,22 +1,37 @@
-import React, { useState } from "react";
-import { Table, NumberInput, Button} from "@mantine/core";
+import React, { useState, useEffect } from "react";
+import { Table, NumberInput, Button } from "@mantine/core";
 import CustomBadge from "../../Components/CustomBadge";
 import Loading from "../../Shared/Loading";
 import { useLocation } from "react-router-dom";
 import { Minus } from "tabler-icons-react";
-import UserDetails from "../../Purchase/UserDetails";
+import axiosPrivate from "../../../API/axiosPrivate";
+import { API_URL } from "../../../API/rootURL";
+import { toast } from "react-toastify";
 
-const ShoppingCart = ({ data, isLoading, error }) => {
+const ShoppingCart = ({ isLoading, error }) => {
   const location = useLocation();
   const { selectedProducts = [] } = location.state || {};
 
   const [cartItems, setCartItems] = useState(selectedProducts);
 
+  useEffect(() => {
+    const cartItemsFromStorage = JSON.parse(localStorage.getItem("cartItems"));
+    if (cartItemsFromStorage) {
+      setCartItems(cartItemsFromStorage);
+    } else {
+      setCartItems(selectedProducts);
+    }
+  }, [selectedProducts]);
+
+  useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const handleQuantityChange = (index, value) => {
     const updatedCartItems = [...cartItems];
     const product = updatedCartItems[index];
     product.quantity = value;
-    const price = parseFloat(product.price.replace(',', '.'));
+    const price = parseFloat(product.price.replace(",", "."));
     if (!isNaN(price)) {
       product.total = (product.quantity * price).toFixed(2);
     } else {
@@ -31,6 +46,21 @@ const ShoppingCart = ({ data, isLoading, error }) => {
     setCartItems(updatedCartItems);
   };
 
+  const handleSendToBackend = async () => {
+    try {
+      const { data } = await axiosPrivate.post(`${API_URL}orders`, cartItems);
+      if (data.success) {
+        toast.success("Bestellung erfolgreich aufgegeben");
+      }
+      if (data.error) {
+        toast.error(data.error);
+      }
+    } catch (error) {
+      console.log("Error sending data to backend:", error);
+      toast.error("Error sending data to backend");
+    }
+  };
+
   if (isLoading) return <div><Loading/>.</div>;
   if (error) return <div>Error: {error.message}</div>;
 
@@ -38,7 +68,7 @@ const ShoppingCart = ({ data, isLoading, error }) => {
     const productTotal = parseFloat(product.total);
     return !isNaN(productTotal) ? acc + productTotal : acc;
   }, 0);
-
+  
   return (
     <>
       <Table>
@@ -82,8 +112,8 @@ const ShoppingCart = ({ data, isLoading, error }) => {
           <tr>
             <td colSpan="4"></td>
             <td>Total Sum <CustomBadge color="yellow" size="xl">€{totalSum.toFixed(2)}</CustomBadge></td>
-            {/* <td> <UserDetails/> </td> */}
           </tr>
+          <Button onClick={handleSendToBackend}>Bestellung aufgeben</Button>
         </tbody>
       </Table>
     </>
