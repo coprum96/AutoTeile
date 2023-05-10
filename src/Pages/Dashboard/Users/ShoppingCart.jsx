@@ -14,19 +14,6 @@ const ShoppingCart = ({ isLoading, error }) => {
 
   const [cartItems, setCartItems] = useState(selectedProducts);
 
-  useEffect(() => {
-    const cartItemsFromStorage = JSON.parse(localStorage.getItem("cartItems"));
-    if (cartItemsFromStorage) {
-      setCartItems(cartItemsFromStorage);
-    } else {
-      setCartItems(selectedProducts);
-    }
-  }, [selectedProducts]);
-
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
-
   const handleQuantityChange = (index, value) => {
     const updatedCartItems = [...cartItems];
     const product = updatedCartItems[index];
@@ -60,6 +47,18 @@ const ShoppingCart = ({ isLoading, error }) => {
       toast.error("Error sending data to backend");
     }
   };
+
+  useEffect(() => {
+    const cartItemsFromStorage = JSON.parse(localStorage.getItem("cartItems"));
+    if (cartItemsFromStorage) {
+      setCartItems(cartItemsFromStorage);
+    } else if (selectedProducts.length > 0) {
+      // if there are selected products from the previous page,
+      // add them to the cart items
+      setCartItems(selectedProducts);
+    }
+  }, [selectedProducts]);
+  
 
   if (isLoading) return <div><Loading/>.</div>;
   if (error) return <div>Error: {error.message}</div>;
