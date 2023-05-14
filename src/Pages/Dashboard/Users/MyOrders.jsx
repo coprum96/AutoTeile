@@ -23,10 +23,10 @@ const MyOrders = () => {
    });
 
    return (
-      <div className="bestellung">
+      <div className="bestellung" >
          <CustomDashboardTitle>Meine Bestellungen :</CustomDashboardTitle>
          <p>Total Sum: {totalSum}</p>
-         <ScrollArea>
+         <ScrollArea >
             <Table 
                sx={{ minWidth: 100 }}
                verticalSpacing="md"
@@ -36,6 +36,7 @@ const MyOrders = () => {
                withBorder
                withColumnBorders
                mb="lg"
+               
             >
                <thead>
                   <tr>

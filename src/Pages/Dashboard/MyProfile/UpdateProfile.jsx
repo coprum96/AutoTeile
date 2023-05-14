@@ -4,18 +4,17 @@ import React from "react";
 import { toast } from "react-toastify";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
-import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
 
 const useStyles = createStyles((theme) => ({
    root: {
-      position: "relative",
+      position: "absolut",
       width: theme.spacing.xl * 10,
       marginTop: theme.spacing.md,
    },
 
    input: {
       height: "auto",
-      paddingTop: 11,
+      paddingTop: 15,
    },
 
    label: {
@@ -29,7 +28,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function UpdateProfile({ userInfo, refetch }) {
-   const { phone, address, email, country, tax, zip, firma} = userInfo ?? {};
+   const { phone, address, email, country, rsin, zip, firma, ustID, handelskammer, web} = userInfo ?? {};
 
    const { classes } = useStyles();
 
@@ -37,10 +36,13 @@ export default function UpdateProfile({ userInfo, refetch }) {
       initialValues: {
          country: "",
          address: "",
-         tax: Number,
+         rsin: Number,
          zip: Number,
          firma: "",
          phone: Number,
+         ustID: "",
+         handelskammer: "",
+         web: "",
       },
    });
 
@@ -66,6 +68,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
                label="Country"
                placeholder={country}
                classNames={classes}
+               required
                {...form.getInputProps("country")}
             />
             <NumberInput
@@ -73,6 +76,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
                placeholder={zip}
                classNames={classes}
                hideControls
+               required
                {...form.getInputProps("zip")}
             />
             <TextInput
@@ -84,24 +88,46 @@ export default function UpdateProfile({ userInfo, refetch }) {
 
             </div >
             <NumberInput
-               label="TAX number"
-               placeholder={tax}
+               label="Rsin"
+               placeholder={rsin}
                classNames={classes}
                hideControls
-               {...form.getInputProps("tax")}
+               required
+               {...form.getInputProps("rsin")}
             />
             <NumberInput
                label="Phone Number"
                placeholder={phone}
                classNames={classes}
                hideControls
+               required
                {...form.getInputProps("phone")}
             />
             <TextInput
                label="Firma"
                placeholder={firma}
                classNames={classes}
+               required
                {...form.getInputProps("firma")}
+            />
+            <TextInput
+               label="Ust-ID"
+               placeholder={ustID}
+               classNames={classes}
+               required
+               {...form.getInputProps("ustID")}
+            />
+            <TextInput
+               label="Handelskammer"
+               placeholder={handelskammer}
+               classNames={classes}
+               {...form.getInputProps("handelskammer")}
+            />
+            <TextInput
+               label="Web"
+               placeholder={web}
+               classNames={classes}
+               {...form.getInputProps("web")}
             />
             <Button type="submit" mt="md" variant="light">
                Speichern

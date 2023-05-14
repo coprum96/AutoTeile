@@ -132,7 +132,7 @@ const Products = () => {
                     uppercase
                     variant="light"
                       onClick={() => {
-                        navigate(`/purchase/${product._id}`);
+                        navigate(`/dashboard/shoppingcart`);
                       }}
                     >
                       <ShoppingCart />

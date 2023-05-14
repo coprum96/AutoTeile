@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Table, NumberInput, Button } from "@mantine/core";
+import React, { useState, useEffect} from "react";
+import { Table, NumberInput, Button, Container } from "@mantine/core";
 import CustomBadge from "../../Components/CustomBadge";
 import Loading from "../../Shared/Loading";
 import { useLocation } from "react-router-dom";
@@ -7,6 +7,8 @@ import { Minus } from "tabler-icons-react";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
 import { toast } from "react-toastify";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init"
 
 const ShoppingCart = ({ isLoading, error }) => {
   const location = useLocation();
@@ -14,18 +16,15 @@ const ShoppingCart = ({ isLoading, error }) => {
 
   const [cartItems, setCartItems] = useState(selectedProducts);
 
-   // load cart items from local storage on component mount
-   useEffect(() => {
-    const cartItemsFromStorage = JSON.parse(localStorage.getItem("cartItems"));
-    if (cartItemsFromStorage) {
-      setCartItems(cartItemsFromStorage);
+  const [user] = useAuthState(auth);
+  const userId = user ? user.uid : null;
+
+  useEffect(() => {
+    const savedData = JSON.parse(localStorage.getItem("cartItems"));
+    if (savedData && savedData.length) {
+      setCartItems(savedData);
     }
   }, []);
-
-  // update local storage whenever cart items change
-  useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
 
   const handleQuantityChange = (index, value) => {
     const updatedCartItems = [...cartItems];
@@ -38,12 +37,14 @@ const ShoppingCart = ({ isLoading, error }) => {
       product.total = 0;
     }
     setCartItems(updatedCartItems);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
 
   const handleRemoveProduct = (index) => {
     const updatedCartItems = [...cartItems];
     updatedCartItems.splice(index, 1);
     setCartItems(updatedCartItems);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
 
   const handleSendToBackend = async () => {
@@ -68,10 +69,18 @@ const ShoppingCart = ({ isLoading, error }) => {
     const productTotal = parseFloat(product.total);
     return !isNaN(productTotal) ? acc + productTotal : acc;
   }, 0);
-  
+
+
   return (
     <>
-      <Table>
+    <Container  size="xl" px="sm">
+      <Table striped 
+      highlightOnHover 
+      withBorder 
+      withColumnBorders 
+      horizontalSpacing="xl" 
+      verticalSpacing="xl" 
+      fontSize="sm"> 
         <thead>
           <tr>
             <th>Product</th>
@@ -109,13 +118,14 @@ const ShoppingCart = ({ isLoading, error }) => {
               </td>
             </tr>
           ))}
+        </tbody>
+      </Table>
           <tr>
             <td colSpan="4"></td>
             <td>Total Sum <CustomBadge color="yellow" size="xl">€{totalSum.toFixed(2)}</CustomBadge></td>
           </tr>
           <Button onClick={handleSendToBackend}>Bestellung aufgeben</Button>
-        </tbody>
-      </Table>
+    </Container>
     </>
   );
 };

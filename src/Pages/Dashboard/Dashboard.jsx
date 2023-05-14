@@ -88,10 +88,10 @@ import {
              navbarOffsetBreakpoint="md"
              navbar={
                 <Navbar
-                   p="md"
+                   p="xs"
                    hiddenBreakpoint="xs"
                    hidden={!opened}
-                   width={{ sm: 300, lg: 300 }}
+                   width={{ sm: 200, lg: 300 }}
                    onClick={() => setOpened(!opened)}
                    style={{
                       position: "sticky",
@@ -104,7 +104,7 @@ import {
                    <CustomSignInOutButton
                            color='pink'
                            onClick={handleSignOut}>
-                              <DoorExit style={{ marginRight: '16px' }} />
+                              <DoorExit style={{ marginRight: '20px' }} />
                               Ausloggen
                      </CustomSignInOutButton>
                       <User />
@@ -112,18 +112,18 @@ import {
                 </Navbar>
              }
           >
-             <MediaQuery largerThan="sm" styles={{ display: "none" }} >
-               <Burger
-                  opened={opened}
-                  onClick={() => setOpened((o) => !o)}
-                  size="sm"
-                  color={
-                     theme.colorScheme === "dark"
-                        ? theme.white
-                        : theme.colors[theme.primaryColor][7]
-               }
-               />
-               </MediaQuery>
+             <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+   <Burger
+      opened={opened}
+      onClick={() => setOpened((o) => !o)}
+      size="xs"
+      color={
+         theme.colorScheme === "dark"
+            ? theme.white
+            : theme.colors[theme.primaryColor][7]
+      }
+   />
+</MediaQuery>
              <Outlet />
           </AppShell>
        </Box>
