@@ -17,38 +17,9 @@ const MyOrders = () => {
       return <Loading />;
    }
 
-   let totalSum = 0;
-   orders?.data.forEach((order) => {
-      totalSum += order.total;
-   });
-
    return (
-      <div className="bestellung" >
+      <>
          <CustomDashboardTitle>Meine Bestellungen :</CustomDashboardTitle>
-         <p>Total Sum: {totalSum}</p>
-         <ScrollArea >
-            <Table 
-               sx={{ minWidth: 100 }}
-               verticalSpacing="md"
-               fontSize="md"
-               highlightOnHover
-               striped
-               withBorder
-               withColumnBorders
-               mb="lg"
-               
-            >
-               <thead>
-                  <tr>
-                     <th />
-                     <th>Produkt</th>
-                     <th>Status</th>
-                     <th>Stückzahl</th>
-                     <th>Total</th>
-                     <th />
-                  </tr>
-               </thead>
-               <tbody>
                   {orders?.data.map((order, index) => (
                      <MyOrder
                         order={order}
@@ -57,11 +28,7 @@ const MyOrders = () => {
                         key={order._id}
                      ></MyOrder>
                   ))}
-               </tbody>
-            </Table>
-            <Button>Bezahlen alles</Button>
-         </ScrollArea>
-      </div>
+      </>
    );
 };
 

@@ -19,6 +19,7 @@ const ShoppingCart = ({ isLoading, error }) => {
   const [user] = useAuthState(auth);
   const userId = user ? user.uid : null;
 
+
   useEffect(() => {
     if (userId) {
       const savedData = JSON.parse(localStorage.getItem(userId));
@@ -53,9 +54,24 @@ const ShoppingCart = ({ isLoading, error }) => {
     setCartItems(updatedCartItems);
   };
 
-  const handleSendToBackend = async () => {
+  const handleClearCart = () => {
+    setCartItems([]);
+  };
+
+  const handleSendToBackend = async (email) => {
     try {
-      const { data } = await axiosPrivate.post(`${API_URL}orders`, cartItems);
+      const order = {
+        email: email,
+        products: cartItems.map((product) => ({
+          name: product.name,
+          artikul: product.artikul,
+          price: product.price,
+          quantity: product.quantity,
+          total: product.total,
+        })),
+      };
+      console.log('Sending cart items to backend:', order); // Move console.log here
+      const { data } = await axiosPrivate.post(`${API_URL}orders`, order);
       if (data.success) {
         toast.success("Bestellung erfolgreich aufgegeben");
       }
@@ -66,8 +82,9 @@ const ShoppingCart = ({ isLoading, error }) => {
       console.log("Error sending data to backend:", error);
       toast.error("Error sending data to backend");
     }
+    handleClearCart(); // Clear the cart here instead
   };
-
+  
   if (isLoading) return <div><Loading/>.</div>;
   if (error) return <div>Error: {error.message}</div>;
 
@@ -129,7 +146,7 @@ const ShoppingCart = ({ isLoading, error }) => {
             <td colSpan="4"></td>
             <td>Total Sum <CustomBadge color="yellow" size="xl">€{totalSum.toFixed(2)}</CustomBadge></td>
           </tr>
-          <Button onClick={handleSendToBackend}>Bestellung aufgeben</Button>
+          <Button onClick={() => handleSendToBackend(user.email)}>Bestellung aufgeben</Button>
     </Container>
     </>
   );
