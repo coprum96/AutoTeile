@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Table, NumberInput, Button, Container } from "@mantine/core";
 import CustomBadge from "../../Components/CustomBadge";
 import Loading from "../../Shared/Loading";
@@ -20,11 +20,19 @@ const ShoppingCart = ({ isLoading, error }) => {
   const userId = user ? user.uid : null;
 
   useEffect(() => {
-    const savedData = JSON.parse(localStorage.getItem("cartItems"));
-    if (savedData && savedData.length) {
-      setCartItems(savedData);
+    if (userId) {
+      const savedData = JSON.parse(localStorage.getItem(userId));
+      if (savedData && savedData.length) {
+        setCartItems(savedData);
+      }
     }
-  }, []);
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId) {
+      localStorage.setItem(userId, JSON.stringify(cartItems));
+    }
+  }, [cartItems, userId]);
 
   const handleQuantityChange = (index, value) => {
     const updatedCartItems = [...cartItems];
@@ -37,14 +45,12 @@ const ShoppingCart = ({ isLoading, error }) => {
       product.total = 0;
     }
     setCartItems(updatedCartItems);
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
 
   const handleRemoveProduct = (index) => {
     const updatedCartItems = [...cartItems];
     updatedCartItems.splice(index, 1);
     setCartItems(updatedCartItems);
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
   };
 
   const handleSendToBackend = async () => {
@@ -69,7 +75,6 @@ const ShoppingCart = ({ isLoading, error }) => {
     const productTotal = parseFloat(product.total);
     return !isNaN(productTotal) ? acc + productTotal : acc;
   }, 0);
-
 
   return (
     <>

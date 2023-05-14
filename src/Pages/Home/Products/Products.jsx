@@ -82,7 +82,6 @@ const Products = () => {
     });
   };
 
-
   if (isLoading) return <Loading />;
 
   if (error) return "An error has occurred: " + error.message;
@@ -116,7 +115,6 @@ const Products = () => {
                 <th>Name</th>
                 <th>Price, in €</th>
                 <th>Min</th>
-                <th></th>
                 <th>Löschen</th>
               </tr>
             </thead>
@@ -128,18 +126,6 @@ const Products = () => {
                   <td>{product.price}</td>
                   <td>{product.minimumQuantity}</td>
                   <td>
-                    <Button
-                    uppercase
-                    variant="light"
-                      onClick={() => {
-                        navigate(`/dashboard/shoppingcart`);
-                      }}
-                    >
-                      <ShoppingCart />
-                    </Button>
-                  </td>
-                  <td>
-
                   <Backspace onClick={() => handleDeleteProduct(product)} />
                   </td>
                 </tr>
