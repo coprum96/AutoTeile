@@ -5,22 +5,22 @@ import { Link } from 'react-router-dom';
 const useStyles = createStyles((theme) => {
    const iconStyles = {
       color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[10],
-      marginRight: theme.spacing.xl,
+      marginRight: theme.spacing.md,
     };
    
    return {
       header: {
-         paddingBottom: theme.spacing.xs,
-         marginBottom: theme.spacing.sm * 2.5,
+         paddingBottom: theme.spacing['2xl'], // Increase the padding bottom
+         marginBottom: theme.spacing['2xl'], // Increase the margin bottom
          borderBottom: `10px solid ${
-            theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-         }`,
-      },
+           theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
+         }`, // Increase the border width
+       },
 
       footer: {
-         paddingTop: theme.spacing.md,
+         paddingTop: theme.spacing.xl,
          marginTop: theme.spacing.md,
-         borderTop: `10px solid ${
+         borderTop: `20px solid ${
             theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
          }`,
       },
@@ -33,7 +33,7 @@ const useStyles = createStyles((theme) => {
          fontSize: theme.fontSizes.md,
          color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[10],
          padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
-         borderRadius: theme.radius.sm,
+         borderRadius: theme.radius.xl,
          fontWeight: 700,
 
          '&:hover': {

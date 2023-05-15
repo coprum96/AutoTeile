@@ -9,6 +9,7 @@ import { API_URL } from "../../../API/rootURL";
 const MyOrder = ({ order, index, refetch }) => {
   const theme = useMantineTheme();
   const cartItems = order?.products || [];
+  const totalSum = cartItems.reduce((acc, product) => acc + product.total, 0);
   const [opened, setOpened] = useState(false);
   const navigate = useNavigate();
 
@@ -30,13 +31,17 @@ const MyOrder = ({ order, index, refetch }) => {
     horizontalSpacing="xl"
     verticalSpacing="xl"
     fontSize="sm"
+    style={{ marginTop: '40px', border: '3px solid black', 
+    borderRadius: '4px',
+    overflow: 'hidden'
+   }}
   >
     <thead>
       <tr>
         <th>Order ID</th>
         <th>Product Name</th>
         <th>Product Code</th>
-        <th>Price</th>
+        <th>Price, in Euro</th>
         <th>Quantity</th>
         <th>Total</th>
       </tr>
@@ -75,13 +80,19 @@ const MyOrder = ({ order, index, refetch }) => {
               </td>
             </>
           )}
-          <td>{product.name}</td>
+          <td color="violet">{product.name}</td>
           <td>{product.artikul}</td>
           <td>{product.price}</td>
           <td>{product.quantity}</td>
           <td>{product.total}</td>
         </tr>
       ))}
+      <tr>
+              <td colSpan={5} style={{ textAlign: "right" }}>
+          <strong>Total Sum:</strong>
+        </td>
+        <td>{order.totalSum}</td>
+      </tr>
     </tbody>
   </Table>
 

@@ -38,12 +38,9 @@ const ManageAllOrders = () => {
                      <th></th>
                      <th>Email</th>
                      <th>Benutzer</th>
-                     <th>Art.Nr.</th>
                      <th>Produkt Name</th>
                      <th>Menge</th>
                      <th>Status </th>
-                     <th>Handy </th>
-                     <th>Adresse</th>
                      <th>Entfernen</th>
                   </tr>
                </thead>

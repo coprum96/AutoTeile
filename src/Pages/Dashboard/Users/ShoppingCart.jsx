@@ -69,6 +69,7 @@ const ShoppingCart = ({ isLoading, error }) => {
           quantity: product.quantity,
           total: product.total,
         })),
+        totalSum: totalSum,
       };
       console.log('Sending cart items to backend:', order); // Move console.log here
       const { data } = await axiosPrivate.post(`${API_URL}orders`, order);

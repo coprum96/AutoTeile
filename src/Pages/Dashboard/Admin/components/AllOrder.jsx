@@ -17,7 +17,7 @@ import {
     const [opened, setOpened] = useState(false);
     const theme = useMantineTheme();
     const [loading, setLoading] = useState(false);
-    const { name, artikul, productName, _id, phone, address, quantity, email } = order;
+    const { name,  productName, _id, quantity, email } = order;
  
     const handleDeleteItem = async (id) => {
        const { data } = await axiosPrivate.delete(`${API_URL}orders/${id}`);
@@ -76,11 +76,6 @@ import {
                 </Text>
              </td>
              <td>
-                <Text size="sm" color="gray" weight={600}>
-                   {artikul}
-                </Text>
-             </td>
-             <td>
                 <Text
                    size="sm"
                    weight={700}
@@ -128,16 +123,7 @@ import {
                    </>
                 )}
              </td>
-             <td>
-                <Text size="sm" color="black" weight={800}>
-                   {phone}
-                </Text>
-             </td>
-             <td>
-                <Text size="sm" color="black" weight={400}>
-                   {address}
-                </Text>
-             </td>
+
              <td>
                 <Group spacing={0}>
                    <ActionIcon
