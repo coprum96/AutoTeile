@@ -1,11 +1,11 @@
 import {
-    ActionIcon,
-    Badge,
-    Button,
-    Group,
-    Modal,
-    Text,
-    useMantineTheme,
+   ActionIcon,
+   Badge,
+   Button,
+   Group,
+   Modal,
+   Text,
+   useMantineTheme,
  } from "@mantine/core";
  import { useState } from "react";
  import { toast } from "react-toastify";
@@ -14,86 +14,73 @@ import {
  import { API_URL } from "../../../../API/rootURL";
  
  const AllOrder = ({ order, index, refetch }) => {
-    const [opened, setOpened] = useState(false);
-    const theme = useMantineTheme();
-    const [loading, setLoading] = useState(false);
-    const { name,  productName, _id, quantity, email } = order;
+   const [opened, setOpened] = useState(false);
+   const theme = useMantineTheme();
+   const [loading, setLoading] = useState(false);
+   const { _id, email, products = [], totalSum = 0 } = order;
  
-    const handleDeleteItem = async (id) => {
-       const { data } = await axiosPrivate.delete(`${API_URL}orders/${id}`);
-       if (data.deletedCount) {
-          toast.success("Artikel erfolgreich entfernt");
-          refetch();
-       }
-    };
+   const handleDeleteItem = async (id) => {
+     const { data } = await axiosPrivate.delete(`${API_URL}orders/${id}`);
+     if (data.deletedCount) {
+       toast.success("Artikel erfolgreich entfernt");
+       refetch();
+     }
+   };
  
-    const handleShipping = async (id) => {
-       const { data } = await axiosPrivate.put(`${API_URL}orders/${id}`, {
-          status: "shipped",
-       });
-       if (data.status) {
-          setLoading(!loading);
-          toast.success("Bestellung erfolgreich versendet");
-          refetch();
-       }
-    };
+   const handleShipping = async (id) => {
+     const { data } = await axiosPrivate.put(`${API_URL}orders/${id}`, {
+       status: "shipped",
+     });
+     if (data.status) {
+       setLoading(!loading);
+       toast.success("Bestellung erfolgreich versendet");
+       refetch();
+     }
+   };
  
-    return (
-       <>
-          <Modal
-             radius="md"
-             opened={opened}
-             onClose={() => setOpened(false)}
-             title="Remove Order!!"
-          >
-             <Text color="red" weight={500}>
-             Sind Sie sicher, dass Sie von der Bestellliste entfernen möchten? Das ist sehr gefährliche Aktion. Da dies Auswirkungen auf die Daten des Benutzers haben könnte.
-             </Text>
-             <Group noWrap position="right" mt={theme.spacing.xl * 2}>
-                {" "}
-                <Button
-                   color="red"
-                   onClick={() => {
-                      handleDeleteItem(_id);
-                      setOpened(false);
-                   }}
-                >
-                   Löschen
-                </Button>
-                <Button variant="default" onClick={() => setOpened(false)}>
-                stornieren
-                </Button>
-             </Group>
-          </Modal>
-          <tr>
-             <td>{index + 1}</td>
-             <td>
-                <Badge color="vielet">{email}</Badge>
-             </td>
-             <td>
-                <Text size="sm" color="gray" weight={600}>
-                   {name}
-                </Text>
-             </td>
-             <td>
-                <Text
-                   size="sm"
-                   weight={700}
-                   color={
-                      theme.colorScheme === "dark"
-                         ? theme.colors.gray[3]
-                         : theme.colors.gray[8]
-                   }
-                >
-                   {productName}
-                </Text>
-             </td>
-             <td>
-                <Text size="sm" color="blue" weight={800}>
-                <Badge color="green">{quantity}</Badge>
-                </Text>
-             </td>
-             <td>
+   return (
+      <>
+      <Modal
+      radius="md"
+      opened={opened}
+      onClose={() => setOpened(false)}
+      title="Remove Order!!"
+   >
+      <Text color="red" weight={500}>
+      Sind Sie sicher, dass Sie von der Bestellliste entfernen möchten? Das ist sehr gefährliche Aktion. Da dies Auswirkungen auf die Daten des Benutzers haben könnte.
+      </Text>
+      <Group noWrap position="right" mt={theme.spacing.xl * 2}>
+         {" "}
+         <Button
+            color="red"
+            onClick={() => {
+               handleDeleteItem(_id);
+               setOpened(false);
+            }}
+         >
+            Löschen
+         </Button>
+         <Button variant="default" onClick={() => setOpened(false)}>
+         stornieren
+         </Button>
+      </Group>
+   </Modal>
+     <tr key={_id}>
+       <td>{_id}</td>
+       <td>{email}</td>
+       <td>
+       {products.map((product, i) => (
+        <tr key={i}>
+          <td>{product.name}</td>
+          <td>{product.artikul}</td>
+          <td>{product.price}</td>
+          <td>{product.quantity}</td>
+          <td>{product.total}</td>
+           </tr>
+         ))}
+       </td>
+       <td>{order.totalSum}</td>
+       <td>
                 {!order?.paid ? (
                    <>
                       <Badge color="red">Unpaid</Badge>
@@ -123,9 +110,8 @@ import {
                    </>
                 )}
              </td>
-
-             <td>
-                <Group spacing={0}>
+       <td>
+       <Group spacing={0}>
                    <ActionIcon
                       disabled={order.status === "shipped"}
                       color="red"
@@ -137,10 +123,11 @@ import {
                       />
                    </ActionIcon>
                 </Group>
-             </td>
-          </tr>
-       </>
-    );
+       </td>
+     </tr>
+     </>
+   );
  };
  
  export default AllOrder;
+ 

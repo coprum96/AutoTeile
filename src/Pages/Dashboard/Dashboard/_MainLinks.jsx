@@ -10,9 +10,9 @@ const useStyles = createStyles((theme) => {
    
    return {
       header: {
-         paddingBottom: theme.spacing['2xl'], // Increase the padding bottom
+         paddingBottom: theme.spacing.md, // Increase the padding bottom
          marginBottom: theme.spacing['2xl'], // Increase the margin bottom
-         borderBottom: `10px solid ${
+         borderBottom: `1px solid ${
            theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
          }`, // Increase the border width
        },
@@ -33,13 +33,14 @@ const useStyles = createStyles((theme) => {
          fontSize: theme.fontSizes.md,
          color: theme.colorScheme === 'dark' ? theme.colors.dark[1] : theme.colors.gray[10],
          padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
-         borderRadius: theme.radius.xl,
-         fontWeight: 700,
+         borderRadius: theme.radius.md,
+         fontWeight: 600,
 
          '&:hover': {
             backgroundColor:
                theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
             color: theme.colorScheme === 'dark' ? theme.colors.white : theme.colors.black,
+            textDecoration: 'none',
 
             '& .linkIcon': {
                color: theme.colorScheme === 'dark' ? theme.colors.white : theme.colors.black,
@@ -55,7 +56,7 @@ const useStyles = createStyles((theme) => {
          '&, &:hover': {
             backgroundColor:
                theme.colorScheme === 'dark'
-                  ? theme.colors[theme.primaryColor][8] + '25'
+                  ? theme.colors[theme.primaryColor][9] + '30'
                   : theme.colors[theme.primaryColor][0],
             color: theme.colorScheme === 'dark' ? theme.colors.white : theme.colors[theme.primaryColor][7],
 

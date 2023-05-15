@@ -1,8 +1,8 @@
-import { Button, ScrollArea, Table } from "@mantine/core";
+
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import useMyOrders from "../../../Hooks/useMyOrders";
-import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
+import SectionTitle from "../../Shared/SectionTitle";
 import Loading from "../../Shared/Loading";
 import MyOrder from "./MyOrder";
 import './MyOrders.css'
@@ -19,7 +19,7 @@ const MyOrders = () => {
 
    return (
       <>
-         <CustomDashboardTitle>Meine Bestellungen :</CustomDashboardTitle>
+         <SectionTitle>Meine Bestellungen</SectionTitle>
                   {orders?.data.map((order, index) => (
                      <MyOrder
                         order={order}

@@ -8,7 +8,7 @@ import { Star, StarHalf } from "tabler-icons-react";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
 import auth from "../../../firebase.init";
-import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
+import SectionTitle from "../../Shared/SectionTitle";
 import { useStyles } from "./AddReview.styles";
 
 const AddReview = () => {
@@ -36,10 +36,10 @@ const AddReview = () => {
 
   return (
     <>
-      <CustomDashboardTitle ml={6}>Bewertung hinzufügen: </CustomDashboardTitle>
+      <SectionTitle  ml={6}>Bewertung hinzufügen </SectionTitle>
 
       <form className={classes.wrapper} action="" onSubmit={handleSubmit(onSubmit)}>
-        <Group noWrap spacing="xs">
+        <Group noWrap spacing="xl">
           <Text className={classes.text}>Bewerte uns bitte: </Text>
           <ReactStars
             count={5}

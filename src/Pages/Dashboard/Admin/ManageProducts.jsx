@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ScrollArea, Table, Input } from "@mantine/core";
 import useParts from "../../../Hooks/useParts";
-import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
+import SectionTitle from "../../Shared/SectionTitle";
 import Loading from "../../Shared/Loading";
 import ManageProduct from "./components/ManageProduct";
 
@@ -24,7 +24,7 @@ const ManageProducts = () => {
 
   return (
     <>
-      <CustomDashboardTitle>Produkt verwalten</CustomDashboardTitle>
+      <SectionTitle>Produkt verwalten</SectionTitle>
 
       <Input
         value={searchTerm}

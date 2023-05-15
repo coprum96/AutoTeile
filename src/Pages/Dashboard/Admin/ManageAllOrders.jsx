@@ -2,7 +2,7 @@ import { ScrollArea, Table } from "@mantine/core";
 import { useQuery } from "react-query";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
-import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
+import SectionTitle from "../../Shared/SectionTitle";
 import Loading from "../../Shared/Loading";
 import AllOrder from "./components/AllOrder";
 
@@ -22,11 +22,11 @@ const ManageAllOrders = () => {
 
    return (
       <>
-         <CustomDashboardTitle>Alle Bestellungen verwalten</CustomDashboardTitle>
+         <SectionTitle>Alle Bestellungen verwalten</SectionTitle>
 
          <ScrollArea>
             <Table
-               sx={{ minWidth: 600 }}
+               sx={{ minWidth: 200 }}
                verticalSpacing="xs"
                highlightOnHover
                striped
@@ -35,11 +35,10 @@ const ManageAllOrders = () => {
             >
                <thead>
                   <tr>
-                     <th></th>
-                     <th>Email</th>
+                     <th>Order ID</th>
                      <th>Benutzer</th>
                      <th>Produkt Name</th>
-                     <th>Menge</th>
+                     <th>Total Sum</th>
                      <th>Status </th>
                      <th>Entfernen</th>
                   </tr>
