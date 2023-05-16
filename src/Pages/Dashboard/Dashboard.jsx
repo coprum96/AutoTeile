@@ -97,18 +97,6 @@ export default function Dashboard() {
                },
              }}
            >
-             <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-               <Burger
-                 opened={opened}
-                 onClick={() => setOpened((o) => !o)}
-                 size="md"
-                 color={
-                   theme.colorScheme === "dark"
-                     ? theme.white
-                     : theme.colors[theme.primaryColor][7]
-                 }
-               />
-             </MediaQuery>
              <Outlet />
            </AppShell>
          </Box>

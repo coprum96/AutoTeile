@@ -10,11 +10,11 @@ const useStyles = createStyles((theme) => {
    
    return {
       header: {
-         paddingBottom: theme.spacing.md, // Increase the padding bottom
-         marginBottom: theme.spacing['2xl'], // Increase the margin bottom
+         paddingBottom: theme.spacing.md,
+         marginBottom: theme.spacing['2xl'], 
          borderBottom: `1px solid ${
            theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2]
-         }`, // Increase the border width
+         }`, 
        },
 
       footer: {
@@ -68,7 +68,7 @@ const useStyles = createStyles((theme) => {
    };
 });
 
-//* change navigation links in the dashboard based on the user's role
+
 
 export function MainLinks({ links }) {
    const { classes, cx } = useStyles();

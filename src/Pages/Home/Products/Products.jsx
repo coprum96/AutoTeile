@@ -12,7 +12,7 @@ import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
 import { useNavigate } from "react-router-dom";
 import Papa from "papaparse";
-import { ShoppingCart, Backspace } from "tabler-icons-react";
+import {Trash} from "tabler-icons-react";
 
 
 
@@ -86,87 +86,121 @@ const Products = () => {
 
   if (error) return "An error has occurred: " + error.message;
 
-  return (
-<>
-  <Container size="sm" px="xs">
-    <Grid>
-      <Grid.Col>
-      </Grid.Col>
-      <Grid.Col>
-        <SectionTitle mb="sm">Teile suchen</SectionTitle>
-        <Input
-          style={{ margin: "15px", fontSize: "30px", marginBottom: "15px" }}
-          placeholder="AutoTeil suchen..."
-          onChange={(event) => handleSearch(event.target.value)}
-        />
-        <SectionTitle mb="sm">Import Products</SectionTitle>
-        <Input
-        style={{ margin: "15px", fontSize: "30px", marginBottom: "45px",  }}
-        type="file"
-        accept=".csv"
-        placeholder="AutoTeil mit CSV file suchen..."
-        onChange={(event) => handleSearchCSV(event)}
-      />
-        {searchResults.length > 0 && (
-          <Table>
-            <thead>
-              <tr>
-                <th>Artikul</th>
-                <th>Name</th>
-                <th>Price, in €</th>
-                <th>Min</th>
-                <th>Löschen</th>
-              </tr>
-            </thead>
-            <tbody>
-              {searchResults.map((product) => (
-                <tr key={product.artikul}>
-                  <td>{product.artikul}</td>
-                  <td>{product.name}</td>
-                  <td>{product.price}</td>
-                  <td>{product.minimumQuantity}</td>
-                  <td>
-                  <Backspace onClick={() => handleDeleteProduct(product)} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-            <Button
-  uppercase
-  variant="light"
-  onClick={() => handlePurchaseAllParts()}
->
-  Kaufen Alle Teile
-</Button>
-            <div style={{ display: "flex", padding: "10px"}}>
-                <Button
-                   variant="outline"
-                   onClick={() => {
 
-                  const csv = Papa.unparse(
-                   searchResults.map(({ _id, ...rest }) => rest) 
-                  );
-                   const csvData = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-
- 
-                  const link = document.createElement("a");
-                  link.href = window.URL.createObjectURL(csvData);
-                   link.setAttribute("download", "search_results.csv");
-                   document.body.appendChild(link);
-                   link.click();
-                   document.body.removeChild(link);
-                  }}
+    return (
+      <>
+        <Container size="sm" px="xs">
+          <Grid>
+            <Grid.Col>
+            </Grid.Col>
+            <Grid.Col>
+              <SectionTitle mb="sm">Teile suchen</SectionTitle>
+              <Input
+                style={{ margin: "15px", fontSize: "30px", marginBottom: "15px" }}
+                placeholder="AutoTeil suchen..."
+                onChange={(event) => handleSearch(event.target.value)}
+              />
+              <SectionTitle mb="sm">Import Products</SectionTitle>
+              <Input
+                style={{ margin: "15px", fontSize: "30px", marginBottom: "45px" }}
+                type="file"
+                accept=".csv"
+                placeholder="AutoTeil mit CSV file suchen..."
+                onChange={(event) => handleSearchCSV(event)}
+              />
+              {searchResults.length > 0 && (
+                <>
+                  <Table
+                    striped
+                    highlightOnHover
+                    withBorder
+                    withColumnBorders
+                    horizontalSpacing="xl"
+                    verticalSpacing="xl"
+                    fontSize="sm"
                   >
-                  Export
-                  </Button>
+                    <thead>
+                      <tr>
+                        <th>Artikul</th>
+                        <th>Name</th>
+                        <th>Price, in €</th>
+                        <th>Min</th>
+                        <th>Löschen</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {searchResults.map((product) => (
+                        <tr key={product.artikul}>
+                          <td>{product.artikul}</td>
+                          <td>{product.name}</td>
+                          <td>{product.price}</td>
+                          <td>{product.minimumQuantity}</td>
+                          <td style={{ textAlign: "center" }}>
+                            <Trash
+                              size={32}
+                              strokeWidth={2}
+                              color={"#d2ca79"}
+                              onClick={() => handleDeleteProduct(product)}
+                            />
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-around",
+                      padding: "10px",
+                    }}
+                  >
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        const csv = Papa.unparse(
+                          searchResults.map(({ _id, ...rest }) => rest)
+                        );
+                        const csvData = new Blob([csv], {
+                          type: "text/csv;charset=utf-8;",
+                        });
+    
+                        const link = document.createElement("a");
+                        link.href = window.URL.createObjectURL(csvData);
+                        link.setAttribute("download", "search_results.csv");
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                      }}
+                    >
+                      Export
+                    </Button>
                   </div>
-          </Table>
-        )}
-      </Grid.Col>
-    </Grid>
-  </Container>
-</>
-
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-around",
+                      padding: "10px",
+                    }}
+                  >
+                    <Button
+                      variant="gradient"
+                      gradient={{ from: "indigo", to: "cyan" }}
+                      uppercase
+                      size="lg"
+                      onClick={() => handlePurchaseAllParts()}
+                    >
+                      Kaufen Alle Teile
+                    </Button>
+                  </div>
+                </>
+              )}
+            </Grid.Col>
+          </Grid>
+        </Container>
+      </>
   );
 }  
 

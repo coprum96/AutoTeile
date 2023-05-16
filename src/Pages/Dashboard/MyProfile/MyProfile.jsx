@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
 import auth from "../../../firebase.init";
-import CustomDashboardTitle from "../../Components/CustomDashboardTitle";
+import SectionTitle from "../../Shared/SectionTitle";
 import Loading from "../../Shared/Loading";
 import Profile from "./Profile";
 import UpdateProfile from "./UpdateProfile";
@@ -40,8 +40,14 @@ const MyProfile = () => {
 
    return (
       <>
-         <CustomDashboardTitle>Mein Profil</CustomDashboardTitle>
-         <div className={classes.wrapper}>
+         <SectionTitle >Mein Profil</SectionTitle>
+         <div className={classes.wrapper}
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-around",
+                   }}
+                  >
             <Box>
                <Profile fixedInfo={user} userInfo={data?.data} />
                <UpdateProfile userInfo={data?.data} refetch={refetch} />

@@ -12,6 +12,39 @@ const MyOrder = ({ order, index, refetch }) => {
   const toggleOpened = () => {
     setOpened(!opened);
   };
+  
+
+  const handleExportCSV = () => {
+    const csvContent = prepareCSVData(order, cartItems);
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute("href", url);
+      link.setAttribute("download", "order.csv");
+      link.style.visibility = "hidden";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
+  const prepareCSVData = (order, cartItems) => {
+    const headers = ["Product Name", "Product Code", "Price (Euro)", "Quantity"];
+    const rows = cartItems.map((product) => [
+      product.name,
+      product.artikul,
+      product.price,
+      product.quantity
+    ]);
+
+    const csvContent = [headers, ...rows]
+      .map((row) => row.join(","))
+      .join("\n");
+
+    return csvContent;
+  };
+
 
   return (
     <>
@@ -25,37 +58,32 @@ const MyOrder = ({ order, index, refetch }) => {
         fontSize="sm"
         style={{
           marginTop: '40px',
-          border: '3px solid black',
-          borderRadius: '4px',
+          borderRadius: '40px',
           overflow: 'hidden'
         }}
       >
-        <thead>
-          <tr onClick={toggleOpened}>
-            <th>
+        <tbody>
+          <tr onClick={toggleOpened} colSpan={1} style={{ textAlign: "center" }}>
+            <td>
               <Button
-                variant="light"
+                variant="subtle"
                 color="blue"
+                size="xl"
                 compact
                 onClick={toggleOpened}
               > 
                 {opened ? <ArrowBadgeDown /> : <ArrowBadgeUp />}
               </Button>
-            </th>
-            <th>Product Name</th>
-            <th>Product Code</th>
-            <th>Price, in Euro</th>
-            <th>Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colSpan={1} style={{ fontSize: "20px" }}>
+            </td>
+            <td colSpan={1} style={{ fontSize: "15px", textAlign: "center" }}>
               {order._id}
+              </td>
+              <td colSpan={1} style={{ textAlign: "center" }}>
               {!order?.paid ? (
                 <Button
-                  variant="light"
                   color="violet"
+                  radius="xl"
+                  size="md"
                   compact
                   onClick={() => navigate(`/dashboard/payment/`)}
                 >
@@ -77,24 +105,47 @@ const MyOrder = ({ order, index, refetch }) => {
                 </>
               )}
             </td>
+            <td colSpan={1} style={{ textAlign: "center" }}>
+                  <Button
+                    variant="white"
+                    compact
+                    color="violet"
+                    onClick={handleExportCSV}
+                    radius="lg"
+                  >
+                    Export in .csv
+                  </Button>
+                </td>
           </tr>
-          {opened &&
-            cartItems.map((product, idx) => (
-              <tr key={idx}>
-                <td></td>
-                <td color="violet">{product.name}</td>
-                <td>{product.artikul}</td>
-                <td>{product.price}</td>
-                <td>{product.quantity}</td>
-              </tr>
-            ))}
           {opened && (
-            <tr>
-              <td colSpan={3} style={{ textAlign: "right" }}>
-                <strong>Total Sum:</strong>
-              </td>
-              <td>{order.totalSum}</td>
-            </tr>
+            <>
+              <tr>
+                <td>Name des Products</td>
+                <td>Artikul</td>
+                <td>Price, in Euro</td>
+                <td>Menge</td>
+              </tr>
+              {order.products.map((product, idx) => (
+                <tr key={idx}>
+                  <td color="violet">{product.name}</td>
+                  <td>{product.artikul}</td>
+                  <td>{product.price}</td>
+                  <td>{product.quantity}</td>
+                </tr>
+              ))}
+              <tr>
+                <td colSpan={1} style={{ textAlign: "right" }}>
+                  <strong>Datum:</strong>
+                  {order.date}
+                </td>
+                <td>
+                </td>
+                <td colSpan={1} style={{ textAlign: "right" }}>
+                  <strong>Total Sum:</strong>
+                </td>
+                <td>{order.totalSum}</td>
+              </tr>
+            </>
           )}
         </tbody>
       </Table>

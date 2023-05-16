@@ -1,6 +1,6 @@
-import { Button, createStyles, NumberInput, TextInput } from "@mantine/core";
+import { Button, createStyles, NumberInput, TextInput, NativeSelect,  Switch  } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
@@ -32,6 +32,8 @@ export default function UpdateProfile({ userInfo, refetch }) {
 
    const { classes } = useStyles();
 
+   const [isSwitchOn, setSwitchOn] = useState(false);
+
    const form = useForm({
       initialValues: {
          country: "",
@@ -47,6 +49,10 @@ export default function UpdateProfile({ userInfo, refetch }) {
    });
 
    const handleOnSubmit = async (values) => {
+
+      if (!isSwitchOn) {
+         return; // If the switch is off, return early and prevent form submission
+      }
       const { data } = await axiosPrivate.put(
          `${API_URL}users/${email}`,
          values
@@ -61,15 +67,28 @@ export default function UpdateProfile({ userInfo, refetch }) {
 
    return (
       <>
-
+      <div style={{display:"flex", justifyContent:"center"}}>
+          <Switch
+            onLabel="View mode"
+            offLabel="Edit mode"
+            size="lg"
+            radius="md"
+            variant="light"
+            value={isSwitchOn}
+            onChange={(value) => setSwitchOn(value)}
+         />
+      </div>
          <form onSubmit={form.onSubmit(handleOnSubmit)}>
             <div style={{display:"flex"}}>
-         <TextInput
+         <NativeSelect
                label="Country"
+               data={['Deutschland', 'Holland', 'Belgien', 'Frankreich', "Österreich", "Schweiz"  ]}
                placeholder={country}
                classNames={classes}
                required
+               withAsterisk
                {...form.getInputProps("country")}
+               disabled={!isSwitchOn}
             />
             <NumberInput
                label="Zip"
@@ -78,12 +97,14 @@ export default function UpdateProfile({ userInfo, refetch }) {
                hideControls
                required
                {...form.getInputProps("zip")}
+               disabled={!isSwitchOn}
             />
             <TextInput
                label="Address"
                placeholder={address}
                classNames={classes}
                {...form.getInputProps("address")}
+               disabled={!isSwitchOn}
             />
 
             </div >
@@ -94,6 +115,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
                hideControls
                required
                {...form.getInputProps("rsin")}
+               disabled={!isSwitchOn}
             />
             <NumberInput
                label="Phone Number"
@@ -102,6 +124,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
                hideControls
                required
                {...form.getInputProps("phone")}
+               disabled={!isSwitchOn}
             />
             <TextInput
                label="Firma"
@@ -109,6 +132,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
                classNames={classes}
                required
                {...form.getInputProps("firma")}
+               disabled={!isSwitchOn}
             />
             <TextInput
                label="Ust-ID"
@@ -116,20 +140,27 @@ export default function UpdateProfile({ userInfo, refetch }) {
                classNames={classes}
                required
                {...form.getInputProps("ustID")}
+               disabled={!isSwitchOn}
             />
             <TextInput
                label="Handelskammer"
                placeholder={handelskammer}
                classNames={classes}
                {...form.getInputProps("handelskammer")}
+               disabled={!isSwitchOn}
             />
             <TextInput
                label="Web"
                placeholder={web}
                classNames={classes}
                {...form.getInputProps("web")}
+               disabled={!isSwitchOn}
             />
-            <Button type="submit" mt="md" variant="light">
+            <Button 
+            type="submit" 
+            mt="md" 
+            radius="lg" size="md"
+            variant="light">
                Speichern
             </Button>
          </form>

@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Table, NumberInput, Button, Container } from "@mantine/core";
 import CustomBadge from "../../Components/CustomBadge";
 import Loading from "../../Shared/Loading";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Minus } from "tabler-icons-react";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
 import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../../firebase.init"
+import auth from "../../../firebase.init";
+import SectionTitle from "../../Shared/SectionTitle";
+import {ShoppingCartPlus} from "tabler-icons-react";
 
 const ShoppingCart = ({ isLoading, error }) => {
   const location = useLocation();
@@ -18,6 +20,7 @@ const ShoppingCart = ({ isLoading, error }) => {
 
   const [user] = useAuthState(auth);
   const userId = user ? user.uid : null;
+  const [localStorageWorking, setLocalStorageWorking] = useState(false);
 
 
   useEffect(() => {
@@ -25,6 +28,7 @@ const ShoppingCart = ({ isLoading, error }) => {
       const savedData = JSON.parse(localStorage.getItem(userId));
       if (savedData && savedData.length) {
         setCartItems(savedData);
+        setLocalStorageWorking(true);
       }
     }
   }, [userId]);
@@ -56,10 +60,12 @@ const ShoppingCart = ({ isLoading, error }) => {
 
   const handleClearCart = () => {
     setCartItems([]);
+    setLocalStorageWorking(false);
   };
 
   const handleSendToBackend = async (email) => {
     try {
+      const currentDate = new Date().toLocaleDateString('en-GB'); // Format the current date as "DD/MM/YYYY"
       const order = {
         email: email,
         products: cartItems.map((product) => ({
@@ -70,8 +76,9 @@ const ShoppingCart = ({ isLoading, error }) => {
           total: product.total,
         })),
         totalSum: totalSum,
+        date: currentDate, // Add the formatted date to the order
       };
-      console.log('Sending cart items to backend:', order); // Move console.log here
+      console.log('Sending cart items to backend:', order);
       const { data } = await axiosPrivate.post(`${API_URL}orders`, order);
       if (data.success) {
         toast.success("Bestellung erfolgreich aufgegeben");
@@ -83,8 +90,10 @@ const ShoppingCart = ({ isLoading, error }) => {
       console.log("Error sending data to backend:", error);
       toast.error("Error sending data to backend");
     }
-    handleClearCart(); // Clear the cart here instead
+    handleClearCart();
   };
+  
+  
   
   if (isLoading) return <div><Loading/>.</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -95,62 +104,101 @@ const ShoppingCart = ({ isLoading, error }) => {
   }, 0);
 
   return (
-    <>
-    <Container  size="xl" px="sm">
-      <Table striped 
-      highlightOnHover 
-      withBorder 
-      withColumnBorders 
-      horizontalSpacing="xl" 
-      verticalSpacing="xl" 
-      fontSize="sm"> 
-        <thead>
-          <tr>
-            <th>Product</th>
-            <th>Artikul</th>
-            <th>Price, in €</th>
-            <th>Menge</th>
-            <th>Sum, in €</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {cartItems.map((product, index) => (
-            <tr key={product.id}>
-              <td>{product.name}</td>
-              <td>{product.artikul}</td>
-              <td>
-                <CustomBadge color="violet">€{product.price}</CustomBadge>
-              </td>
-              <td>
-                <NumberInput
-                  value={product.quantity}
-                  required
-                  mt="md"
-                  onChange={(value) => handleQuantityChange(index, value)}
-                />
-              </td>
-              <td>
-                <CustomBadge color="red" size="lg">€{product.total}</CustomBadge>
-              </td>
-              <td>
-                <Minus
-                  color="red"
-                  onClick={() => handleRemoveProduct(index)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-          <tr>
-            <td colSpan="4"></td>
-            <td>Total Sum <CustomBadge color="yellow" size="xl">€{totalSum.toFixed(2)}</CustomBadge></td>
-          </tr>
-          <Button onClick={() => handleSendToBackend(user.email)}>Bestellung aufgeben</Button>
-    </Container>
-    </>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+      {localStorageWorking ? (
+        <Container size="xl" px="sm">
+          <SectionTitle><ShoppingCartPlus
+          size={60}
+          strokeWidth={2}
+          color={'#408abf'}/></SectionTitle>
+          <Table
+            striped
+            highlightOnHover
+            withBorder
+            withColumnBorders
+            horizontalSpacing="xl"
+            verticalSpacing="xl"
+            fontSize="sm"
+          >
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Artikul</th>
+                <th>Price, in €</th>
+                <th>Menge</th>
+                <th>Sum, in €</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {cartItems.map((product, index) => (
+                <tr key={product.id}>
+                  <td>{product.name}</td>
+                  <td>{product.artikul}</td>
+                  <td>
+                    <CustomBadge color="violet">€{product.price}</CustomBadge>
+                  </td>
+                  <td>
+                    <NumberInput
+                      value={product.quantity}
+                      description="Wie viel brauchst du?"
+                      required
+                      radius="md"
+                      size="sm"
+                      withAsterisk
+                      mt="md"
+                      onChange={(value) => handleQuantityChange(index, value)}
+                    />
+                  </td>
+                  <td>
+                    <CustomBadge color="red" size="lg">
+                      €{product.total}
+                    </CustomBadge>
+                  </td>
+                  <td>
+                    <Minus
+                      color="red"
+                      onClick={() => handleRemoveProduct(index)}
+                    />
+                  </td>
+                </tr>
+              ))}
+              <tr>
+                <td colSpan="4"></td>
+                <td>
+                  Total Sum{" "}
+                  <CustomBadge color="yellow" size="xl">
+                    €{totalSum.toFixed(2)}
+                  </CustomBadge>
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+          <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "flex-end",
+                      padding: "10px",
+                    }}
+                  >
+
+          <Button  variant="gradient"
+                      gradient={{ from: "indigo", to: "cyan" }}
+                      size="lg"
+          onClick={() => handleSendToBackend(user.email)}>
+            Bestellung aufgeben
+          </Button>
+                  </div>
+        </Container>
+        ) : (
+        <Button 
+        radius="lg" size="lg" color="blue"
+        component={Link} to="/parts">Suche oder wähl dir Teile</Button>
+        )}
+    </div>
   );
+  
 };
 
 export default ShoppingCart;

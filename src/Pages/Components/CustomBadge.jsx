@@ -3,7 +3,7 @@ import React from "react";
 
 const useStyles = createStyles((theme) => ({
    main: {
-      fontSize: theme.spacing.sm,
+      fontSize: theme.spacing.md,
       [theme.fn.smallerThan("sm")]: {
          fontSize: theme.spacing.xs,
       },
