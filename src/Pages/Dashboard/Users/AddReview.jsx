@@ -37,7 +37,7 @@ const AddReview = () => {
   return (
     <>
       <SectionTitle  ml={6}>Bewertung hinzufügen </SectionTitle>
-
+      <div style={{display:"flex", justifyContent: "center"}}>
       <form className={classes.wrapper} action="" onSubmit={handleSubmit(onSubmit)}>
         <Group noWrap spacing="xl">
           <Text className={classes.text}>Bewerte uns bitte: </Text>
@@ -64,10 +64,12 @@ const AddReview = () => {
 
         <Group>
           <Button variant="light" mt="md" type="submit">
-            vorlegen
+            Vorlegen
           </Button>
         </Group>
       </form>
+
+      </div>
     </>
   );
 };

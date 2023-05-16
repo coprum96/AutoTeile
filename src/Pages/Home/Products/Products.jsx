@@ -5,17 +5,15 @@ import {
   useMantineTheme,
   Input, 
   Table, 
-  Button
+  Button,
+  Textarea
 } from "@mantine/core";
 import useParts from "../../../Hooks/useParts";
 import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
 import { useNavigate } from "react-router-dom";
 import Papa from "papaparse";
-import {Trash} from "tabler-icons-react";
-
-
-
+import {Trash, TableExport} from "tabler-icons-react";
 
 const Products = () => {
   const theme = useMantineTheme();
@@ -24,19 +22,17 @@ const Products = () => {
   const navigate = useNavigate();
 
   const handleSearch = (searchTerm) => {
-    const searchTerms = searchTerm.toLowerCase().split(/[\t; ]/);
-    const searchRes = [];
-    for (let i = 0; i < searchTerms.length; i++) {
-      const term = searchTerms[i].trim();
-      if (term) {
-        const res = products.filter((product) => {
-          const artikul = product.artikul.toLowerCase();
-          const name = product.name.toLowerCase();
-          return artikul.includes(term) || name.includes(term);
-        });
-        searchRes.push(...res);
-      }
-    }
+    const parts = searchTerm
+      .trim()
+      .split(/[\n\t]/)
+      .map((part) => part.trim())
+      .filter((part) => part !== "");
+  
+    const searchRes = products.filter((product) => {
+      const { artikul } = product;
+      return parts.includes(artikul);
+    });
+  
     setSearchResults(
       searchRes.map((product) => ({
         ...product,
@@ -45,7 +41,7 @@ const Products = () => {
     );
   };
   
-
+  
   const handleSearchCSV = (event) => {
     const file = event.target.files[0];
   
@@ -95,7 +91,7 @@ const Products = () => {
             </Grid.Col>
             <Grid.Col>
               <SectionTitle mb="sm">Teile suchen</SectionTitle>
-              <Input
+              <Textarea
                 style={{ margin: "15px", fontSize: "30px", marginBottom: "15px" }}
                 placeholder="AutoTeil suchen..."
                 onChange={(event) => handleSearch(event.target.value)}
@@ -158,6 +154,7 @@ const Products = () => {
                     <Button
                       variant="outline"
                       size="sm"
+                      leftIcon={<TableExport/>}
                       onClick={() => {
                         const csv = Papa.unparse(
                           searchResults.map(({ _id, ...rest }) => rest)
