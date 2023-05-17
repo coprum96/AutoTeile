@@ -17,33 +17,33 @@ const mockdata = [
         icon: MoodHappy,
         title: "SOFTWARELÖSUNGEN",
         description:
-            "Um die nachhaltige Zusammenarbeit mit unseren Kunden zu verbessern, bieten wir neben unseren Logistiklösungen auch Softwarelösungen zur Prozessintegration an. ",
+            "Softwarelösungen zur Prozessintegration",
     },
     {
         icon: Certificate,
         title: "ERSATZTEILEN",
         description:
-            "Bei German AutoParts werden Versand- und Zolldokumente nach Kundenwunsch ausgestellt. ",
+            "Versand- und Zolldokumente nach Kundenwunsch",
     },
     {
         icon: Coin,
         title: "ORIGINALTEILE",
-        description: "Unsere Kooperationen mit nationalen und internationalen Speditionen bieten schnelle Lieferzeiten mit der Möglichkeit der Expresslieferung innerhalb von 1-7 Tagen. ",
+        description: "Expresslieferung innerhalb von 1-7 Tagen",
     },
     {
         icon: Apps,
         title: "LOGISTIK",
-        description: "Unsere Kooperationen mit nationalen und internationalen Speditionen bieten schnelle Lieferzeiten mit der Möglichkeit der Expresslieferung innerhalb von 1-7 Tagen.",
+        description: "Kooperationen mit nationalen und internationalen Speditionen",
     },
     {
         icon: Crane,
         title: "VERPACKUNG",
-        description: "Unser Lager befindet sich im Zentrum Europas, nur wenige Kilometer vom Hamburger Seehafen entfernt. Unsere Waren werden nach höchsten Standards geprüft, sicher verpackt und sicher transportiert, um Schäden zu vermeiden.",
+        description: "Sicher verpackt und sicher transportiert",
     },
     {
         icon: Cloud,
         title: "SCHMIERMITTEL",
-        description: "Wir liefern auch bekannte Schmierstoffe verschiedener Marken wie VW, BMW, Mercedes, Selenia, Castrol, Pentosin, Motul und viele mehr. Egal, ob Sie 1L-, 4L-, 5L-, 30L-, 50L- oder 208L-Fässer benötigen, wir liefern, was Sie brauchen, mit...",
+        description: "Wir liefern auch bekannte Schmierstoffe verschiedener Marken",
     },
 ];
 
@@ -65,25 +65,35 @@ export default function BusinessSummary() {
                     }}
                   >
 
-            <Text><stron>
+            <Text fw={500}><stron>
             TOP KONDITIONEN FÜR IHRE LIFERANTEN
                 </stron></Text>
                   </div>
                   <div
                     style={{
+                        display: "flex",
+                        justifyContent: "center",
+                      fontSize: "35px",
+                      paddingBottom:"20px"
+                    }}
+                  >
+                  <Text fw={700} ta="center">Leistungen der Kfz-Marketplace im Überblick</Text>
+                  </div>
+                  <div
+                    style={{
                       display: "block",
                       fontSize: "25px",
-                      paddingLeft:"80px",
+                      padding:"10px 70px 40px 70px",
                       paddingRight:"80px"
                     }}
                   >
-                  <p>Einfach günstig und mit AutoTeile fahren: Das ist die AutoTeile. Mit dem leistungsstarken Team fahren Sie besonders gut.</p>
+                  <Text fw={500} ta="center">Einfach günstig und mit AutoTeile fahren: Das ist die AutoTeile. Mit dem leistungsstarken Team fahren Sie besonders gut.</Text>
                   </div>
             <SimpleGrid
                 my={theme.spacing.xl * 3}
-                cols={3}
+                cols={2}
                 breakpoints={[{ maxWidth: "sm", cols: 1 }]}
-                spacing={40}
+                spacing={20}
             >
                 {items}
             </SimpleGrid>

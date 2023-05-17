@@ -7,23 +7,6 @@ export const useStyles = createStyles((theme) => ({
         paddingLeft: theme.spacing.xl,
     },
 
-    overlay: {
-        position: "absolute",
-        height: 10,
-        width: 180,
-        borderRadius: 10,
-        top: 0,
-        left: 0,
-        backgroundColor:
-            theme.colorScheme === "dark"
-                ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.2)
-                : theme.colors[theme.primaryColor][0],
-        zIndex: 1,
-        [theme.fn.smallerThan("sm")]: {
-            width: 160,
-            left: 20,
-        },
-    },
 
     content: {
         position: "relative",
@@ -32,7 +15,7 @@ export const useStyles = createStyles((theme) => ({
 
     icon: {
         color: theme.colors[theme.primaryColor][
-            theme.colorScheme === "dark" ? 4 : 6
+            theme.colorScheme === "dark" ? 3 : 6
         ],
     },
 

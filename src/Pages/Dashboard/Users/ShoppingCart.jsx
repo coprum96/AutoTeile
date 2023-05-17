@@ -65,7 +65,7 @@ const ShoppingCart = ({ isLoading, error }) => {
 
   const handleSendToBackend = async (email) => {
     try {
-      const currentDate = new Date().toLocaleDateString('en-GB'); // Format the current date as "DD/MM/YYYY"
+      const currentDate = new Date().toLocaleDateString('en-GB');
       const order = {
         email: email,
         products: cartItems.map((product) => ({
@@ -76,7 +76,7 @@ const ShoppingCart = ({ isLoading, error }) => {
           total: product.total,
         })),
         totalSum: totalSum,
-        date: currentDate, // Add the formatted date to the order
+        date: currentDate, 
       };
       console.log('Sending cart items to backend:', order);
       const { data } = await axiosPrivate.post(`${API_URL}orders`, order);

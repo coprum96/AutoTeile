@@ -61,7 +61,7 @@ import {
          <Group>
            {' '}
            <Title onClick={() => navigate('/')} ml={10} mt={10}>
-           <div className="titleText">AutoTeile.de</div>
+           <div className="titleText">AutoTeile</div>
            </Title>
          </Group>
          <div className={classes.links}>
