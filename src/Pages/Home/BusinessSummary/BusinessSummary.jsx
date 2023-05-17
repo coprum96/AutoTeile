@@ -1,14 +1,16 @@
-import { Container, SimpleGrid, useMantineTheme } from "@mantine/core";
+import { Container, SimpleGrid, useMantineTheme, Text, Button} from "@mantine/core";
 import React from "react";
 import { Certificate, 
     Coin, 
     MoodHappy, 
     Apps, 
     Cloud, 
-    Crane 
+    Crane,
+    InputSearch
 } from "tabler-icons-react";
 import SectionTitle from "../../Shared/SectionTitle";
 import Feature from "./Feature";
+import { Link } from "react-router-dom";
 
 const mockdata = [
     {
@@ -56,6 +58,27 @@ export default function BusinessSummary() {
             <SectionTitle my="md" mb="xl">
                 Unsere Vorteile
             </SectionTitle>
+            <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+
+            <Text><stron>
+            TOP KONDITIONEN FÜR IHRE LIFERANTEN
+                </stron></Text>
+                  </div>
+                  <div
+                    style={{
+                      display: "block",
+                      fontSize: "25px",
+                      paddingLeft:"80px",
+                      paddingRight:"80px"
+                    }}
+                  >
+                  <p>Einfach günstig und mit AutoTeile fahren: Das ist die AutoTeile. Mit dem leistungsstarken Team fahren Sie besonders gut.</p>
+                  </div>
             <SimpleGrid
                 my={theme.spacing.xl * 3}
                 cols={3}
@@ -64,6 +87,17 @@ export default function BusinessSummary() {
             >
                 {items}
             </SimpleGrid>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "30px"}}>
+          <Button
+            radius="lg"
+            size="lg"
+            color="blue"
+            component={Link}
+            to="/parts"
+          >
+            <InputSearch size="2rem" /> Suche oder wähle Teile aus
+          </Button>
+        </div>
         </Container>
     );
 }

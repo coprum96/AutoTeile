@@ -29,8 +29,8 @@ const SectionTitle = (props) => {
                 variant="gradient"
                 className={classes.title}
                 gradient={{
-                    from: theme.colors[theme.primaryColor][9],
-                    to: theme.colors[theme.primaryColor][2],
+                    from: theme.colors[theme.primaryColor][1],
+                    to: theme.colors[theme.primaryColor][3],
                     deg: 45,
                 }}
                 weight={800}

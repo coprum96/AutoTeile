@@ -1,21 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Itim&display=swap');
 
 .inner {
-   display: block;
+   display: flex;
    justify-content: space-between;
    padding-top: 30px;
    padding-bottom: 32px;
 }
 
 .highlight {
-   color: rgb(81, 72, 131);
+   color: rgb(31, 121, 194);
    font-size: 41px;
    font-family: 'Carter One', cursive;
 }
 
 .content {
+   display: flex;
+   justify-content: space-between;
    max-width: 100%m;
-   /* margin-right: 72px; */
    padding: 15px;
 }
 
@@ -32,6 +33,7 @@
    font-size: 45px;
    line-height: 1.2;
    font-weight: 900;
+   padding: 20px 10px;
 }
 
 @media screen and (max-width: 599.98px) {

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../../firebase.init";
 import SectionTitle from "../../Shared/SectionTitle";
-import {ShoppingCartPlus} from "tabler-icons-react";
+import {ShoppingCartPlus, InputSearch} from "tabler-icons-react";
 
 const ShoppingCart = ({ isLoading, error }) => {
   const location = useLocation();
@@ -194,7 +194,7 @@ const ShoppingCart = ({ isLoading, error }) => {
         ) : (
         <Button 
         radius="lg" size="lg" color="blue"
-        component={Link} to="/parts">Suche oder wähl dir Teile</Button>
+        component={Link} to="/parts"> <InputSearch size="2rem" />Suche oder wähl dir Teile aus</Button>
         )}
     </div>
   );

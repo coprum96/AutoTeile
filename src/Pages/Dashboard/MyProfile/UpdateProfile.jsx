@@ -71,6 +71,7 @@ export default function UpdateProfile({ userInfo, refetch }) {
           <Switch
             onLabel="View mode"
             offLabel="Edit mode"
+            color="blue"
             size="lg"
             radius="md"
             variant="light"
@@ -156,13 +157,22 @@ export default function UpdateProfile({ userInfo, refetch }) {
                {...form.getInputProps("web")}
                disabled={!isSwitchOn}
             />
+            <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      padding: "10px",
+                    }}
+                  >
+
             <Button 
             type="submit" 
-            mt="md" 
-            radius="lg" size="md"
+            radius="md" size="md"
             variant="light">
                Speichern
             </Button>
+                  </div>
          </form>
       </>
    );

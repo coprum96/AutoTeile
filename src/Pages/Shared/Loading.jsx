@@ -4,7 +4,7 @@ import React from "react";
 const Loading = (props) => {
    return (
       <Center my="xl">
-         <Loader variant="dots" {...props} />
+         <Loader size="lg" variant="bars" {...props} />
       </Center>
    );
 };
