@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 import axiosPrivate from "../../../API/axiosPrivate";
 import { API_URL } from "../../../API/rootURL";
 import Loading from "../../Shared/Loading";
-import SectionTitle from "../../Shared/SectionTitle";
 import Review from "./Review";
 
 
@@ -28,7 +27,6 @@ const Reviews = () => {
                      >
                   <Text fw={600} ta="center">Das sagen unsere Kunden über die AutoTeile</Text>
                   </div>
-            <SectionTitle>Bewertungen</SectionTitle>
          <ScrollArea h={250} type="scroll">
             <Box
                style={{

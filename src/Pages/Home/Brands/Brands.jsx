@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import SectionTitle from "../../Shared/SectionTitle";
 import { Container, Image, Text, createStyles, getStylesRef } from "@mantine/core";
 import bmw from "../../../Assets/brands/BMW.svg.png";
 import ferrari from "../../../Assets/brands/ferrari1.png";
@@ -94,7 +93,6 @@ const Brands = () => {
       <div style={{ display: "flex", justifyContent: "center", fontSize: "35px", paddingBottom: "20px" }}>
         <Text fw={500} ta="center">Nur hier. Auf keinem anderen Marketplaceportal</Text>
       </div>
-      <SectionTitle my="md" mb="sm">Autos</SectionTitle>
       <Carousel
         withIndicators
         height={140}

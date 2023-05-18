@@ -1,7 +1,6 @@
 import {  Button, InputSearch } from '@mantine/core';
 import React from "react";
-import SectionTitle from "../../Shared/SectionTitle";
-import { Container, Image, createStyles, getStylesRef } from "@mantine/core";
+import { Container, Image, createStyles, getStylesRef, Text  } from "@mantine/core";
 import ate from "../../../Assets/details/ate.png";
 import bosch from "../../../Assets/details/bosch.png";
 import febi from "../../../Assets/details/febi.png";
@@ -54,10 +53,8 @@ const useStyles = createStyles(() => ({
 const Details = () => {
   const { classes } = useStyles();
   return (
+    <div style={{ paddingTop: "70px" }}>
     <Container style={{ ...styles.container }}>
-      <SectionTitle my="md" mb="sm">
-        OES- UND AFTERMARKET-MARKEN
-      </SectionTitle>
       <Carousel
         withIndicators
         height={140}
@@ -104,6 +101,7 @@ const Details = () => {
         </Button>
       </div>
     </Container>
+    </div>
   );
 }
 

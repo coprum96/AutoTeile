@@ -22,7 +22,7 @@ const useStyles = createStyles((theme) => {
             theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
          borderRadius: theme.radius.lg,
          padding: 5,
-         border: `30px solid ${
+         border: `1px solid ${
             theme.colorScheme === "dark"
                ? theme.colors.dark[8]
                : theme.colors.gray[2]
@@ -165,7 +165,7 @@ export default function Contact() {
 
                      <Textarea
                         mt="md"
-                        label="Your message"
+                        label="Was möchtest du uns fragen?"
                         placeholder="Bitte Information angeben"
                         minRows={4}
                      />
@@ -174,6 +174,7 @@ export default function Contact() {
                         <Button
                            type="submit"
                            variant="light"
+                           radius="lg" size="lg" color="blue"
                            className={classes.control}
                         >
                            Senden

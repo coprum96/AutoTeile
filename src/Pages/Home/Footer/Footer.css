@@ -40,7 +40,7 @@
   
   .footer-link.strong {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     padding-left: 20px;
   }
   
@@ -51,3 +51,49 @@
     background-color: #f5f7fa;
   }
   
+  /* Footer.css */
+
+/* Mobile Styles */
+@media screen and (max-width: 767px) {
+    .footer-content {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .footer-group.column {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  /* Tablet Styles */
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    .footer-content {
+      flex-wrap: wrap;
+    }
+  
+    .footer-group {
+      width: 40%;
+    }
+  
+    .footer-group.column {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
+  /* Desktop Styles */
+  @media screen and (min-width: 1024px) {
+    .footer-content {
+      flex-wrap: nowrap;
+    }
+  
+    .footer-group {
+      width: auto;
+    }
+  
+    .footer-group.column {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }

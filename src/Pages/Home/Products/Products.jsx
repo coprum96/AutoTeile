@@ -3,19 +3,26 @@ import {
   Container,
   Grid,
   useMantineTheme,
-  Input, 
-  Table, 
+  Input,
+  Table,
   Button,
-  Textarea, 
+  Textarea,
   SegmentedControl,
-  Center, Box,
+  Center,
+  Box,
 } from "@mantine/core";
 import useParts from "../../../Hooks/useParts";
 import Loading from "../../Shared/Loading";
 import SectionTitle from "../../Shared/SectionTitle";
 import { useNavigate } from "react-router-dom";
 import Papa from "papaparse";
-import {Trash, TableExport, Search, FileSearch, InputSearch} from "tabler-icons-react";
+import {
+  Trash,
+  TableExport,
+  Search,
+  FileSearch,
+  InputSearch,
+} from "tabler-icons-react";
 
 const Products = () => {
   const theme = useMantineTheme();
