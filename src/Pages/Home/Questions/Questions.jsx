@@ -38,7 +38,7 @@ const Questions = () => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center", paddingTop: "150px" }}>
-        <Text fw={500}>
+        <Text fw={300}>
           <strong>FRAGEN UND ANTWORTEN</strong>
         </Text>
       </div>

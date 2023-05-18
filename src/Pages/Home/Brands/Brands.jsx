@@ -87,7 +87,7 @@ const Brands = () => {
   return (
     <Container size="xl" px="md" style={styles.container}>
       <div style={{ display: "flex", justifyContent: "center", paddingTop: "150px" }}>
-        <Text fw={500}>
+        <Text fw={300}>
           <strong>DER AUTOTEILE-KFZ-MARKETPLACE PARTNER</strong>
         </Text>
       </div>

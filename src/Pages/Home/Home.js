@@ -7,6 +7,7 @@ import Contact from "./Contact/Contact";
 import Reviews from "./Reviews/Reviews";
 import Details from "./Details/Details";
 import Questions from "./Questions/Questions";
+import Wir from "./Wir/Wir";
 
 
 
@@ -20,6 +21,7 @@ const Home = () => {
             <Brand />
             <Details />
             <Questions />
+            <Wir />
             <Contact />
          </Container>
          <Footer />

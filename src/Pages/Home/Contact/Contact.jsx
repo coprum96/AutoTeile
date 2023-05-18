@@ -8,9 +8,10 @@ import {
    Text,
    Textarea,
    TextInput,
+   Drawer,
 } from "@mantine/core";
-import React from "react";
-import SectionTitle from "../../Shared/SectionTitle.jsx";
+import React, { useState } from "react";
+
 const useStyles = createStyles((theme) => {
    const BREAKPOINT = theme.fn.smallerThan("sm");
 
@@ -105,20 +106,43 @@ const useStyles = createStyles((theme) => {
 
 export default function Contact() {
    const { classes } = useStyles();
+   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+   const handleButtonClick = () => {
+      setIsDrawerOpen(true);
+   };
+
+   const handleDrawerClose = () => {
+      setIsDrawerOpen(false);
+   };
 
    return (
-      <Container my={20}>
-         <SectionTitle my={20}>Kontaktieren Sie mit uns</SectionTitle>
+      <Container mt={80} mb={30} size="xl" px="md">
+         <div style={{ display: "flex", justifyContent: "center"}}>
+      <Button
+      radius="lg"
+      size="lg"
+      color="blue"
+      onClick={handleButtonClick}
+      variant="light"
+      className={classes.control}
+      >
+            Kontaktieren Sie mit uns
+         </Button>
+            </div>
+
+         <Drawer
+            opened={isDrawerOpen}
+            onClose={handleDrawerClose}
+            padding="lg"
+            size="md"
+         >
          <Paper shadow="md" radius="lg">
             <div className={classes.wrapper}>
                <form
                   className={classes.form}
                   onSubmit={(event) => event.preventDefault()}
                >
-                  <Text size="lg" weight={700} className={classes.title}>
-                     Schreibe uns 
-                  </Text>
-
                   <div className={classes.fields}>
                      <SimpleGrid
                         cols={2}
@@ -159,6 +183,7 @@ export default function Contact() {
                </form>
             </div>
          </Paper>
+         </Drawer>
       </Container>
    );
 }

@@ -1,224 +1,71 @@
-import {
-    ActionIcon,
-    Container,
-    createStyles,
-    Group,
-    Text,
-    Title,
-} from "@mantine/core";
-import React from "react";
-import { BrandInstagram, BrandTwitter, BrandYoutube } from "tabler-icons-react";
-import Impressum from "./Impressum";
-// import { ContactIconsList } from "../ContactTwo/ContactIconsList";
-import Contacts from "../Contact/Contacts"
-
-const useStyles = createStyles((theme) => ({
-    footer: {
-        marginTop: theme.spacing.xl,
-        paddingTop: theme.spacing.xl * 2,
-        paddingBottom: theme.spacing.xl * 2,
-        backgroundColor:
-            theme.colorScheme === "dark"
-                ? theme.colors.dark[6]
-                : theme.colors.gray[0],
-        borderTop: `1px solid ${
-            theme.colorScheme === "dark"
-                ? theme.colors.dark[5]
-                : theme.colors.gray[2]
-        }`,
-    },
-
-    logo: {
-        maxWidth: 200,
-
-        [theme.fn.smallerThan("sm")]: {
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-        },
-    },
-
-    description: {
-        marginTop: 5,
-
-        [theme.fn.smallerThan("sm")]: {
-            marginTop: theme.spacing.xs,
-            textAlign: "center",
-        },
-    },
-
-    inner: {
-        display: "flex",
-        justifyContent: "space-between",
-
-        [theme.fn.smallerThan("sm")]: {
-            flexDirection: "column",
-            alignItems: "center",
-        },
-    },
-
-    groups: {
-        display: "flex",
-        flexWrap: "wrap",
-
-        [theme.fn.smallerThan("sm")]: {
-            display: "none",
-        },
-    },
-
-    wrapper: {
-        width: 160,
-    },
-
-    link: {
-        display: "block",
-        color:
-            theme.colorScheme === "dark"
-                ? theme.colors.dark[1]
-                : theme.colors.gray[6],
-        fontSize: theme.fontSizes.sm,
-        paddingTop: 3,
-        paddingBottom: 3,
-
-        "&:hover": {
-            textDecoration: "underline",
-        },
-    },
-
-    title: {
-        fontSize: theme.fontSizes.lg,
-        fontWeight: 700,
-        fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-        marginBottom: theme.spacing.xs / 2,
-        color: theme.colorScheme === "dark" ? theme.white : theme.black,
-    },
-
-    afterFooter: {
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginTop: theme.spacing.xl,
-        paddingTop: theme.spacing.xl,
-        paddingBottom: theme.spacing.xl,
-        borderTop: `1px solid ${
-            theme.colorScheme === "dark"
-                ? theme.colors.dark[4]
-                : theme.colors.gray[2]
-        }`,
-
-        [theme.fn.smallerThan("sm")]: {
-            flexDirection: "column",
-        },
-    },
-
-    social: {
-        [theme.fn.smallerThan("sm")]: {
-            marginTop: theme.spacing.xs,
-        },
-    },
-}));
+import { Container, Text, Paper } from '@mantine/core';
+import React from 'react';
+import Impressum from './Impressum';
+import './Footer.css'; 
 
 const footerLinks = [
-    {
-        title: "Projekt",
-        links: [
-            {
-                label: "Impressum",
-                link: <Impressum />,
-            },
-            {
-                label: "AGB",
-                link: "#",
-            },
-            {
-                label: "Datenschutzerklarung",
-                link: "#",
-            },
-        ],
-    },
-    {
-        title: "Über Uns",
-        links: [
-            {
-                label: "Bekko B.V, 3192 BS Hoogviliet, Rotterdam",
-            },
-            {
-                label: "+31 6 10860565",
-            },
-            {
-                label: "purchase@bekkobv.nl",
-            },
-        ],
-    },
+  {
+    links: [
+      {
+        label: "Impressum",
+        link: <Impressum />,
+      },
+      {
+        label: "AGB",
+        link: "#",
+      },
+      {
+        label: "Datenschutzerklärung",
+        link: "#",
+      },
+    ],
+  },
+  {
+    links: [
+      {
+        label: "Bekko B.V, 3192 BS Hoogviliet, Rotterdam",
+      },
+      {
+        label: "purchase@bekkobv.nl",
+      },
+    ],
+  },
 ];
 
-export default function Footer() {
-    const { classes } = useStyles();
-    const groups = footerLinks.map((group) => {
-        const links = group.links.map((link, index) => (
-            <Text
-                key={index}
-                className={classes.link}
-                component="a"
-                href={link.link}
-                onClick={(event) => event.preventDefault()}
-            >
-                {link.label}
-            </Text>
-        ));
-
-        return (
-            <div className={classes.wrapper} key={group.title}>
-                <Text className={classes.title}>{group.title}</Text>
-                {links}
-            </div>
-        );
+const Footer = () => {
+    const groups = footerLinks.map((group, index) => {
+      const links = group.links.map((link, linkIndex) => (
+        <Text
+          key={linkIndex}
+          component="a"
+          href={link.link}
+          onClick={(event) => event.preventDefault()}
+          className={`footer-link${index === 0 ? ' strong' : ''}`}
+        >
+          {link.label}
+        </Text>
+      ));
+  
+      return (
+        <div key={index} className={`footer-group${index === 1 ? ' column' : ''}`}>
+          {links}
+        </div>
+      );
     });
+  
     return (
-        <footer className={classes.footer}>
-            <Container className={classes.inner} size="xl" px="md">
-                <div className={classes.logo}>
-                    <Title order={3}>AutoTeile</Title>
-                    <Text
-                        size="xs"
-                        color="dimmed"
-                        className={classes.description}
-                    >
-                        Bei Fragen zu unseren Produkten oder Dienstleistungen können Sie uns jederzeit erreichen. Wir unterstützen Sie gerne mit unseren bestmöglichen Lösungen für Ihre individuellen Bedürfnisse.
-                    </Text>
-                    <Text
-                        size="xs"
-                        color="dimmed"
-                        className={classes.description}
-                    >
-                        Wir sind weltweit rund um die Uhr für Sie im Einsatz!
-                    </Text>
-                    <Contacts />
-                </div>
-                <div className={classes.groups}>{groups}</div>
-            </Container>
-            <Container className={classes.afterFooter} size="xl" px="md">
-                <Text color="dimmed" size="sm">
-                    © 2023 All rights reserved.
-                </Text>
-
-                <Group
-                    spacing={0}
-                    className={classes.social}
-                    position="right"
-                    noWrap
-                >
-                    <ActionIcon size="lg">
-                        <BrandTwitter size={18} />
-                    </ActionIcon>
-                    <ActionIcon size="lg">
-                        <BrandYoutube size={18} />
-                    </ActionIcon>
-                    <ActionIcon size="lg">
-                        <BrandInstagram size={18} />
-                    </ActionIcon>
-                </Group>
-            </Container>
-        </footer>
+      <footer className="footer">
+        <Container size="xl" px="xl">
+          <div className="footer-content">{groups}</div>
+        </Container>
+        <Paper className="footer-bottom" padding="md">
+          <Text color="dimmed" size="md">
+            © 2023 All rights reserved.
+          </Text>
+        </Paper>
+      </footer>
     );
-}
+  };
+  
+
+export default Footer
