@@ -1,4 +1,4 @@
-import { createStyles } from "@mantine/core";
+import { Flex, createStyles } from "@mantine/core";
 
 export const useStyles = createStyles((theme) => ({
     feature: {
@@ -10,7 +10,7 @@ export const useStyles = createStyles((theme) => ({
 
     content: {
         position: "relative",
-        zIndex: 2,
+        zIndex: 1,
     },
 
     icon: {

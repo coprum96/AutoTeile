@@ -1,7 +1,7 @@
-import { Carousel } from '@mantine/carousel';
+import {  Button, InputSearch } from '@mantine/core';
 import React from "react";
 import SectionTitle from "../../Shared/SectionTitle";
-import { Container, Image } from "@mantine/core";
+import { Container, Image, createStyles, getStylesRef } from "@mantine/core";
 import ate from "../../../Assets/details/ate.png";
 import bosch from "../../../Assets/details/bosch.png";
 import febi from "../../../Assets/details/febi.png";
@@ -9,7 +9,8 @@ import mannfilter from "../../../Assets/details/mannfilter.png";
 import schaffer from "../../../Assets/details/schaffer.png";
 import zf from "../../../Assets/details/zf.png";
 import valeo from "../../../Assets/details/valeo.png";
-
+import { Link } from "react-router-dom";
+import { Carousel } from '@mantine/carousel';
 
 const styles = {
   container: {
@@ -34,9 +35,26 @@ const styles = {
   },
 };
 
-export default function Details() {
+const useStyles = createStyles(() => ({
+  controls: {
+    ref: getStylesRef('controls'),
+    transition: 'opacity 150ms ease',
+    opacity: 0,
+  },
+
+  root: {
+    '&:hover': {
+      [`& .${getStylesRef('controls')}`]: {
+        opacity: 1,
+      },
+    },
+  },
+}));
+
+const Details = () => {
+  const { classes } = useStyles();
   return (
-    <Container style={{...styles.container }}>
+    <Container style={{ ...styles.container }}>
       <SectionTitle my="md" mb="sm">
         OES- UND AFTERMARKET-MARKEN
       </SectionTitle>
@@ -50,6 +68,7 @@ export default function Details() {
         slidesToScroll={1}
         autoPlay
         autoPlayTimeout={2000}
+        classNames={classes}
       >
         <Carousel.Slide style={styles.slide}>
           <Image src={ate} width={180} height={100} fit="contain" alt="ate" style={styles.image} />
@@ -70,9 +89,22 @@ export default function Details() {
           <Image src={valeo} width={180} height={110} fit="contain" alt="valeo" style={styles.image} />
         </Carousel.Slide>
         <Carousel.Slide style={styles.slide}>
-        <Image src={zf} width={180} height={110} fit="contain" alt="zf" style={styles.image} />
+          <Image src={zf} width={180} height={110} fit="contain" alt="zf" style={styles.image} />
         </Carousel.Slide>
       </Carousel>
-        </Container>
-    );
-  }
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", padding: "30px" }}>
+        <Button
+          radius="lg"
+          size="lg"
+          color="blue"
+          component={Link}
+          to="/parts"
+        >
+         Suche oder wähle Teile aus
+        </Button>
+      </div>
+    </Container>
+  );
+}
+
+export default Details;

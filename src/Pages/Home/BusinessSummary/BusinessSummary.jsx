@@ -8,7 +8,6 @@ import { Certificate,
     Crane,
     InputSearch
 } from "tabler-icons-react";
-import SectionTitle from "../../Shared/SectionTitle";
 import Feature from "./Feature";
 import { Link } from "react-router-dom";
 
@@ -54,10 +53,7 @@ export default function BusinessSummary() {
     ));
 
     return (
-        <Container mt={10} mb={30} size="xl" px="md">
-            <SectionTitle my="md" mb="xl">
-                Unsere Vorteile
-            </SectionTitle>
+        <Container mt={80} mb={30} size="xl" px="md">
             <div
                     style={{
                       display: "flex",
@@ -91,7 +87,7 @@ export default function BusinessSummary() {
                   </div>
             <SimpleGrid
                 my={theme.spacing.xl * 3}
-                cols={2}
+                cols={3}
                 breakpoints={[{ maxWidth: "sm", cols: 1 }]}
                 spacing={20}
             >

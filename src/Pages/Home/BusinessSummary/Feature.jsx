@@ -1,6 +1,5 @@
-import { Group, Highlight, Text, Box } from "@mantine/core";
+import { Highlight, Text, Box } from "@mantine/core";
 import { useStyles } from "./Feature.Styles";
-import { IconName } from "tabler-icons-react"; // Replace IconName with the actual icon you want to use
 
 export default function Feature({
   icon: Icon,
@@ -27,22 +26,16 @@ export default function Feature({
       })}
     >
       <div
-        className={cx(classes.feature, className)}
-        {...others}
         style={{
           display: "flex",
           justifyContent: "center"
         }}
       >
-        <div className={classes.overlay} />
-
         <div className={classes.content} >
-          {Icon && <Icon size={48} className={classes.icon} />} {/* Render the icon if it exists */}
-          <Group noWrap >
-            <Text weight={600} size="md" mb="xs" mt={3} className={classes.title}>
+          {Icon && <Icon size={38} className={classes.icon} />} {/* Render the icon if it exists */}
+            <Text weight={600} size="md" mb="xs" mt={4} className={classes.title}>
               {title}
             </Text>
-          </Group>
 
           <Highlight
             color="gray"

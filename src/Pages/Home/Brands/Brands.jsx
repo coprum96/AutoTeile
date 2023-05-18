@@ -1,7 +1,6 @@
-import { Carousel } from '@mantine/carousel';
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SectionTitle from "../../Shared/SectionTitle";
-import { Container, Image } from "@mantine/core";
+import { Container, Image, Text, createStyles, getStylesRef } from "@mantine/core";
 import bmw from "../../../Assets/brands/BMW.svg.png";
 import ferrari from "../../../Assets/brands/ferrari1.png";
 import mercedes from "../../../Assets/brands/mercedes.png";
@@ -12,6 +11,8 @@ import porsche from "../../../Assets/brands/porsche.png";
 import volvo from "../../../Assets/brands/volvo.png";
 import bently from "../../../Assets/brands/bently.png";
 import audi from "../../../Assets/brands/audi.png";
+import { Carousel } from '@mantine/carousel';
+
 
 const styles = {
   container: {
@@ -36,22 +37,76 @@ const styles = {
   },
 };
 
-export default function Brand() {
+const useStyles = createStyles(() => ({
+  controls: {
+    ref: getStylesRef('controls'),
+    transition: 'opacity 150ms ease',
+    opacity: 0,
+  },
+
+  root: {
+    '&:hover': {
+      [`& .${getStylesRef('controls')}`]: {
+        opacity: 1,
+      },
+    },
+  },
+}));
+
+const Brands = () => {
+  const { classes } = useStyles();
+  const [slideSize, setSlideSize] = useState("20%");
+
+  const handleMouseEnter = () => {
+    // Logic to pause autoplay
+  };
+
+  const handleMouseLeave = () => {
+    // Logic to start autoplay
+  };
+
+  const handleResize = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 480) {
+      setSlideSize("33%");
+    } else if (screenWidth <= 768) {
+      setSlideSize("25%");
+    } else {
+      setSlideSize("20%");
+    }
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <Container size="xl" px="md" style={{...styles.container }}>
-      <SectionTitle my="md" mb="sm">
-        Autos
-      </SectionTitle>
+    <Container size="xl" px="md" style={styles.container}>
+      <div style={{ display: "flex", justifyContent: "center", paddingTop: "150px" }}>
+        <Text fw={500}>
+          <strong>DER AUTOTEILE-KFZ-MARKETPLACE PARTNER</strong>
+        </Text>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", fontSize: "35px", paddingBottom: "20px" }}>
+        <Text fw={500} ta="center">Nur hier. Auf keinem anderen Marketplaceportal</Text>
+      </div>
+      <SectionTitle my="md" mb="sm">Autos</SectionTitle>
       <Carousel
         withIndicators
         height={140}
-        slideSize="35%"
+        slideSize={slideSize}
         slideGap="xs"
         loop
         align="center"
         slidesToScroll={1}
-        autoPlay
-        autoPlayTimeout={2000}
+        autoplay={2000}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        classNames={classes}
       >
         <Carousel.Slide style={styles.slide}>
           <Image src={bmw} width={180} height={100} fit="contain" alt="BMW" style={styles.image} />
@@ -72,18 +127,20 @@ export default function Brand() {
           <Image src={vw} width={180} height={110} fit="contain" alt="vw" style={styles.image} />
         </Carousel.Slide>
         <Carousel.Slide style={styles.slide}>
-        <Image src={porsche} width={180} height={110} fit="contain" alt="porsche" style={styles.image} />
+          <Image src={porsche} width={180} height={110} fit="contain" alt="porsche" style={styles.image} />
         </Carousel.Slide>
         <Carousel.Slide style={styles.slide}>
-        <Image src={volvo} width={180} height={110} fit="contain" alt="volvo" style={styles.image} />
+          <Image src={volvo} width={180} height={110} fit="contain" alt="volvo" style={styles.image} />
         </Carousel.Slide>
         <Carousel.Slide style={styles.slide}>
-        <Image src={bently} width={140} height={90} fit="contain" alt="bently" style={styles.image} />
+          <Image src={bently} width={140} height={90} fit="contain" alt="bently" style={styles.image} />
         </Carousel.Slide>
         <Carousel.Slide style={styles.slide}>
-        <Image src={audi} width={190} height={90} fit="contain" alt="audi" style={styles.image} />
+          <Image src={audi} width={190} height={90} fit="contain" alt="audi" style={styles.image} />
         </Carousel.Slide>
       </Carousel>
-        </Container>
-    );
-  }
+    </Container>
+  );
+}
+
+export default Brands;

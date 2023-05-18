@@ -35,13 +35,9 @@ export default function Review({ review }) {
             <Box component="span" style={{ display: "flex" }}>
                <Avatar src={img} mr="md" alt={name} radius="xl" />
                <div>
-                  <Text size="sm">{name}</Text>
-                  <Text size="xs" color="dimmed">
-                     {email}
-                  </Text>
+                  <Text fz="md" size="sm" >{name}</Text>
                </div>
             </Box>
-
             <Text>
                <ReactStars
                   edit={false}
