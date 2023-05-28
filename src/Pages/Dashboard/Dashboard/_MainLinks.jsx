@@ -123,12 +123,14 @@ export function MainLinks({ links }) {
   return (
     <>
       {/* Mobile navigation */}
+      <div style={{ paddingLeft: '25px' }}>
       <LayoutNavbarExpand
     size={30}
     strokeWidth={2}
     color={'#4054bf'}
     onClick={() => setMobileNavOpen(true)} className={classes.mobileNavButton}
-  />
+  /> 
+  </div>
       <Drawer opened={isMobileNavOpen} onClose={() => setMobileNavOpen(false)} padding="md">
         {isMobileNavOpen && (
           <>
