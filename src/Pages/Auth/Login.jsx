@@ -135,6 +135,7 @@ export default function Login() {
                       <Divider label='oder setze mit Email fort' labelPosition='center' my='lg' />
                       <SocialAuth />
                       <Button
+                       radius="lg" size="md"
                          variant='gradient'
                          type='submit'
                          fullWidth

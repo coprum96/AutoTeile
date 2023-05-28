@@ -133,6 +133,7 @@ import {
                    />
                    <Group position='apart' mt='sm'>
                       <Checkbox
+                      required
                          label='I stimme alles zu'
                          checked={form.values.terms}
                          onChange={(event) =>
@@ -142,9 +143,10 @@ import {
                    </Group>
                 </Group>
                 <Button
+                variant='gradient'
+                 radius="lg" size="md"
                    type='submit'
                    disabled={!form.values.terms}
-                   variant='outline'
                    fullWidth
                    mt='xl'>
                    Anmelden
