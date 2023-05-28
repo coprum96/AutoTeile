@@ -15,7 +15,7 @@ import useParts from "../../../Hooks/useParts";
 import Loading from "../../Shared/Loading";
 import { useNavigate } from "react-router-dom";
 import Papa from "papaparse";
-import { Trash, TableExport, Search, FileSearch, InputSearch } from "tabler-icons-react";
+import { Trash, TableExport, FileSearch, InputSearch, ShoppingCartPlus } from "tabler-icons-react";
 
 const Products = () => {
   const theme = useMantineTheme();
@@ -79,9 +79,6 @@ const Products = () => {
     });
   };
 
-  const handleRefresh = () => {
-    refetch(); // Refetch parts data
-  };
 
   if (isLoading) return <Loading />;
 
@@ -236,7 +233,10 @@ const Products = () => {
                     size="lg"
                     onClick={handlePurchaseAllParts}
                   >
-                    Purchase All Parts
+                    Weiter zum <ShoppingCartPlus
+          size={30}
+          strokeWidth={2}
+          color={'#481362'}/>
                   </Button>
                 </div>
               </>
