@@ -1,4 +1,4 @@
-import { Container } from "@mantine/core";
+import { Container, SimpleGrid} from "@mantine/core";
 import BlogItem from "./BlogItem";
 
 const BlogData = [
@@ -41,18 +41,20 @@ const BlogData = [
 
 const Blog = () => {
    return (
-      <Container>
+     <Container>
+       <SimpleGrid cols={2} gutter="lg" breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
          {BlogData.map(({ title, description, link, img }) => (
-            <BlogItem
-               key={title}
-               title={title}
-               img={img}
-               description={description}
-               link={link}
-            />
+           <BlogItem
+             key={title}
+             title={title}
+             img={img}
+             description={description}
+             link={link}
+           />
          ))}
-      </Container>
+       </SimpleGrid>
+     </Container>
    );
-};
-
-export default Blog;
+ };
+ 
+ export default Blog;
